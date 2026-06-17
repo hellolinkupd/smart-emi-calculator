@@ -247,9 +247,38 @@ Disclaimer: This is an estimate only. Affiliate disclosure included.
 </footer>
 
 <script>
+let currencySymbol = "$";
+let locale = "en-US";
 
+function detectCurrency() {
+
+    const lang = navigator.language || "en-US";
+
+    if (lang.includes("en-IN")) {
+        currencySymbol = "₹";
+        locale = "en-IN";
+    }
+    else if (lang.includes("en-GB")) {
+        currencySymbol = "£";
+        locale = "en-GB";
+    }
+    else if (
+        lang.includes("de") ||
+        lang.includes("fr") ||
+        lang.includes("es") ||
+        lang.includes("it")
+    ) {
+        currencySymbol = "€";
+        locale = "de-DE";
+    }
+    else {
+        currencySymbol = "$";
+        locale = "en-US";
+    }
+}
+  
 function formatMoney(num){
-return new Intl.NumberFormat().format(Math.round(num));
+    return new Intl.NumberFormat(locale).format(Math.round(num));
 }
 
 function calculateEMI(){
@@ -270,11 +299,11 @@ let total=emi*n;
 
 let interest=total-P;
 
-document.getElementById('emi').innerText="$"+formatMoney(emi);
+document.getElementById('emi').innerText=currencySymbol + formatMoney(emi)
 
-document.getElementById('interest').innerText="$"+formatMoney(interest);
+document.getElementById('interest').innerText=formatMoney(interest);
 
-document.getElementById('total').innerText="$"+formatMoney(total);
+document.getElementById('total').innerText=formatMoney(total);
 
 updateURL();
 }
@@ -301,7 +330,7 @@ function updateHeading(amount){
 const heading=document.getElementById('dynamicTitle');
 
 heading.innerText=
-`EMI Calculator for a $${formatMoney(amount)} Home Loan`;
+`EMI Calculator for a ${currencySymbol}${formatMoney(amount)} Home Loan`;
 
 }
 
@@ -351,6 +380,7 @@ document
 .getElementById('tenure')
 .addEventListener('change',calculateEMI);
 
+  detectCurrency();
 loadFromURL();
 
 </script>
