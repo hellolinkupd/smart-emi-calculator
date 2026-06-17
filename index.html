@@ -241,7 +241,23 @@ Plan Your Dream Home with Our Free EMI Calculator
 </div>
 
 </div>
+<div class="card">
 
+<h2>Can You Afford This Loan?</h2>
+
+<div class="form-group">
+<label>Monthly Income</label>
+<input id="income" type="number" placeholder="Enter monthly income">
+</div>
+
+<button onclick="checkAffordability()">
+Analyze Affordability
+</button>
+
+<div id="affordabilityResult" style="margin-top:20px;"></div>
+
+</div>
+    
 <footer>
 Disclaimer: This is an estimate only. Affiliate disclosure included.
 </footer>
@@ -282,6 +298,70 @@ function formatMoney(num){
 }
 
 function calculateEMI(){
+
+    function checkAffordability(){
+
+const income =
+parseFloat(document.getElementById("income").value);
+
+const emiText =
+document.getElementById("emi").innerText;
+
+const emi =
+parseFloat(
+emiText.replace(/[^\d.]/g,"")
+);
+
+if(!income || !emi){
+return;
+}
+
+const ratio = (emi / income) * 100;
+
+let result = "";
+
+if(ratio <= 30){
+
+result = `
+<h3 style="color:green">
+✓ Affordable
+</h3>
+<p>
+EMI is ${ratio.toFixed(1)}% of income.
+</p>
+`;
+
+}
+else if(ratio <= 45){
+
+result = `
+<h3 style="color:orange">
+⚠ Moderate Risk
+</h3>
+<p>
+EMI is ${ratio.toFixed(1)}% of income.
+</p>
+`;
+
+}
+else{
+
+result = `
+<h3 style="color:red">
+✗ High Risk
+</h3>
+<p>
+EMI is ${ratio.toFixed(1)}% of income.
+</p>
+`;
+
+}
+
+document.getElementById(
+"affordabilityResult"
+).innerHTML = result;
+
+}
 
 let P=parseFloat(document.getElementById('amount').value);
 
