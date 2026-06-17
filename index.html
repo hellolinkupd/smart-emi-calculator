@@ -1,10 +1,288 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-<title>Smart EMI Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart EMI Calculator | Home Loan EMI Calculator</title>
+
+<meta name="description" content="Calculate Home Loan EMI instantly with our free Smart EMI Calculator. Compare rates, affordability and repayment schedules.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--navy:#0A1628;
+--teal:#0D9488;
+--bg:#F8FAFC;
+--white:#FFFFFF;
+--text:#1F2937;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+header{
+background:var(--navy);
+color:white;
+padding:20px;
+}
+
+.nav{
+max-width:1100px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:24px;
+font-weight:800;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:16px;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
+margin-bottom:25px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:15px;
+}
+
+.trust-banner{
+background:#ECFDF5;
+padding:12px;
+border-radius:10px;
+font-weight:600;
+color:#065F46;
+margin-top:15px;
+}
+
+.form-group{
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+}
+
+input[type=number],
+select{
+width:100%;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:8px;
+}
+
+input[type=range]{
+width:100%;
+}
+
+button{
+width:100%;
+background:var(--teal);
+color:white;
+border:none;
+padding:14px;
+border-radius:10px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+}
+
+.results{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.result-card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+text-align:center;
+}
+
+.result-value{
+font-size:28px;
+font-weight:800;
+margin-top:10px;
+}
+
+.emi{
+color:var(--teal);
+}
+
+footer{
+background:var(--navy);
+color:white;
+padding:25px;
+text-align:center;
+margin-top:50px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:30px;
+}
+
+.nav{
+flex-direction:column;
+gap:15px;
+}
+}
+</style>
+
 </head>
+
 <body>
-<h1>Smart EMI Calculator</h1>
-<p>Website is working.</p>
+
+<header>
+<div class="nav">
+<div class="logo">Smart EMI Calculator</div>
+
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Privacy</a>
+</div>
+</div>
+</header>
+
+<div class="container">
+
+<div class="hero card">
+<h1 id="dynamicTitle">
+Plan Your Dream Home with Our Free EMI Calculator
+</h1>
+
+<div class="trust-banner">
+🔒 100% Free · No Sign-up Required · Instant Results
+</div>
+</div>
+
+<div class="card">
+
+<div class="form-group">
+<label>Loan Amount</label>
+<input id="amount" type="number" value="500000">
+</div>
+
+<div class="form-group">
+<label>Interest Rate (%)</label>
+<input id="rate" type="number" value="8.5">
+</div>
+
+<div class="form-group">
+<label>Loan Tenure</label>
+<select id="tenure">
+<option value="5">5 Years</option>
+<option value="10">10 Years</option>
+<option value="15">15 Years</option>
+<option value="20" selected>20 Years</option>
+<option value="25">25 Years</option>
+<option value="30">30 Years</option>
+</select>
+</div>
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+</div>
+
+<div class="results">
+
+<div class="result-card">
+<div>Monthly EMI</div>
+<div class="result-value emi" id="emi">$0</div>
+</div>
+
+<div class="result-card">
+<div>Total Interest</div>
+<div class="result-value" id="interest">$0</div>
+</div>
+
+<div class="result-card">
+<div>Total Payment</div>
+<div class="result-value" id="total">$0</div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Disclaimer: This is an estimate only. Affiliate disclosure included.
+</footer>
+
+<script>
+
+function formatMoney(num){
+return new Intl.NumberFormat().format(Math.round(num));
+}
+
+function calculateEMI(){
+
+let P=parseFloat(document.getElementById('amount').value);
+
+let annualRate=parseFloat(document.getElementById('rate').value);
+
+let years=parseFloat(document.getElementById('tenure').value);
+
+let r=(annualRate/100)/12;
+
+let n=years*12;
+
+let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+
+let total=emi*n;
+
+let interest=total-P;
+
+document.getElementById('emi').innerText="$"+formatMoney(emi);
+
+document.getElementById('interest').innerText="$"+formatMoney(interest);
+
+document.getElementById('total').innerText="$"+formatMoney(total);
+
+}
+
+calculateEMI();
+
+</script>
+
 </body>
 </html>
+
+
