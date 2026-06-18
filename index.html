@@ -282,6 +282,14 @@ Calculate EMI
 <div class="result-value" id="total">$0</div>
 </div>
 
+    <div class="card">
+
+<h2>Loan Summary</h2>
+
+<div id="loanSummary"></div>
+
+</div>
+    
 </div>
 
 <div class="card">
@@ -422,6 +430,14 @@ years,
 emi
 );
 
+generateSummary(
+P,
+annualRate,
+years,
+emi,
+interest
+);
+    
 updateURL();
 
 }
@@ -489,7 +505,40 @@ annualRate,
 years,
 emi
 ){
+function generateSummary(
+amount,
+rate,
+tenure,
+emi,
+interest
+){
 
+document.getElementById("loanSummary").innerHTML=
+`
+<p>
+For a loan amount of
+<strong>${currencySymbol}${formatMoney(amount)}</strong>
+at an annual interest rate of
+<strong>${rate}%</strong>
+for
+<strong>${tenure} years</strong>,
+
+your estimated monthly EMI is
+
+<strong>${currencySymbol}${formatMoney(emi)}</strong>.
+
+The total interest payable will be
+
+<strong>${currencySymbol}${formatMoney(interest)}</strong>.
+
+Your total repayment amount will be
+
+<strong>${currencySymbol}${formatMoney(amount + interest)}</strong>.
+</p>
+`;
+
+}
+    
 let balance=principal;
 
 let monthlyRate=(annualRate/100)/12;
@@ -543,10 +592,11 @@ window.history.replaceState(
 `?amount=${amount}&rate=${rate}&tenure=${tenure}`
 );
 
-document.getElementById(
-"dynamicTitle"
-).innerText=
-`EMI Calculator for a ${currencySymbol}${formatMoney(amount)} Home Loan`;
+const formattedAmount =
+currencySymbol + formatMoney(amount);
+
+document.getElementById("dynamicTitle").innerText =
+`${formattedAmount} Home Loan EMI Calculator`;
 
 }
 
