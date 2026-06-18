@@ -505,6 +505,8 @@ emi,
 interest
 ){
 
+const totalPayment = emi * tenure * 12;
+
 document.getElementById("loanSummary").innerHTML=
 `
 <p>
@@ -516,19 +518,15 @@ for
 <strong>${tenure} years</strong>,
 
 your estimated monthly EMI is
-
 <strong>${currencySymbol}${formatMoney(emi)}</strong>.
 
 The total interest payable will be
-
 <strong>${currencySymbol}${formatMoney(interest)}</strong>.
 
 Your total repayment amount will be
-
-<strong>${currencySymbol}${formatMoney((emi * tenure * 12))}</strong>.
+<strong>${currencySymbol}${formatMoney(totalPayment)}</strong>.
 </p>
 `;
-
 }
 
     function generateAmortization(
