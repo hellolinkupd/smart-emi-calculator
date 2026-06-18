@@ -269,7 +269,7 @@ let locale = "en-US";
 
 function detectCurrency() {
 
-    const lang = CF-IPCountry || "en-US";
+    const lang = navigator.language || "en-US";
 
     if (lang.includes("en-IN")) {
         currencySymbol = "₹";
@@ -298,9 +298,7 @@ function formatMoney(num){
     return new Intl.NumberFormat(locale).format(Math.round(num));
 }
 
-function calculateEMI(){
-
-    function checkAffordability(){
+function checkAffordability(){
 
 const income =
 parseFloat(document.getElementById("income").value);
@@ -364,6 +362,8 @@ document.getElementById(
 
 }
 
+function calculateEMI(){
+    
 let P=parseFloat(document.getElementById('amount').value);
 
 let annualRate=parseFloat(document.getElementById('rate').value);
