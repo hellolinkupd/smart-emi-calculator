@@ -549,6 +549,9 @@ years,
 emi
 );
 
+document.getElementById('total').innerText =
+currencySymbol + formatMoney(total);
+    
 if(!P || !annualRate || !years) return;
     
 updateURL();
