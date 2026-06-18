@@ -385,8 +385,6 @@ document.getElementById("tenure").value=tenure;
 
 }
 
-}
-
 function formatMoney(num){
 return new Intl.NumberFormat(locale).format(Math.round(num));
 }
@@ -527,7 +525,7 @@ The total interest payable will be
 
 Your total repayment amount will be
 
-<strong>${currencySymbol}${formatMoney(amount + interest)}</strong>.
+<strong>${currencySymbol}${formatMoney((emi * tenure * 12))}</strong>.
 </p>
 `;
 
