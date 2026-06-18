@@ -458,7 +458,55 @@ document.getElementById(
 "affordabilityResult"
 ).innerHTML = result;
 }
+function generateAmortization(
+principal,
+annualRate,
+years,
+emi
+){
 
+let balance = principal;
+
+let monthlyRate =
+(annualRate/100)/12;
+
+let months = years * 12;
+
+let html = "";
+
+for(let month=1; month<=months; month++){
+
+let interest =
+balance * monthlyRate;
+
+let principalPaid =
+emi - interest;
+
+balance =
+balance - principalPaid;
+
+if(balance < 0){
+balance = 0;
+}
+
+html += `
+<tr>
+<td>${month}</td>
+<td>${currencySymbol}${formatMoney(emi)}</td>
+<td>${currencySymbol}${formatMoney(principalPaid)}</td>
+<td>${currencySymbol}${formatMoney(interest)}</td>
+<td>${currencySymbol}${formatMoney(balance)}</td>
+</tr>
+`;
+
+}
+
+document.querySelector(
+"#amortizationTable tbody"
+).innerHTML = html;
+
+}
+    
 function calculateEMI(){
     
 let P=parseFloat(document.getElementById('amount').value);
@@ -484,6 +532,12 @@ currencySymbol + formatMoney(interest);
 
 document.getElementById('total').innerText =
 currencySymbol + formatMoney(total);
+generateAmortization(
+P,
+annualRate,
+years,
+emi
+);
 
 if(!P || !annualRate || !years) return;
     
