@@ -370,6 +370,8 @@ let annualRate=parseFloat(document.getElementById('rate').value);
 
 let years=parseFloat(document.getElementById('tenure').value);
 
+if(!P || !annualRate || !years) return;
+
 let r=(annualRate/100)/12;
 
 let n=years*12;
@@ -382,9 +384,11 @@ let interest=total-P;
 
 document.getElementById('emi').innerText=currencySymbol + formatMoney(emi)
 
-document.getElementById('interest').innerText=formatMoney(interest);
+document.getElementById('interest').innerText =
+currencySymbol + formatMoney(interest);
 
-document.getElementById('total').innerText=formatMoney(total);
+document.getElementById('total').innerText =
+currencySymbol + formatMoney(total);
 
 updateURL();
 }
