@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Smart EMI Calculator | Home Loan EMI Calculator</title>
-
-<meta name="description" content="Calculate Home Loan EMI instantly with our free Smart EMI Calculator. Compare rates, affordability and repayment schedules.">
+<title>Smart EMI Calculator</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
 --navy:#0A1628;
 --teal:#0D9488;
 --bg:#F8FAFC;
---white:#FFFFFF;
 --text:#1F2937;
 }
 
@@ -30,7 +28,6 @@ font-family:'Inter',sans-serif;
 body{
 background:var(--bg);
 color:var(--text);
-line-height:1.6;
 }
 
 header{
@@ -83,7 +80,6 @@ padding:12px;
 border-radius:10px;
 font-weight:600;
 color:#065F46;
-margin-top:15px;
 }
 
 .form-group{
@@ -96,16 +92,12 @@ margin-bottom:8px;
 font-weight:600;
 }
 
-input[type=number],
+input,
 select{
 width:100%;
 padding:12px;
 border:1px solid #d1d5db;
 border-radius:8px;
-}
-
-input[type=range]{
-width:100%;
 }
 
 button{
@@ -124,6 +116,7 @@ cursor:pointer;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:15px;
+margin-top:20px;
 }
 
 .result-card{
@@ -144,11 +137,27 @@ margin-top:10px;
 color:var(--teal);
 }
 
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #E5E7EB;
+padding:10px;
+text-align:center;
+}
+
+th{
+background:#F3F4F6;
+}
+
 footer{
 background:var(--navy);
 color:white;
-padding:25px;
 text-align:center;
+padding:25px;
 margin-top:50px;
 }
 
@@ -160,30 +169,11 @@ font-size:30px;
 
 .nav{
 flex-direction:column;
-gap:15px;
+gap:10px;
 }
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px;
 }
 
-th,
-td{
-padding:12px;
-border:1px solid #E5E7EB;
-text-align:center;
-}
-
-th{
-background:#F3F4F6;
-}
-
-tbody tr:nth-child(even){
-background:#F9FAFB;
-}
 </style>
-
 </head>
 
 <body>
@@ -202,7 +192,7 @@ background:#F9FAFB;
 
 <div class="container">
 
-<div class="hero card">
+<div class="card hero">
 <h1 id="dynamicTitle">
 Plan Your Dream Home with Our Free EMI Calculator
 </h1>
@@ -213,8 +203,9 @@ Plan Your Dream Home with Our Free EMI Calculator
 </div>
 
 <div class="card">
+
 <h2>Home Loan EMI Calculator</h2>
-    
+
 <div class="form-group">
 <label>Loan Amount</label>
 <input id="amount" type="number" value="500000">
@@ -227,6 +218,7 @@ Plan Your Dream Home with Our Free EMI Calculator
 
 <div class="form-group">
 <label>Loan Tenure</label>
+
 <select id="tenure">
 <option value="5">5 Years</option>
 <option value="10">10 Years</option>
@@ -235,68 +227,61 @@ Plan Your Dream Home with Our Free EMI Calculator
 <option value="25">25 Years</option>
 <option value="30">30 Years</option>
 </select>
+
 </div>
 
-<button onclick="calculateEMI()">Calculate EMI</button>
+<button onclick="calculateEMI()">
+Calculate EMI
+</button>
 
 </div>
 
 <div class="results">
 
-    <div class="result-card">
-        <div>Monthly EMI</div>
-        <div class="result-value emi" id="emi">$0</div>
-    </div>
+<div class="result-card">
+<div>Monthly EMI</div>
+<div class="result-value emi" id="emi">$0</div>
+</div>
 
-    <div class="result-card">
-        <div>Total Interest</div>
-        <div class="result-value" id="interest">$0</div>
-    </div>
+<div class="result-card">
+<div>Total Interest</div>
+<div class="result-value" id="interest">$0</div>
+</div>
 
-    <div class="result-card">
-        <div>Total Payment</div>
-        <div class="result-value" id="total">$0</div>
-    </div>
-
-</div> <!-- results -->
-
-<div class="card">
-
-    <h2>Can You Afford This Loan?</h2>
-
-    <div class="form-group">
-        <label>Monthly Income</label>
-        <input
-            id="income"
-            type="number"
-            placeholder="Enter monthly income">
-    </div>
-
-    <button onclick="checkAffordability()">
-        Analyze Affordability
-    </button>
-
-    <div id="affordabilityResult" style="margin-top:20px;"></div>
-
-</div> <!-- affordability card -->
-
-</div> <!-- container -->
-
-    <div class="card">
-<h2>Loan Repayment Schedule</h2>
-
-<div id="amortizationTable"></div>
-        <div id="affordabilityResult" style="margin-top:20px;"></div>
+<div class="result-card">
+<div>Total Payment</div>
+<div class="result-value" id="total">$0</div>
+</div>
 
 </div>
 
 <div class="card">
+
+<h2>Can You Afford This Loan?</h2>
+
+<div class="form-group">
+<label>Monthly Income</label>
+<input id="income" type="number" placeholder="Enter monthly income">
+</div>
+
+<button onclick="checkAffordability()">
+Analyze Affordability
+</button>
+
+<div id="affordabilityResult" style="margin-top:20px;"></div>
+
+</div>
+
+<div class="card">
+
 <h2>Loan Repayment Schedule</h2>
 
 <p>Showing first 24 payments.</p>
 
 <div style="overflow-x:auto;">
+
 <table id="amortizationTable">
+
 <thead>
 <tr>
 <th>Month</th>
@@ -306,8 +291,11 @@ Plan Your Dream Home with Our Free EMI Calculator
 <th>Balance</th>
 </tr>
 </thead>
+
 <tbody></tbody>
+
 </table>
+
 </div>
 
 </div>
@@ -315,143 +303,126 @@ Plan Your Dream Home with Our Free EMI Calculator
 </div>
 
 <footer>
-
-</div>
-<footer>
-    Disclaimer: This is an estimate only. Affiliate disclosure included.
+Disclaimer: This is an estimate only. Affiliate disclosure included.
 </footer>
 
 <script>
-let currencySymbol = "$";
-let locale = "en-US";
 
-function detectCurrency() {
+let currencySymbol="$";
+let locale="en-US";
 
-    const lang = navigator.language || "en-US";
+function detectCurrency(){
 
-    if (lang.includes("en-IN")) {
-        currencySymbol = "₹";
-        locale = "en-IN";
-    }
-    else if (lang.includes("en-GB")) {
-        currencySymbol = "£";
-        locale = "en-GB";
-    }
-    else if (
-        lang.includes("de") ||
-        lang.includes("fr") ||
-        lang.includes("es") ||
-        lang.includes("it")
-    ) {
-        currencySymbol = "€";
-        locale = "de-DE";
-    }
-    else {
-        currencySymbol = "$";
-        locale = "en-US";
-    }
+const lang=navigator.language || "en-US";
+
+if(lang.includes("en-IN")){
+currencySymbol="₹";
+locale="en-IN";
 }
-  
+else if(lang.includes("en-GB")){
+currencySymbol="£";
+locale="en-GB";
+}
+else{
+currencySymbol="$";
+locale="en-US";
+}
+
+}
+
 function formatMoney(num){
-    return new Intl.NumberFormat(locale).format(Math.round(num));
+return new Intl.NumberFormat(locale).format(Math.round(num));
+}
+
+function calculateEMI(){
+
+let P=parseFloat(document.getElementById("amount").value);
+
+let annualRate=parseFloat(document.getElementById("rate").value);
+
+let years=parseFloat(document.getElementById("tenure").value);
+
+if(!P || !annualRate || !years){
+return;
+}
+
+let r=(annualRate/100)/12;
+
+let n=years*12;
+
+let emi=(P*r*Math.pow(1+r,n))/
+(Math.pow(1+r,n)-1);
+
+let total=emi*n;
+
+let interest=total-P;
+
+document.getElementById("emi").innerText=
+currencySymbol+formatMoney(emi);
+
+document.getElementById("interest").innerText=
+currencySymbol+formatMoney(interest);
+
+document.getElementById("total").innerText=
+currencySymbol+formatMoney(total);
+
+generateAmortization(
+P,
+annualRate,
+years,
+emi
+);
+
+updateURL();
+
 }
 
 function checkAffordability(){
 
-const income =
+const income=
 parseFloat(document.getElementById("income").value);
 
-const emiText =
-document.getElementById("emi").innerText;
-
-const emi =
+const emi=
 parseFloat(
-emiText.replace(/[^\d.]/g,"")
+document.getElementById("emi")
+.innerText
+.replace(/[^\d.]/g,"")
 );
 
-if(!income || !emi){
-
-document.getElementById(
-"affordabilityResult"
-).innerHTML =
-"<p>Please enter your monthly income.</p>";
-
+if(!income){
 return;
 }
 
-const ratio = (emi / income) * 100;
+const ratio=(emi/income)*100;
 
-let result = "";
+let result="";
 
-if(ratio <= 30){
+if(ratio<=30){
 
-result = `
-<div style="
-background:#ECFDF5;
-padding:15px;
-border-radius:10px;
-border-left:5px solid green;
-">
-<h3 style="color:green;">✓ Affordable</h3>
-
-<p>
-Your EMI is <strong>${ratio.toFixed(1)}%</strong>
-of your monthly income.
-</p>
-
-<p>
-This loan appears comfortably within
-recommended affordability limits.
-</p>
+result=`
+<div style="background:#ECFDF5;padding:15px;border-radius:10px;">
+<h3 style="color:green">✓ Affordable</h3>
+<p>Your EMI is ${ratio.toFixed(1)}% of your income.</p>
 </div>
 `;
 
 }
-else if(ratio <= 45){
+else if(ratio<=45){
 
-result = `
-<div style="
-background:#FFFBEB;
-padding:15px;
-border-radius:10px;
-border-left:5px solid orange;
-">
-<h3 style="color:orange;">⚠ Moderate Risk</h3>
-
-<p>
-Your EMI is <strong>${ratio.toFixed(1)}%</strong>
-of your monthly income.
-</p>
-
-<p>
-You may qualify, but keeping EMI below 30%
-of income is generally recommended.
-</p>
+result=`
+<div style="background:#FFFBEB;padding:15px;border-radius:10px;">
+<h3 style="color:orange">⚠ Moderate Risk</h3>
+<p>Your EMI is ${ratio.toFixed(1)}% of your income.</p>
 </div>
 `;
 
 }
 else{
 
-result = `
-<div style="
-background:#FEF2F2;
-padding:15px;
-border-radius:10px;
-border-left:5px solid red;
-">
-<h3 style="color:red;">✗ High Risk</h3>
-
-<p>
-Your EMI is <strong>${ratio.toFixed(1)}%</strong>
-of your monthly income.
-</p>
-
-<p>
-Consider increasing your down payment,
-extending the loan tenure,
-or choosing a lower-priced property.
-</p>
+result=`
+<div style="background:#FEF2F2;padding:15px;border-radius:10px;">
+<h3 style="color:red">✗ High Risk</h3>
+<p>Your EMI is ${ratio.toFixed(1)}% of your income.</p>
 </div>
 `;
 
@@ -459,8 +430,10 @@ or choosing a lower-priced property.
 
 document.getElementById(
 "affordabilityResult"
-).innerHTML = result;
+).innerHTML=result;
+
 }
+
 function generateAmortization(
 principal,
 annualRate,
@@ -468,38 +441,25 @@ years,
 emi
 ){
 
-let balance = principal;
+let balance=principal;
 
-let monthlyRate =
-(annualRate/100)/12;
+let monthlyRate=(annualRate/100)/12;
 
-let months = years * 12;
+let html="";
 
-let html = "";
+for(let month=1;month<=24;month++){
 
-for(
-let month=1;
-month<=Math.min(months,24);
-month++
-)
-<p>
-Showing first 24 payments.
-</p>
+let interest=balance*monthlyRate;
 
-let interest =
-balance * monthlyRate;
+let principalPaid=emi-interest;
 
-let principalPaid =
-emi - interest;
+balance-=principalPaid;
 
-balance =
-balance - principalPaid;
-
-if(balance < 0){
-balance = 0;
+if(balance<0){
+balance=0;
 }
 
-html += `
+html+=`
 <tr>
 <td>${month}</td>
 <td>${currencySymbol}${formatMoney(emi)}</td>
@@ -513,129 +473,47 @@ html += `
 
 document.querySelector(
 "#amortizationTable tbody"
-).innerHTML = html;
+).innerHTML=html;
 
-}
-    
-function calculateEMI(){
-    
-let P=parseFloat(document.getElementById('amount').value);
-
-let annualRate=parseFloat(document.getElementById('rate').value);
-
-let years=parseFloat(document.getElementById('tenure').value);
-
-let r=(annualRate/100)/12;
-
-let n=years*12;
-
-let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-
-let total=emi*n;
-
-let interest=total-P;
-
-document.getElementById('emi').innerText=currencySymbol + formatMoney(emi)
-
-document.getElementById('interest').innerText =
-currencySymbol + formatMoney(interest);
-
-document.getElementById('total').innerText =
-currencySymbol + formatMoney(total);
-generateAmortization(
-P,
-annualRate,
-years,
-emi
-);
-
-document.getElementById('total').innerText =
-currencySymbol + formatMoney(total);
-    
-if(!P || !annualRate || !years) return;
-    
-updateURL();
 }
 
 function updateURL(){
 
-const amount=document.getElementById('amount').value;
+const amount=
+document.getElementById("amount").value;
 
-const rate=document.getElementById('rate').value;
+const rate=
+document.getElementById("rate").value;
 
-const tenure=document.getElementById('tenure').value;
+const tenure=
+document.getElementById("tenure").value;
 
-const url=
-`?amount=${amount}&rate=${rate}&tenure=${tenure}`;
+window.history.replaceState(
+{},
+"",
+`?amount=${amount}&rate=${rate}&tenure=${tenure}`
+);
 
-window.history.replaceState({},'',url);
-
-updateHeading(amount);
-
-}
-
-function updateHeading(amount){
-
-const heading=document.getElementById('dynamicTitle');
-
-heading.innerText=
+document.getElementById(
+"dynamicTitle"
+).innerText=
 `EMI Calculator for a ${currencySymbol}${formatMoney(amount)} Home Loan`;
 
 }
 
-function loadFromURL(){
+document.getElementById("amount")
+.addEventListener("input",calculateEMI);
 
-const params=new URLSearchParams(window.location.search);
+document.getElementById("rate")
+.addEventListener("input",calculateEMI);
 
-const amount=params.get('amount');
-
-const rate=params.get('rate');
-
-const tenure=params.get('tenure');
-
-if(amount){
-
-document.getElementById('amount').value=amount;
-
-updateHeading(amount);
-
-}
-
-if(rate){
-
-document.getElementById('rate').value=rate;
-
-}
-
-if(tenure){
-
-document.getElementById('tenure').value=tenure;
-
-}
-
-calculateEMI();
-
-}
-
-document
-.getElementById('amount')
-.addEventListener('input',calculateEMI);
-
-document
-.getElementById('rate')
-.addEventListener('input',calculateEMI);
-
-document
-.getElementById('tenure')
-.addEventListener('change',calculateEMI);
+document.getElementById("tenure")
+.addEventListener("change",calculateEMI);
 
 detectCurrency();
-loadFromURL();
 calculateEMI();
 
 </script>
 
 </body>
 </html>
-
-
