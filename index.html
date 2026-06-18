@@ -304,66 +304,92 @@ function formatMoney(num){
 
 function checkAffordability(){
 
-const income =
-parseFloat(document.getElementById("income").value);
+    const income = parseFloat(
+        document.getElementById("income").value
+    );
 
-const emiText =
-document.getElementById("emi").innerText;
+    const emiText =
+        document.getElementById("emi").innerText;
 
-const emi =
-parseFloat(
-emiText.replace(/[^\d.]/g,"")
-);
+    const emi = parseFloat(
+        emiText.replace(/[^0-9.]/g, "")
+    );
 
-if(!income || !emi){
-return;
-}
+    if(!income || !emi){
 
-const ratio = (emi / income) * 100;
+        document.getElementById(
+            "affordabilityResult"
+        ).innerHTML =
+        "<p>Please enter your monthly income.</p>";
 
-let result = "";
+        return;
+    }
 
-if(ratio <= 30){
+    const ratio = (emi / income) * 100;
 
-result = `
-<h3 style="color:green">
-✓ Affordable
-</h3>
-<p>
-EMI is ${ratio.toFixed(1)}% of income.
-</p>
-`;
+    let result = "";
 
-}
-else if(ratio <= 45){
+    if(ratio <= 30){
 
-result = `
-<h3 style="color:orange">
-⚠ Moderate Risk
-</h3>
-<p>
-EMI is ${ratio.toFixed(1)}% of income.
-</p>
-`;
+        result = `
+        <div style="
+            background:#ECFDF5;
+            padding:15px;
+            border-radius:10px;
+        ">
+            <h3 style="color:#065F46">
+                ✓ Affordable
+            </h3>
+            <p>
+                Your EMI is
+                <strong>${ratio.toFixed(1)}%</strong>
+                of your monthly income.
+            </p>
+        </div>
+        `;
 
-}
-else{
+    } else if(ratio <= 45){
 
-result = `
-<h3 style="color:red">
-✗ High Risk
-</h3>
-<p>
-EMI is ${ratio.toFixed(1)}% of income.
-</p>
-`;
+        result = `
+        <div style="
+            background:#FFFBEB;
+            padding:15px;
+            border-radius:10px;
+        ">
+            <h3 style="color:#B45309">
+                ⚠ Moderate Risk
+            </h3>
+            <p>
+                Your EMI is
+                <strong>${ratio.toFixed(1)}%</strong>
+                of your monthly income.
+            </p>
+        </div>
+        `;
 
-}
+    } else {
 
-document.getElementById(
-"affordabilityResult"
-).innerHTML = result;
+        result = `
+        <div style="
+            background:#FEF2F2;
+            padding:15px;
+            border-radius:10px;
+        ">
+            <h3 style="color:#B91C1C">
+                ✗ High Risk
+            </h3>
+            <p>
+                Your EMI is
+                <strong>${ratio.toFixed(1)}%</strong>
+                of your monthly income.
+            </p>
+        </div>
+        `;
+    }
 
+    document.getElementById(
+        "affordabilityResult"
+    ).innerHTML = result;
 }
 
 function calculateEMI(){
