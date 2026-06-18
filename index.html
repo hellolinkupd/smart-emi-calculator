@@ -237,11 +237,9 @@ Plan Your Dream Home with Our Free EMI Calculator
 <div class="result-card">
 <div>Total Payment</div>
 <div class="result-value" id="total">$0</div>
-</div>
 
 </div>
 
-</div>
 <div class="card">
 
 <h2>Can You Afford This Loan?</h2>
@@ -370,8 +368,6 @@ let annualRate=parseFloat(document.getElementById('rate').value);
 
 let years=parseFloat(document.getElementById('tenure').value);
 
-if(!P || !annualRate || !years) return;
-
 let r=(annualRate/100)/12;
 
 let n=years*12;
@@ -390,6 +386,8 @@ currencySymbol + formatMoney(interest);
 document.getElementById('total').innerText =
 currencySymbol + formatMoney(total);
 
+if(!P || !annualRate || !years) return;
+    
 updateURL();
 }
 
