@@ -58,7 +58,12 @@ margin-left:20px;
 .container{
 max-width:900px;
 margin:auto;
-padding:40px 20px;
+padding:20px;
+width:100%;
+}
+
+.card{
+width:100%;
 }
 
 .card{
@@ -280,24 +285,33 @@ Analyze Affordability
 
 <div style="overflow-x:auto;">
 
-<table id="amortizationTable">
+<div class="card">
 
-<thead>
-<tr>
-<th>Month</th>
-<th>EMI</th>
-<th>Principal</th>
-<th>Interest</th>
-<th>Balance</th>
-</tr>
-</thead>
+    <h2>Loan Repayment Schedule</h2>
 
-<tbody></tbody>
+    <p style="color:#666;margin-bottom:15px;">
+        Showing first 24 payments.
+    </p>
 
-</table>
+    <div style="overflow-x:auto;">
+
+        <table id="amortizationTable">
+            <thead>
+                <tr>
+                    <th>Payment #</th>
+                    <th>Monthly EMI</th>
+                    <th>Principal Paid</th>
+                    <th>Interest Paid</th>
+                    <th>Remaining Balance</th>
+                </tr>
+            </thead>
+
+            <tbody id="scheduleBody"></tbody>
+        </table>
+
+    </div>
 
 </div>
-
 </div>
 
 </div>
