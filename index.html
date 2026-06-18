@@ -224,40 +224,47 @@ Plan Your Dream Home with Our Free EMI Calculator
 
 <div class="results">
 
-<div class="result-card">
-<div>Monthly EMI</div>
-<div class="result-value emi" id="emi">$0</div>
+    <div class="result-card">
+        <div>Monthly EMI</div>
+        <div class="result-value emi" id="emi">$0</div>
+    </div>
 
-<div class="result-card">
-<div>Total Interest</div>
-<div class="result-value" id="interest">$0</div>
-</div>
+    <div class="result-card">
+        <div>Total Interest</div>
+        <div class="result-value" id="interest">$0</div>
+    </div>
 
-<div class="result-card">
-<div>Total Payment</div>
-<div class="result-value" id="total">$0</div>
+    <div class="result-card">
+        <div>Total Payment</div>
+        <div class="result-value" id="total">$0</div>
+    </div>
 
-</div>
+</div> <!-- results -->
 
 <div class="card">
 
-<h2>Can You Afford This Loan?</h2>
+    <h2>Can You Afford This Loan?</h2>
 
-<div class="form-group">
-<label>Monthly Income</label>
-<input id="income" type="number" placeholder="Enter monthly income">
-</div>
+    <div class="form-group">
+        <label>Monthly Income</label>
+        <input
+            id="income"
+            type="number"
+            placeholder="Enter monthly income">
+    </div>
 
-<button onclick="checkAffordability()">
-Analyze Affordability
-</button>
+    <button onclick="checkAffordability()">
+        Analyze Affordability
+    </button>
 
-<div id="affordabilityResult" style="margin-top:20px;"></div>
+    <div id="affordabilityResult" style="margin-top:20px;"></div>
 
-</div>
-    
+</div> <!-- affordability card -->
+
+</div> <!-- container -->
+
 <footer>
-Disclaimer: This is an estimate only. Affiliate disclosure included.
+    Disclaimer: This is an estimate only. Affiliate disclosure included.
 </footer>
 
 <script>
