@@ -282,17 +282,14 @@ Calculate EMI
 <div class="result-value" id="total">$0</div>
 </div>
 
-    <div class="card">
+</div>
+
+<div class="card">
 
 <h2>Loan Summary</h2>
 
 <div id="loanSummary"></div>
-
-</div>
     
-</div>
-
-<div class="card">
 
 <h2>Can You Afford This Loan?</h2>
 
@@ -365,6 +362,9 @@ else{
 currencySymbol="$";
 locale="en-US";
 }
+
+}
+    
     function loadFromURL(){
 
 const params =
@@ -499,12 +499,6 @@ document.getElementById(
 
 }
 
-function generateAmortization(
-principal,
-annualRate,
-years,
-emi
-){
 function generateSummary(
 amount,
 rate,
@@ -538,6 +532,13 @@ Your total repayment amount will be
 `;
 
 }
+
+    function generateAmortization(
+principal,
+annualRate,
+years,
+emi
+){
     
 let balance=principal;
 
@@ -610,6 +611,7 @@ document.getElementById("tenure")
 .addEventListener("change",calculateEMI);
 
 detectCurrency();
+loadFromURL();
 calculateEMI();
 
 </script>
