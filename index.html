@@ -474,7 +474,14 @@ let months = years * 12;
 
 let html = "";
 
-for(let month=1; month<=months; month++){
+for(
+let month=1;
+month<=Math.min(months,24);
+month++
+)
+<p>
+Showing first 24 payments.
+</p>
 
 let interest =
 balance * monthlyRate;
