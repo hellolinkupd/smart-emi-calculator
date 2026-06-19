@@ -314,7 +314,7 @@ gap:10px;
 
   /* FAQ Styling */
 
-.card h2{
+.faq-section h2{
     margin-top:32px;
     margin-bottom:16px;
     color:var(--navy);
@@ -322,7 +322,7 @@ gap:10px;
     line-height:1.3;
 }
 
-.card h3{
+.faq-section h3{
     margin-top:24px;
     margin-bottom:10px;
     color:var(--navy);
@@ -330,7 +330,7 @@ gap:10px;
     line-height:1.4;
 }
 
-.card p{
+.faq-section p{
     margin-bottom:18px;
     line-height:1.8;
     color:#4B5563;
@@ -446,6 +446,7 @@ font-size:16px;
     <option value="EUR">€ EUR</option>
     <option value="AUD">A$ AUD</option>
     <option value="CAD">C$ CAD</option>
+    </select>
 
 <div class="form-group">
 <label for="income">Monthly Income</label>
@@ -489,8 +490,6 @@ Analyze Affordability
 
 </div>
 <div class="container">
-
-    <div class="card faq-section">
 
         <div class="card faq-section">
 
@@ -559,9 +558,6 @@ let currencySymbol="₹";
 let locale="en-IN";
 let currencyCode="INR";
 
-   let currencySymbol = "₹";
-let locale = "en-IN";
-let currencyCode = "INR";
 
 function setCurrency(code){
 
