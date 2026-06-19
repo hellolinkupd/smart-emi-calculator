@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+ <body>
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
@@ -17,7 +19,11 @@ content="Free EMI Calculator. Calculate monthly EMI, total interest, loan afford
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smart EMI Calculator">
 <meta name="twitter:description" content="Calculate EMI, interest payable and loan affordability instantly.">
-    
+<meta property="og:title" content="Smart EMI Calculator">
+<meta property="og:description" content="Calculate EMI, total interest, repayment amount and affordability instantly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://smart-emi-calculator.hello-linkupd.workers.dev/">
+ 
 <meta name="robots"
 content="index,follow">
 
@@ -279,9 +285,9 @@ gap:10px;
 <div class="logo">Smart EMI Calculator</div>
 
 <div class="nav-links">
-<a href="#">Home</a>
-<a href="#">About</a>
-<a href="#">Privacy</a>
+<a href="/">Home</a>
+<a href="/about">About</a>
+<a href="/privacy">Privacy</a>
 </div>
 </div>
 </header>
@@ -405,8 +411,6 @@ Analyze Affordability
         </table>
 
     </div>
-
-</div>
 </div>
 
 </div>
@@ -712,6 +716,59 @@ loadFromURL();
 calculateEMI();
 
 </script>
+</script>
 
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebSite",
+ "name":"Smart EMI Calculator",
+ "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+   {
+     "@type":"Question",
+     "name":"What is EMI?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"EMI is the fixed monthly payment made towards a loan."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"How is home loan EMI calculated?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"EMI is calculated using the loan amount, interest rate and repayment tenure."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Can I reduce my EMI?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Yes, by increasing tenure, making a larger down payment or securing a lower interest rate."
+     }
+   },
+   {
+     "@type":"Question",
+     "name":"Does prepayment reduce interest?",
+     "acceptedAnswer":{
+       "@type":"Answer",
+       "text":"Yes. Making prepayments reduces the outstanding principal and lowers total interest costs."
+     }
+   }
+ ]
+}
+</script>
+
+</body>
+</html>
 </body>
 </html>
