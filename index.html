@@ -697,8 +697,8 @@ let annualRate=parseFloat(document.getElementById("rate").value);
 
 let years=parseFloat(document.getElementById("tenure").value);
 
-if(!P || !annualRate || !years){
-return;
+if (isNaN(P) || isNaN(annualRate) || isNaN(years)) {
+    return;
 }
 
 let r=(annualRate/100)/12;
