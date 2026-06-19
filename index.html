@@ -297,6 +297,16 @@ loan affordability and repayment schedule instantly.
 <input id="amount" type="number" value="500000">
 </div>
 
+  <div class="form-group">
+<label for="currency">Currency</label>
+
+<select id="currency">
+    <option value="INR">Indian Rupee (₹)</option>
+    <option value="USD">US Dollar ($)</option>
+    <option value="GBP">British Pound (£)</option>
+</select>
+</div>
+  
 <div class="form-group">
 <label for="rate">Interest Rate (%)</label>
 <input id="rate" type="number" value="8.5">
@@ -353,7 +363,18 @@ font-size:16px;
     
 
 <h2>Can You Afford This Loan?</h2>
+<div class="form-group">
+<label for="currency">Currency</label>
 
+<select id="currency" onchange="changeCurrency()">
+    <option value="INR">₹ INR</option>
+    <option value="USD">$ USD</option>
+    <option value="GBP">£ GBP</option>
+    <option value="EUR">€ EUR</option>
+    <option value="AUD">A$ AUD</option>
+    <option value="CAD">C$ CAD</option>
+</select>
+</div>
 <div class="form-group">
 <label for="income">Monthly Income</label>
 <input id="income" type="number" placeholder="Enter monthly income">
@@ -462,26 +483,112 @@ Disclaimer: This is an estimate only. Affiliate disclosure included.
 
 let currencySymbol="₹";
 let locale="en-IN";
+let currencyCode="INR";
 
 function detectCurrency(){
+  
+  const savedCurrency =
+localStorage.getItem("currency");
 
-const lang = navigator.language || "en-IN";
+if(savedCurrency){
+    setCurrency(savedCurrency);
+    document.getElementById("currency").value =
+    savedCurrency;
+    return;
+  
+}
 
-if(lang.endsWith("-IN")){
+  function setCurrency(code){
+
+currencyCode = code;
+
+switch(code){
+
+case "INR":
     currencySymbol="₹";
     locale="en-IN";
-}
-else if(lang.endsWith("-GB")){
+    break;
+
+case "GBP":
     currencySymbol="£";
     locale="en-GB";
-}
-else if(lang.endsWith("-US")){
+    break;
+
+case "EUR":
+    currencySymbol="€";
+    locale="de-DE";
+    break;
+
+case "AUD":
+    currencySymbol="A$";
+    locale="en-AU";
+    break;
+
+case "CAD":
+    currencySymbol="C$";
+    locale="en-CA";
+    break;
+
+default:
     currencySymbol="$";
     locale="en-US";
 }
-else{
-    currencySymbol="₹";
-    locale="en-IN";
+
+}
+
+function changeCurrency(){
+
+const selected =
+document.getElementById("currency").value;
+
+localStorage.setItem(
+"currency",
+selected
+);
+
+setCurrency(selected);
+
+calculateEMI();
+
+}
+
+
+const region =
+(navigator.language || "en-US")
+.split("-")[1];
+
+switch(region){
+
+case "IN":
+    setCurrency("INR");
+    break;
+
+case "GB":
+    setCurrency("GBP");
+    break;
+
+case "AU":
+    setCurrency("AUD");
+    break;
+
+case "CA":
+    setCurrency("CAD");
+    break;
+
+case "DE":
+case "FR":
+case "ES":
+case "IT":
+    setCurrency("EUR");
+    break;
+
+default:
+    setCurrency("USD");
+}
+
+document.getElementById("currency").value =
+currencyCode;
+
 }
 
 }
@@ -727,6 +834,25 @@ document.getElementById("rate")
 document.getElementById("tenure")
 .addEventListener("change",calculateEMI);
 
+  function setCurrency(currency){
+
+switch(currency){
+
+case "INR":
+    currencySymbol="₹";
+    locale="en-IN";
+    break;
+
+case "GBP":
+    currencySymbol="£";
+    locale="en-GB";
+    break;
+
+default:
+    currencySymbol="$";
+    locale="en-US";
+}
+}
 detectCurrency();
 loadFromURL();
 calculateEMI();
