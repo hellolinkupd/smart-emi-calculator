@@ -294,9 +294,6 @@ loan affordability and repayment schedule instantly.
 
 <div class="form-group">
 <label for="amount">Loan Amount</label>
-  
-</select>
-</div>
 <input id="amount" type="number" value="500000">
 </div>
   
@@ -476,113 +473,117 @@ let currencySymbol="₹";
 let locale="en-IN";
 let currencyCode="INR";
 
-   function setCurrency(code){
+   let currencySymbol = "₹";
+let locale = "en-IN";
+let currencyCode = "INR";
 
-currencyCode = code;
+function setCurrency(code){
 
-switch(code){
+    currencyCode = code;
 
-case "INR":
-    currencySymbol="₹";
-    locale="en-IN";
-    break;
+    switch(code){
 
-case "GBP":
-    currencySymbol="£";
-    locale="en-GB";
-    break;
+        case "INR":
+            currencySymbol="₹";
+            locale="en-IN";
+            break;
 
-case "EUR":
-    currencySymbol="€";
-    locale="de-DE";
-    break;
+        case "USD":
+            currencySymbol="$";
+            locale="en-US";
+            break;
 
-case "AUD":
-    currencySymbol="A$";
-    locale="en-AU";
-    break;
+        case "GBP":
+            currencySymbol="£";
+            locale="en-GB";
+            break;
 
-case "CAD":
-    currencySymbol="C$";
-    locale="en-CA";
-    break;
+        case "EUR":
+            currencySymbol="€";
+            locale="de-DE";
+            break;
 
-default:
-    currencySymbol="$";
-    locale="en-US";
+        case "AUD":
+            currencySymbol="A$";
+            locale="en-AU";
+            break;
+
+        case "CAD":
+            currencySymbol="C$";
+            locale="en-CA";
+            break;
+
+        default:
+            currencySymbol="$";
+            locale="en-US";
+    }
 }
-
-}
-
-function detectCurrency(){
-  
-  const savedCurrency =
-localStorage.getItem("currency");
-
-if(savedCurrency){
-    setCurrency(savedCurrency);
-    document.getElementById("currency").value =
-    savedCurrency;
-    return;
-  
-}
-
- 
 
 function changeCurrency(){
 
-const selected =
-document.getElementById("currency").value;
+    const selected =
+    document.getElementById("currency").value;
 
-localStorage.setItem(
-"currency",
-selected
-);
+    localStorage.setItem(
+        "currency",
+        selected
+    );
 
-setCurrency(selected);
+    setCurrency(selected);
 
-calculateEMI();
-
+    calculateEMI();
 }
 
+function detectCurrency(){
 
-const region =
-(navigator.language || "en-US")
-.split("-")[1];
+    const savedCurrency =
+    localStorage.getItem("currency");
 
-switch(region){
+    if(savedCurrency){
 
-case "IN":
-    setCurrency("INR");
-    break;
+        setCurrency(savedCurrency);
 
-case "GB":
-    setCurrency("GBP");
-    break;
+        document.getElementById("currency").value =
+        savedCurrency;
 
-case "AU":
-    setCurrency("AUD");
-    break;
+        return;
+    }
 
-case "CA":
-    setCurrency("CAD");
-    break;
+    const region =
+    (navigator.language || "en-US")
+    .split("-")[1];
 
-case "DE":
-case "FR":
-case "ES":
-case "IT":
-    setCurrency("EUR");
-    break;
+    switch(region){
 
-default:
-    setCurrency("USD");
-}
+        case "IN":
+            setCurrency("INR");
+            break;
 
-document.getElementById("currency").value =
-currencyCode;
+        case "GB":
+            setCurrency("GBP");
+            break;
 
-}
+        case "AU":
+            setCurrency("AUD");
+            break;
+
+        case "CA":
+            setCurrency("CAD");
+            break;
+
+        case "DE":
+        case "FR":
+        case "ES":
+        case "IT":
+            setCurrency("EUR");
+            break;
+
+        default:
+            setCurrency("USD");
+    }
+
+    document.getElementById("currency").value =
+    currencyCode;
 
 }
     
@@ -829,6 +830,7 @@ document.getElementById("tenure")
 
   document.getElementById("currency")
 .addEventListener("change", changeCurrency);
+  
 
 detectCurrency();
 loadFromURL();
