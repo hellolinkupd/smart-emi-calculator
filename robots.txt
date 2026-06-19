@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smart-emi-calculator.hello-linkupd.workers.dev/sitemap.xml
