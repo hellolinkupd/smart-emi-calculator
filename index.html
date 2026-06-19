@@ -294,6 +294,15 @@ loan affordability and repayment schedule instantly.
 
 <div class="form-group">
 <label for="amount">Loan Amount</label>
+  <select id="currency" onchange="changeCurrency()">
+    <option value="INR">₹ INR</option>
+    <option value="USD">$ USD</option>
+    <option value="GBP">£ GBP</option>
+    <option value="EUR">€ EUR</option>
+    <option value="AUD">A$ AUD</option>
+    <option value="CAD">C$ CAD</option>
+</select>
+</div>
 <input id="amount" type="number" value="500000">
 </div>
 
@@ -366,15 +375,6 @@ font-size:16px;
 <div class="form-group">
 <label for="currency">Currency</label>
 
-<select id="currency" onchange="changeCurrency()">
-    <option value="INR">₹ INR</option>
-    <option value="USD">$ USD</option>
-    <option value="GBP">£ GBP</option>
-    <option value="EUR">€ EUR</option>
-    <option value="AUD">A$ AUD</option>
-    <option value="CAD">C$ CAD</option>
-</select>
-</div>
 <div class="form-group">
 <label for="income">Monthly Income</label>
 <input id="income" type="number" placeholder="Enter monthly income">
@@ -836,6 +836,8 @@ document.getElementById("rate")
 document.getElementById("tenure")
 .addEventListener("change",calculateEMI);
 
+  document.getElementById("currency")
+.addEventListener("change", changeCurrency);
 
 detectCurrency();
 loadFromURL();
