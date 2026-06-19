@@ -485,20 +485,7 @@ let currencySymbol="₹";
 let locale="en-IN";
 let currencyCode="INR";
 
-function detectCurrency(){
-  
-  const savedCurrency =
-localStorage.getItem("currency");
-
-if(savedCurrency){
-    setCurrency(savedCurrency);
-    document.getElementById("currency").value =
-    savedCurrency;
-    return;
-  
-}
-
-  function setCurrency(code){
+   function setCurrency(code){
 
 currencyCode = code;
 
@@ -535,6 +522,21 @@ default:
 }
 
 }
+
+function detectCurrency(){
+  
+  const savedCurrency =
+localStorage.getItem("currency");
+
+if(savedCurrency){
+    setCurrency(savedCurrency);
+    document.getElementById("currency").value =
+    savedCurrency;
+    return;
+  
+}
+
+ 
 
 function changeCurrency(){
 
@@ -834,25 +836,7 @@ document.getElementById("rate")
 document.getElementById("tenure")
 .addEventListener("change",calculateEMI);
 
-  function setCurrency(currency){
 
-switch(currency){
-
-case "INR":
-    currencySymbol="₹";
-    locale="en-IN";
-    break;
-
-case "GBP":
-    currencySymbol="£";
-    locale="en-GB";
-    break;
-
-default:
-    currencySymbol="$";
-    locale="en-US";
-}
-}
 detectCurrency();
 loadFromURL();
 calculateEMI();
