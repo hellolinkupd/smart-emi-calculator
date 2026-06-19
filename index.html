@@ -130,8 +130,9 @@ Home Loan EMI Calculator India - Calculate EMI, Interest & Repayment Schedule
   "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
 }
 </script>
+  
+  </script>
 
-</head>
 :root{
 --navy:#0A1628;
 --teal:#0D9488;
@@ -366,11 +367,10 @@ footer{
     color:#4B5563;
     font-size:16px;
 }
-  
-
 .card p:last-child{
     margin-bottom:0;
 }
+  
 </style>
 </head>
 
@@ -506,18 +506,22 @@ Analyze Affordability
     <div style="overflow-x:auto;">
 
         <table id="amortizationTable">
-            <thead>
-                <tr>
-                    <th>Payment #</th>
-                    <th>Monthly EMI</th>
-                    <th>Principal Paid</th>
-                    <th>Interest Paid</th>
-                    <th>Remaining Balance</th>
-                </tr>
-            </thead>
+    <thead>
+        <tr>
+            <th>Payment #</th>
+            <th>Monthly EMI</th>
+            <th>Principal Paid</th>
+            <th>Interest Paid</th>
+            <th>Remaining Balance</th>
+        </tr>
+    </thead>
 
-            document.getElementById("scheduleBody").innerHTML = html;
-        </table>
+    <tbody id="scheduleBody"></tbody>
+</table>
+
+            document.querySelector(
+"#amortizationTable tbody"
+).innerHTML=html;
 
     </div>
 </div>
