@@ -294,26 +294,10 @@ loan affordability and repayment schedule instantly.
 
 <div class="form-group">
 <label for="amount">Loan Amount</label>
-  <select id="currency" onchange="changeCurrency()">
-    <option value="INR">₹ INR</option>
-    <option value="USD">$ USD</option>
-    <option value="GBP">£ GBP</option>
-    <option value="EUR">€ EUR</option>
-    <option value="AUD">A$ AUD</option>
-    <option value="CAD">C$ CAD</option>
+  
 </select>
 </div>
 <input id="amount" type="number" value="500000">
-</div>
-
-  <div class="form-group">
-<label for="currency">Currency</label>
-
-<select id="currency">
-    <option value="INR">Indian Rupee (₹)</option>
-    <option value="USD">US Dollar ($)</option>
-    <option value="GBP">British Pound (£)</option>
-</select>
 </div>
   
 <div class="form-group">
@@ -374,6 +358,13 @@ font-size:16px;
 <h2>Can You Afford This Loan?</h2>
 <div class="form-group">
 <label for="currency">Currency</label>
+  <select id="currency" onchange="changeCurrency()">
+    <option value="INR">₹ INR</option>
+    <option value="USD">$ USD</option>
+    <option value="GBP">£ GBP</option>
+    <option value="EUR">€ EUR</option>
+    <option value="AUD">A$ AUD</option>
+    <option value="CAD">C$ CAD</option>
 
 <div class="form-group">
 <label for="income">Monthly Income</label>
