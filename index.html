@@ -438,24 +438,28 @@ Disclaimer: This is an estimate only. Affiliate disclosure included.
 </footer>
 <script>
 
-let currencySymbol="$";
-let locale="en-US";
+let currencySymbol="₹";
+let locale="en-IN";
 
 function detectCurrency(){
 
-const lang=navigator.language || "en-US";
+const lang = navigator.language || "en-IN";
 
-if(lang.includes("en-IN")){
-currencySymbol="₹";
-locale="en-IN";
+if(lang.endsWith("-IN")){
+    currencySymbol="₹";
+    locale="en-IN";
 }
-else if(lang.includes("en-GB")){
-currencySymbol="£";
-locale="en-GB";
+else if(lang.endsWith("-GB")){
+    currencySymbol="£";
+    locale="en-GB";
+}
+else if(lang.endsWith("-US")){
+    currencySymbol="$";
+    locale="en-US";
 }
 else{
-currencySymbol="$";
-locale="en-US";
+    currencySymbol="₹";
+    locale="en-IN";
 }
 
 }
