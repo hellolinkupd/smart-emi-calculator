@@ -7,9 +7,6 @@
 
 <meta name="google-site-verification"
 content="_uyqOTXIlJcJF-TyBwPM1ChnKBIMi1FEjcxOTI-kI8Q">
-
-<meta name="description"
-content="Free EMI Calculator. Calculate monthly EMI, total interest, loan affordability and repayment schedule instantly.">
   
 <meta name="robots" content="index,follow">
 
@@ -22,11 +19,8 @@ content="Free EMI Calculator. Calculate monthly EMI, total interest, loan afford
 <meta name="twitter:title" content="Smart EMI Calculator">
 <meta name="description"
 content="Free Home Loan EMI Calculator. Calculate EMI, total interest, total repayment amount, and loan affordability instantly.">
-  <meta name="author" content="Smart EMI Calculator">
 
 <meta property="og:site_name" content="Smart EMI Calculator">
-
-<meta name="theme-color" content="#2563eb">
 
   <meta name="author" content="Smart EMI Calculator">
 <meta name="theme-color" content="#2563eb">
@@ -39,9 +33,6 @@ content="Smart EMI Calculator">
 
 <meta name="twitter:image"
 content="https://smart-emi-calculator.hello-linkupd.workers.dev/og-image.png">
-
-<link rel="canonical" href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
-<link rel="icon" href="/favicon.ico">
 
 <title>
 Home Loan EMI Calculator India - Calculate EMI, Interest & Repayment Schedule
@@ -97,35 +88,6 @@ href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
  "name":"Smart EMI Calculator Team"
 }
 </script>
-  
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@graph":[
-
-    {
-      "@type":"Organization",
-      "name":"Smart EMI Calculator",
-      "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
-    },
-
-    {
-      "@type":"WebSite",
-      "name":"Smart EMI Calculator",
-      "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
-    },
-
-    {
-      "@type":"SoftwareApplication",
-      "name":"Home Loan EMI Calculator",
-      "applicationCategory":"FinanceApplication",
-      "operatingSystem":"Any",
-      "offers":{
-        "@type":"Offer",
-        "price":"0",
-        "priceCurrency":"USD"
-      }
-    },
 
     {
       "@type":"BreadcrumbList",
@@ -559,7 +521,9 @@ Education Loan EMI Calculator
 Mortgage Calculator
 </a>
 </div>
-</header>
+  
+  </div>
+  </header>
 
 <div class="container">
 
@@ -575,7 +539,8 @@ loan affordability and repayment schedule instantly.
 🔒 100% Free · No Sign-up Required · Instant Results
 </div>
 </div>
-
+<header>
+  
 <div class="card faq-section">
 
 <h2>Popular Financial Tools</h2>
@@ -615,13 +580,70 @@ Mortgage Calculator
 
 </div>
 
+<div class="card">
+
+<div class="form-group">
+<label for="amount">Loan Amount</label>
+<input
+id="amount"
+type="number"
+placeholder="Enter loan amount"
+value="1000000">
+</div>
+
+<div class="form-group">
+<label for="rate">Interest Rate (%)</label>
+<input
+id="rate"
+type="number"
+step="0.01"
+placeholder="Interest rate"
+value="8.5">
+</div>
+
+<div class="form-group">
+<label for="tenure">Loan Tenure (Years)</label>
+<input
+id="tenure"
+type="number"
+placeholder="Loan tenure"
+value="20">
+</div>
+
+  <div class="card">
+
+<div class="form-group">
+<label>Loan Amount</label>
+<input
+id="amount"
+type="number"
+value="1000000">
+</div>
+
+<div class="form-group">
+<label>Interest Rate (%)</label>
+<input
+id="rate"
+type="number"
+value="8.5">
+</div>
+
+<div class="form-group">
+<label>Tenure (Years)</label>
+<input
+id="tenure"
+type="number"
+value="20">
+</div>
+
+</div>
 <button
 id="calculateBtn"
-onclick="calculateEMI()"
-aria-label="Calculate EMI">
+onclick="calculateEMI()">
 Calculate EMI
 </button>
 </div>
+  
 <div class="ad-placeholder">
 Advertisement
 </div>
@@ -758,7 +780,6 @@ Advertisement
 </div>
           
 </div>
-</div>
 
     </main>
   
@@ -773,7 +794,8 @@ Advertisement
 <ul>
 <li><a href="/">Home Loan EMI Calculator</a></li>
 
-<li><a href="/car-loan-emi-calculator.html">Car Loan EMI Calculator</a></li>
+<li>
+<a href="/car-loan-emi-calculator/">
 Car Loan EMI Calculator
 </a>
 </li>
@@ -1189,17 +1211,46 @@ document.getElementById("dynamicTitle").innerText =
 
 }
 
-document.getElementById("amount")
-.addEventListener("input",calculateEMI);
+const amountField =
+document.getElementById("amount");
 
-document.getElementById("rate")
-.addEventListener("input",calculateEMI);
+if(amountField){
+amountField.addEventListener(
+"input",
+calculateEMI
+);
+}
+const amountField =
+document.getElementById("rate");
 
-document.getElementById("tenure")
-.addEventListener("change",calculateEMI);
+if(amountField){
+amountField.addEventListener(
+"input",
+calculateEMI
+);
+}
 
-  document.getElementById("currency")
-.addEventListener("change", changeCurrency);
+  
+const amountField =
+document.getElementById("tenure");
+
+if(amountField){
+amountField.addEventListener(
+"input",
+calculateEMI
+);
+}
+
+  
+const amountField =
+document.getElementById("currency");
+
+if(amountField){
+amountField.addEventListener(
+"input",
+calculateEMI
+);
+}
   
 
 detectCurrency();
