@@ -144,10 +144,14 @@ Home Loan EMI Calculator India - Calculate EMI, Interest & Repayment Schedule
   "@context":"https://schema.org",
   "@type":"WebApplication",
   "name":"Smart EMI Calculator",
-  "applicationCategory":"FinanceApplication",
-  "operatingSystem":"All",
   "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/",
-  "description":"Free EMI Calculator to calculate monthly EMI, interest payable, total repayment and loan affordability."
+  "applicationCategory":"FinanceApplication",
+  "operatingSystem":"Any",
+  "offers":{
+    "@type":"Offer",
+    "price":"0",
+    "priceCurrency":"USD"
+  }
 }
 </script>
 
@@ -323,7 +327,18 @@ footer{
 @media (max-width:768px){
 
 .hero h1{
-    font-size:30px;
+    font-size:28px;
+    line-height:1.3;
+}
+
+.faq-section h2{
+    font-size:24px;
+    line-height:1.4;
+}
+
+.faq-section h3{
+    font-size:20px;
+    line-height:1.5;
 }
 
 .nav{
@@ -335,18 +350,11 @@ footer{
     padding:24px;
 }
 
-.faq-section h2{
-    font-size:28px;
-}
-
-.faq-section h3{
-    font-size:22px;
-}
-
 #amortizationTable{
     width:100%;
     margin-top:15px;
 }
+
 
 }
 
@@ -391,6 +399,8 @@ footer{
 }
   
 </style>
+  <meta name="keywords"
+content="EMI Calculator, Home Loan EMI Calculator, Mortgage Calculator, Loan EMI Calculator India, EMI Calculation">
 </head>
 
 <body>
@@ -453,10 +463,9 @@ loan affordability and repayment schedule instantly.
 </div>
 
 <button
-  id="calculateBtn"
-  onclick="calculateEMI()"
-  aria-label="Calculate EMI">
-  Calculate EMI
+id="calculateBtn"
+onclick="calculateEMI()"
+aria-label="Calculate EMI">
 </button>
 
 </div>
@@ -511,8 +520,10 @@ font-size:16px;
 <input id="income" type="number" placeholder="Enter monthly income">
 </div>
 
-<button id="affordabilityBtn" onclick="checkAffordability()">
-Analyze Affordability
+<button
+id="affordabilityBtn"
+onclick="checkAffordability()"
+aria-label="Analyze Loan Affordability">
 </button>
 
 <div id="affordabilityResult" style="margin-top:20px;"></div>
