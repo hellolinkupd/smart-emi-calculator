@@ -1,9 +1,15 @@
+const html = `
+<!DOCTYPE html>
+<html>
+...
+</html>
+`;
+
 export default {
   async fetch(request) {
 
     const url = new URL(request.url);
 
-    // robots.txt
     if (url.pathname === "/robots.txt") {
       return new Response(
 `User-agent: *
@@ -18,7 +24,6 @@ Sitemap: https://smart-emi-calculator.hello-linkupd.workers.dev/sitemap.xml`,
       );
     }
 
-    // sitemap.xml
     if (url.pathname === "/sitemap.xml") {
       return new Response(
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -54,7 +59,6 @@ Sitemap: https://smart-emi-calculator.hello-linkupd.workers.dev/sitemap.xml`,
       );
     }
 
-    // normal website page
     return new Response(html, {
       headers: {
         "content-type": "text/html"
@@ -62,4 +66,4 @@ Sitemap: https://smart-emi-calculator.hello-linkupd.workers.dev/sitemap.xml`,
     });
 
   }
-}
+};
