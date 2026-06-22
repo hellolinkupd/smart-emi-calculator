@@ -1,32 +1,65 @@
-const url = new URL(request.url);
+export default {
+  async fetch(request) {
 
-if (url.pathname === "/robots.txt") {
-  return new Response(
+    const url = new URL(request.url);
+
+    // robots.txt
+    if (url.pathname === "/robots.txt") {
+      return new Response(
 `User-agent: *
 Allow: /
 
 Sitemap: https://smart-emi-calculator.hello-linkupd.workers.dev/sitemap.xml`,
-{
-  headers: {
-    "content-type": "text/plain"
-  }
-});
-}
+      {
+        headers: {
+          "content-type": "text/plain"
+        }
+      }
+      );
+    }
 
-if (url.pathname === "/sitemap.xml") {
-  return new Response(
+    // sitemap.xml
+    if (url.pathname === "/sitemap.xml") {
+      return new Response(
 `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://smart-emi-calculator.hello-linkupd.workers.dev/</loc>
+<lastmod>2025-06-22</lastmod>
+<changefreq>weekly</changefreq>
 <priority>1.0</priority>
 </url>
 
+<url>
+<loc>https://smart-emi-calculator.hello-linkupd.workers.dev/about</loc>
+<lastmod>2025-06-22</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://smart-emi-calculator.hello-linkupd.workers.dev/privacy</loc>
+<lastmod>2025-06-22</lastmod>
+<changefreq>yearly</changefreq>
+<priority>0.5</priority>
+</url>
+
 </urlset>`,
-{
-  headers: {
-    "content-type": "application/xml"
+      {
+        headers: {
+          "content-type": "application/xml"
+        }
+      }
+      );
+    }
+
+    // normal website page
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html"
+      }
+    });
+
   }
-});
 }
