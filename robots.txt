@@ -14,3 +14,38 @@ Sitemap: https://smart-emi-calculator.hello-linkupd.workers.dev/sitemap.xml`,
   }
 });
 }
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url>
+<loc>https://smart-emi-calculator.hello-linkupd.workers.dev/</loc>
+<priority>1.0</priority>
+</url>
+
+<url>
+<loc>https://smart-emi-calculator.hello-linkupd.workers.dev/about</loc>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://smart-emi-calculator.hello-linkupd.workers.dev/privacy</loc>
+<priority>0.5</priority>
+</url>
+
+</urlset>
+export default {
+  async fetch(request) {
+
+    const url = new URL(request.url);
+
+    // ADD robots.txt HERE
+
+    // ADD sitemap.xml HERE
+
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html"
+      }
+    });
+  }
+}
