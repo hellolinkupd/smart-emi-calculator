@@ -1069,8 +1069,14 @@ let r=(annualRate/100)/12;
 
 let n=years*12;
 
-let emi=(P*r*Math.pow(1+r,n))/
-(Math.pow(1+r,n)-1);
+let emi;
+
+if(r===0){
+    emi=P/n;
+}else{
+    emi=(P*r*Math.pow(1+r,n))/
+    (Math.pow(1+r,n)-1);
+}
 
 let total=emi*n;
 
@@ -1247,16 +1253,24 @@ document.getElementById("rate").value;
 const tenure=
 document.getElementById("tenure").value;
 
+const params = new URLSearchParams({
+amount,
+rate,
+tenure
+});
+
 window.history.replaceState(
 {},
 "",
-`?amount=${amount}&rate=${rate}&tenure=${tenure}`
+`?${params.toString()}`
 );
 
 const formattedAmount =
 currencySymbol + formatMoney(amount);
 
 document.getElementById("dynamicTitle").innerText =
+`${formattedAmount} Home Loan EMI Calculator`;
+  document.title =
 `${formattedAmount} Home Loan EMI Calculator`;
 
 }
