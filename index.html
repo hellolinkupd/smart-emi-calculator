@@ -376,8 +376,11 @@ min-width:700px;
 }
 
 #amortizationTable{
-   table{
-min-width:700px;
+    width:100%;
+}
+
+table{
+    min-width:700px;
 }
 
 
@@ -466,8 +469,6 @@ text-decoration:none;
     </div>
 
   </div>
-
-  </head>
   
 <main>
 
@@ -493,7 +494,7 @@ loan affordability and repayment schedule instantly.
     <input
       id="amount"
       type="number"
-      inputmode="numeric">
+      inputmode="numeric"
       value="1000000">
   </div>
 
@@ -502,7 +503,7 @@ loan affordability and repayment schedule instantly.
     <input
       id="rate"
       type="number"
-      inputmode="numeric">
+      inputmode="numeric"
       step="0.01"
       value="8.5">
   </div>
@@ -512,7 +513,7 @@ loan affordability and repayment schedule instantly.
     <input
       id="tenure"
       type="number"
-      inputmode="numeric">
+      inputmode="numeric"
       value="20">
   </div>
   
@@ -528,11 +529,6 @@ Calculate EMI
 <div class="ad-placeholder">
 Advertisement
 </div>
-  <
-  /div>
-<button ...>
-Calculate EMI
-</button>
 
 <div class="results">
 
@@ -1046,12 +1042,8 @@ html+=`
 }
 
 document.querySelector(
-#amortizationTable{
-width:100%;
-}
-
-table{
-min-width:700px;
+"#amortizationTable tbody"
+).innerHTML = html;
 }
 
 function updateURL(){
