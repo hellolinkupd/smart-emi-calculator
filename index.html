@@ -15,7 +15,7 @@ content="_uyqOTXIlJcJF-TyBwPM1ChnKBIMi1FEjcxOTI-kI8Q">
 
 <meta name="twitter:card" content="summary">
 <meta name="description"
-content="Free Home Loan EMI Calculator India. Calculate EMI, total interest, repayment schedule, affordability and monthly loan payments instantly.">
+content="Home Loan EMI Calculator India. Calculate monthly EMI, total interest payable, repayment schedule and loan affordability instantly. Free and accurate EMI calculator.">
 <meta name="twitter:description"
 content="Free Home Loan EMI Calculator India. Calculate EMI, interest and repayment schedule instantly.">
 <meta name="twitter:title"
@@ -134,7 +134,11 @@ href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
     "@type":"Answer",
     "text":"EMI = P × R × (1+R)^N ÷ ((1+R)^N − 1), where P is the loan amount, R is the monthly interest rate and N is the total number of monthly installments."
   }
-}
+},
+      
+{
+  "@type":"Question",
+  "name":"Factors Affecting EMI",
     {
       "@type":"Question",
       "name":"Factors Affecting EMI",
@@ -165,7 +169,17 @@ href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<script type="application/ld+json">
+  <script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebPage",
+ "name":"Home Loan EMI Calculator India",
+ "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/",
+ "description":"Calculate home loan EMI, interest payable and repayment schedule instantly."
+}
+</script>
+
+  <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"Organization",
@@ -469,7 +483,7 @@ text-decoration:none;
       <a href="/mortgage-calculator/">Mortgage Calculator</a>
     </div>
 
-  </div>
+  </header>
   
 <main>
 
@@ -479,6 +493,12 @@ text-decoration:none;
 <h1 id="dynamicTitle">
 Home Loan EMI Calculator India
 </h1>
+  <p>
+Home Loan EMI Calculator India helps you calculate monthly EMI, total interest payable, total repayment amount and loan affordability instantly.
+</p>
+  <h2>
+Calculate Home Loan EMI, Interest and Repayment Schedule
+</h2>
 <p>
 Calculate your monthly home loan EMI, total interest payable,
 loan affordability and repayment schedule instantly.
@@ -1072,10 +1092,10 @@ const formattedAmount =
 currencySymbol + formatMoney(amount);
 
 document.getElementById("dynamicTitle").innerText =
-`${formattedAmount} Home Loan EMI Calculator India`;
+"Home Loan EMI Calculator India";
 
 document.title =
-`${formattedAmount} Home Loan EMI Calculator India - EMI, Interest & Repayment Schedule`;
+`Home Loan EMI Calculator India - EMI, Interest & Repayment Schedule`;
 }
 
 const amountField = document.getElementById("amount");
