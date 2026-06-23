@@ -32,6 +32,9 @@ content="Smart EMI Calculator">
   <meta property="og:title"
 content="Home Loan EMI Calculator India">
 
+  <meta property="og:image:alt"
+content="Smart EMI Calculator Home Loan EMI Calculator">
+  
   <meta property="og:description"
 content="Calculate EMI, total interest, repayment amount and loan affordability instantly.">
 
@@ -124,16 +127,14 @@ href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
         "text":"EMI depends on loan amount, interest rate and repayment tenure."
       }
     },
-    {
-      "@type":"Question",
-      "name":"EMI Formula Explained",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"EMI depends on three factors: loan amount,
-interest rate, and repayment tenure.
-A higher loan amount..."
-      }
-    },
+   {
+  "@type":"Question",
+  "name":"EMI Formula Explained",
+  "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"EMI = P × R × (1+R)^N ÷ ((1+R)^N − 1), where P is the loan amount, R is the monthly interest rate and N is the total number of monthly installments."
+  }
+}
     {
       "@type":"Question",
       "name":"Factors Affecting EMI",
@@ -561,9 +562,7 @@ font-size:16px;
     
 
 <h2>Can You Afford This Loan?</h2>
-  <h2>
-Home Loan EMI Calculator India
-</h2>
+<h3>Home Loan EMI Calculator India</h3>
 
 <p>
 Use our free EMI calculator to estimate monthly installments,
@@ -1075,7 +1074,7 @@ currencySymbol + formatMoney(amount);
 document.getElementById("dynamicTitle").innerText =
 `${formattedAmount} Home Loan EMI Calculator`;
   document.title =
-`${formattedAmount} Home Loan EMI Calculator`;
+`${formattedAmount} Home Loan EMI Calculator India | EMI, Interest & Repayment`;
 
 }
 
