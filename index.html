@@ -21,8 +21,6 @@ content="Free Home Loan EMI Calculator India. Calculate EMI, interest and repaym
 <meta name="twitter:title"
 content="Home Loan EMI Calculator India">
 
-  <meta property="og:site_name" content="Smart EMI Calculator">
-
 <meta name="theme-color" content="#2563eb">
 
 <meta property="og:image"
@@ -131,7 +129,9 @@ href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
       "name":"EMI Formula Explained",
       "acceptedAnswer":{
         "@type":"Answer",
-        "text":"EMI is calculated using the standard EMI formula based on principal, monthly interest rate and number of installments."
+        "text":"EMI depends on three factors: loan amount,
+interest rate, and repayment tenure.
+A higher loan amount..."
       }
     },
     {
@@ -361,27 +361,18 @@ footer{
 @media (max-width:768px){
 
 .hero h1{
-    font-size:28px;
-    line-height:1.3;
-}
-
-.faq-section h2{
-    font-size:24px;
-    line-height:1.4;
-}
-
-.faq-section h3{
-    font-size:20px;
-    line-height:1.5;
-}
-
-.nav{
-    flex-direction:column;
-    gap:10px;
+font-size:28px;
+line-height:1.3;
 }
 
 .faq-section{
-    padding:24px;
+padding:24px;
+}
+
+table{
+min-width:700px;
+}
+
 }
 
 #amortizationTable{
@@ -459,8 +450,6 @@ text-decoration:none;
 
 <body>
 
-  <main>
-
 <header>
   <div class="nav">
 
@@ -477,7 +466,10 @@ text-decoration:none;
     </div>
 
   </div>
-</main>
+
+  </head>
+  
+<main>
 
 <div class="container">
 
@@ -501,6 +493,7 @@ loan affordability and repayment schedule instantly.
     <input
       id="amount"
       type="number"
+      inputmode="numeric">
       value="1000000">
   </div>
 
@@ -509,6 +502,7 @@ loan affordability and repayment schedule instantly.
     <input
       id="rate"
       type="number"
+      inputmode="numeric">
       step="0.01"
       value="8.5">
   </div>
@@ -518,6 +512,7 @@ loan affordability and repayment schedule instantly.
     <input
       id="tenure"
       type="number"
+      inputmode="numeric">
       value="20">
   </div>
   
@@ -533,7 +528,12 @@ Calculate EMI
 <div class="ad-placeholder">
 Advertisement
 </div>
-  
+  <
+  /div>
+<button ...>
+Calculate EMI
+</button>
+
 <div class="results">
 
 <div class="result-card">
@@ -632,7 +632,7 @@ Advertisement
 </table>
 
     </div>
-</div>
+  </div>
 
 </div>
 <div class="container">
@@ -1046,9 +1046,12 @@ html+=`
 }
 
 document.querySelector(
-"#amortizationTable tbody"
-).innerHTML=html;
+#amortizationTable{
+width:100%;
+}
 
+table{
+min-width:700px;
 }
 
 function updateURL(){
