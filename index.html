@@ -1481,11 +1481,11 @@ document.getElementById("rate").value;
 const tenure=
 document.getElementById("tenure").value;
 
-const params = new URLSearchParams({
-amount,
-rate,
-tenure
-});
+const params = new URLSearchParams(window.location.search);
+
+params.set("amount", amount);
+params.set("rate", rate);
+params.set("tenure", tenure);
 
 window.history.replaceState(
 {},
@@ -1548,7 +1548,7 @@ backToTopBtn.addEventListener("click", () => {
 detectCurrency();
 loadFromURL();
 calculateEMI();
-  updateURL();
+  
 
   const loanType =
 new URLSearchParams(window.location.search)
@@ -1558,6 +1558,7 @@ if(loanType==="car"){
 document.getElementById("amount").value=500000;
 document.getElementById("rate").value=9;
 document.getElementById("tenure").value=7;
+  calculateEMI();
 document.getElementById("dynamicTitle").innerText=
 "Car Loan EMI Calculator India";
 }
