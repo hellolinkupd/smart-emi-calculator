@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <link rel="icon" href="./favicon.ico">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -988,6 +989,10 @@ Smart EMI Calculator is maintained by a team focused on creating simple financia
 
 </div>
 <footer>
+  <p>
+Last Updated:
+<span id="footerDate"></span>
+</p>
 <p>
 Smart EMI Calculator provides educational and informational content only.
 EMI calculations are estimates and should not be considered financial advice.
@@ -1431,12 +1436,19 @@ backToTopBtn.addEventListener("click", () => {
 detectCurrency();
 loadFromURL();
 calculateEMI();
+  
 document.getElementById("lastUpdated").textContent =
 new Date().toLocaleDateString("en-IN",{
 year:"numeric",
 month:"long"
 });
-  
+
+  const footerDate=document.getElementById("footerDate");
+
+if(footerDate){
+footerDate.textContent=
+new Date().getFullYear();
+}
   </script>
 
 </body>
