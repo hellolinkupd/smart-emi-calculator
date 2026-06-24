@@ -42,8 +42,7 @@ content="Smart EMI Calculator Home Loan EMI Calculator">
 content="Calculate EMI, total interest, repayment amount and loan affordability instantly.">
   
 <meta property="og:locale" content="en_IN">
-  <meta property="og:image"
-content="https://smart-emi-calculator.hello-linkupd.workers.dev/og-image.png">
+  
   <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -68,6 +67,18 @@ href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
  "@context":"https://schema.org",
  "@type":"BreadcrumbList",
  "itemListElement":[
+   {
+     "@type":"ListItem",
+     "position":1,
+     "name":"Home",
+     "item":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
+   },
+   {
+     "@type":"ListItem",
+     "position":2,
+     "name":"Home Loan EMI Calculator",
+     "item":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
+   }
  ]
 }
 </script>
@@ -166,13 +177,7 @@ href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
     "text":"Home loan interest rates vary by lender, borrower profile and market conditions. Compare multiple lenders before applying."
   }
 },
-      {
- "@type":"ListItem",
- "position":2,
- "name":"Home Loan EMI Calculator",
- "item":"https://yourdomain.com/"
-}
-},
+    
 {
   "@type":"Question",
   "name":"Does credit score affect home loan approval?",
@@ -477,10 +482,7 @@ gap:15px;
 .nav-links{
 justify-content:center;
 }
-  {
- "position":1,
- "name":"Home"
-}
+
 }
 
 table{
@@ -696,8 +698,11 @@ Mortgage
 <div class="card hero">
   <img
 src="home-loan-banner.webp"
+width="1200"
+height="630"
 alt="Home Loan EMI Calculator"
 loading="lazy">
+  
 <p><strong>Last Updated:</strong> <span id="lastUpdated"></span></p>
 
   <p><strong>Author:</strong> Smart EMI Calculator Team</p>
@@ -743,30 +748,35 @@ Quick Links:
   <div class="form-group">
     <label for="amount">Loan Amount</label>
     <input
-      id="amount"
-      type="number"
-      inputmode="numeric"
-      value="1000000">
+id="amount"
+type="number"
+inputmode="numeric"
+min="1"
+required
+value="1000000">
   </div>
 
   <div class="form-group">
     <label for="rate">Interest Rate (%)</label>
     <input
-      id="rate"
-      type="number"
-      inputmode="numeric"
-      step="0.01"
-      value="8.5">
+id="rate"
+type="number"
+inputmode="numeric"
+step="0.01"
+min="0"
+required
+value="8.5">
   </div>
 
   <div class="form-group">
     <label for="tenure">Loan Tenure (Years)</label>
     <input
-      id="tenure"
-      type="number"
-      inputmode="numeric"
-      value="20">
-  </div>
+id="tenure"
+type="number"
+inputmode="numeric"
+min="1"
+required
+value="20">
   
 </div>
 <button
@@ -873,7 +883,6 @@ Advertisement
 <li>Multi-currency support</li>
 <li>Mobile-friendly calculator</li>
 </ul>
-</ul>
 
 </div>
 
@@ -894,7 +903,7 @@ Advertisement
 </table>
 
     </div>
-  </div
+</div>
   <div class="card faq-section">
 
 <h2>Why Use Smart EMI Calculator?</h2>
@@ -958,10 +967,13 @@ Credit score, lender policies and prepayments can also affect overall borrowing 
 EMI is calculated using the loan amount, annual interest rate and repayment tenure through a standard mathematical formula.
 </p>
 </div>
+
+<div class="faq-item">
 <h3>What is EMI?</h3>
 <p>
 EMI (Equated Monthly Installment) is the fixed amount paid every month towards repayment of a loan. It includes both principal and interest components.
 </p>
+</div>
 
 <div class="faq-item">
 <h3>Can I reduce my EMI?</h3>
@@ -1024,11 +1036,10 @@ Consider making a larger down payment, choosing a lower interest rate, making pr
 <h2 id="related">Related EMI Calculators</h2>
 <p>
 You may also use our
-<a href="car-loan-emi-calculator">Car Loan EMI Calculator</a>
-<a href="personal-loan-emi-calculator">Personal Loan EMI Calculator</a>
-<a href="education-loan-emi-calculator">Education Loan EMI Calculator</a>
-<a href="mortgage-calculator">Mortgage Calculator</a>
-</p>
+<a href="/car-loan-emi-calculator/">Car Loan EMI Calculator</a>
+<a href="/personal-loan-emi-calculator/">Personal Loan EMI Calculator</a>
+<a href="/education-loan-emi-calculator/">Education Loan EMI Calculator</a>
+<a href="/mortgage-calculator/">Mortgage Calculator</a>
 </div>
 
 </div>
@@ -1076,11 +1087,6 @@ Using an EMI calculator also improves budgeting by showing total repayment oblig
 Smart EMI Calculator is maintained by a team focused on creating simple financial planning tools for borrowers. Our goal is to help users understand loan costs, repayment schedules and affordability before applying for credit.
 </p>
 
-</div>
-<div class="card faq-section">
-
-<h2>Why Use a Home Loan EMI Calculator?</h2>
-...
 </div>
   <div class="card faq-section">
 
@@ -1323,7 +1329,7 @@ annualRate,
 years,
 emi
 );
-
+  
 generateSummary(
 P,
 annualRate,
@@ -1331,7 +1337,6 @@ years,
 emi,
 interest
 );
-
 }
 
 function checkAffordability(){
@@ -1391,40 +1396,39 @@ document.getElementById(
 
 }
 
-generateSummary(
-P,
-annualRate,
-years,
-emi,
-interest
-);
+function generateSummary(
+    amount,
+    rate,
+    tenure,
+    emi,
+    interest
+){
 
+    const totalPayment = emi * tenure * 12;
+
+    document.getElementById("loanSummary").innerHTML =
+    `
+    <p>
+    For a loan amount of
+    <strong>${currencySymbol}${formatMoney(amount)}</strong>
+    at an annual interest rate of
+    <strong>${rate}%</strong>
+    for
+    <strong>${tenure} years</strong>,
+
+    your estimated monthly EMI is
+    <strong>${currencySymbol}${formatMoney(emi)}</strong>.
+
+    The total interest payable will be
+    <strong>${currencySymbol}${formatMoney(interest)}</strong>.
+
+    Your total repayment amount will be
+    <strong>${currencySymbol}${formatMoney(totalPayment)}</strong>.
+    </p>
+    `;
 }
-const totalPayment = emi * tenure * 12;
 
-document.getElementById("loanSummary").innerHTML=
-`
-<p>
-For a loan amount of
-<strong>${currencySymbol}${formatMoney(amount)}</strong>
-at an annual interest rate of
-<strong>${rate}%</strong>
-for
-<strong>${tenure} years</strong>,
-
-your estimated monthly EMI is
-<strong>${currencySymbol}${formatMoney(emi)}</strong>.
-
-The total interest payable will be
-<strong>${currencySymbol}${formatMoney(interest)}</strong>.
-
-Your total repayment amount will be
-<strong>${currencySymbol}${formatMoney(totalPayment)}</strong>.
-</p>
-`;
-}
-
-    function generateAmortization(
+function generateAmortization(
 principal,
 annualRate,
 years,
@@ -1544,6 +1548,7 @@ backToTopBtn.addEventListener("click", () => {
 detectCurrency();
 loadFromURL();
 calculateEMI();
+  updateURL();
 
   const loanType =
 new URLSearchParams(window.location.search)
