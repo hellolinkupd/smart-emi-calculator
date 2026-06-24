@@ -1544,6 +1544,50 @@ backToTopBtn.addEventListener("click", () => {
 detectCurrency();
 loadFromURL();
 calculateEMI();
+
+  const loanType =
+new URLSearchParams(window.location.search)
+.get("loan");
+
+if(loanType==="car"){
+document.getElementById("amount").value=500000;
+document.getElementById("rate").value=9;
+document.getElementById("tenure").value=7;
+document.getElementById("dynamicTitle").innerText=
+"Car Loan EMI Calculator India";
+}
+
+if(loanType==="personal"){
+document.getElementById("amount").value=300000;
+document.getElementById("rate").value=12;
+document.getElementById("tenure").value=5;
+document.getElementById("dynamicTitle").innerText=
+"Personal Loan EMI Calculator India";
+}
+
+if(loanType==="education"){
+document.getElementById("amount").value=800000;
+document.getElementById("rate").value=10;
+document.getElementById("tenure").value=8;
+document.getElementById("dynamicTitle").innerText=
+"Education Loan EMI Calculator India";
+}
+
+if(loanType==="business"){
+document.getElementById("amount").value=1000000;
+document.getElementById("rate").value=11;
+document.getElementById("tenure").value=10;
+document.getElementById("dynamicTitle").innerText=
+"Business Loan EMI Calculator India";
+}
+
+if(loanType==="mortgage"){
+document.getElementById("amount").value=2000000;
+document.getElementById("rate").value=8;
+document.getElementById("tenure").value=25;
+document.getElementById("dynamicTitle").innerText=
+"Mortgage Calculator India";
+}
   
 document.getElementById("lastUpdated").textContent =
 new Date().toLocaleDateString("en-IN",{
