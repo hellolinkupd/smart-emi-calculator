@@ -802,7 +802,21 @@ Advertisement
 </table>
 
     </div>
-  </div>
+  </div
+  <div class="card faq-section">
+
+<h2>Why Use Smart EMI Calculator?</h2>
+
+<ul>
+<li>100% Free to Use</li>
+<li>No Registration Required</li>
+<li>Instant EMI Calculation</li>
+<li>Detailed Amortization Schedule</li>
+<li>Loan Affordability Analysis</li>
+<li>Mobile Friendly Design</li>
+</ul>
+
+</div>
 
   <div class="card faq-section" id="faq">
 
@@ -1405,7 +1419,11 @@ backToTopBtn.addEventListener("click", () => {
 detectCurrency();
 loadFromURL();
 calculateEMI();
-
+document.getElementById("lastUpdated").textContent =
+new Date().toLocaleDateString("en-IN",{
+year:"numeric",
+month:"long"
+});
   
   </script>
 
