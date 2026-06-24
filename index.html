@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
+Quick Links:
+<a href="#summary">Loan Summary</a> |
+<a href="#schedule">Repayment Schedule</a> |
+<a href="#faq">FAQs</a> |
+<a href="#related">Related Calculators</a>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -506,7 +510,49 @@ flex-wrap:wrap;
 color:white;
 text-decoration:none;
 }
-  
+#calculator{
+max-width:900px;
+margin:auto;
+}
+
+#calculator h2{
+font-size:28px;
+margin-top:25px;
+margin-bottom:10px;
+}
+
+#calculator h3{
+font-size:22px;
+margin-top:20px;
+margin-bottom:8px;
+}
+
+#calculator p{
+font-size:17px;
+line-height:1.8;
+}
+  #faq{
+    max-width: 100%;
+}
+
+#faq h2{
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+#faq h3{
+    font-size: 24px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: var(--navy);
+}
+
+#faq p{
+    font-size: 17px;
+    line-height: 1.8;
+    color: #4B5563;
+    margin-bottom: 16px;
+}
 </style>
   
 </head>
@@ -528,7 +574,7 @@ text-decoration:none;
 <div class="container">
 
 <div class="card hero">
-<p><strong>Last Updated:</strong> January 2026</p>
+<p><strong>Last Updated:</strong> <span id="lastUpdated"></span></p>
 
 <h1 id="dynamicTitle">
 Home Loan EMI Calculator India
@@ -721,15 +767,14 @@ Advertisement
 <h2>Frequently Asked Questions (FAQ)</h2>
 
 <h3>How to Use the Home Loan EMI Calculator</h3>
-
 <p>
-Enter your loan amount, annual interest rate and loan tenure in years. The calculator instantly estimates your monthly EMI, total interest payable and total repayment amount.
+Enter your loan amount, annual interest rate and loan tenure in years.
+The calculator instantly estimates your monthly EMI, total interest payable and total repayment amount.
 </p>
 
 <h3>Why EMI Planning Is Important</h3>
-
 <p>
-Calculating EMI before applying for a home loan helps you understand your monthly financial commitment. It allows borrowers to compare loan options, plan budgets and avoid excessive debt burdens.
+Calculating EMI before applying for a home loan helps you understand your monthly financial commitment.
 </p>
 
 <h3>About Smart EMI Calculator</h3>
@@ -754,23 +799,14 @@ Credit score, lender policies and prepayments can also affect overall borrowing 
 
 <hr style="margin:30px 0; border:none; border-top:1px solid #E5E7EB;">
 
-<h2>Home Loan EMI Calculator FAQs</h2>
-
-<div class="faq-item">
 <h3>How is home loan EMI calculated?</h3>
 <p>
 EMI is calculated using the loan amount, annual interest rate and repayment tenure through a standard mathematical formula.
 </p>
-</div>
-
-<div class="faq-item">
 <h3>Can I reduce my EMI?</h3>
 <p>
 Yes. You can reduce EMI by choosing a longer tenure, making a larger down payment or obtaining a lower interest rate.
 </p>
-</div>
-
-<div class="faq-item">
 <h3>Does prepayment reduce interest?</h3>
 <p>
 Yes. Prepayments reduce the outstanding principal amount and lower total interest costs.
@@ -803,16 +839,12 @@ Yes. For floating-rate home loans, EMI may increase or decrease when interest ra
 <p>
 Interest rates vary across lenders and borrower profiles. Always compare multiple lenders before applying.
 </p>
-</div>
 
-<div class="faq-item">
 <h3>Does credit score affect home loan approval?</h3>
 <p>
 Yes. A higher credit score improves approval chances and may help borrowers qualify for lower interest rates.
 </p>
-</div>
 
-<div class="faq-item">
 <h3>Tips to Reduce Home Loan Interest</h3>
 <p>
 Consider making a larger down payment, choosing a lower interest rate, making prepayments and selecting a shorter tenure whenever affordable.
@@ -839,6 +871,20 @@ and
   Advertisement
 </div>
 
+<div class="card faq-section">
+
+<h2>Why Use a Home Loan EMI Calculator?</h2>
+
+<p>
+A Home Loan EMI Calculator helps borrowers estimate monthly repayments, compare loan offers, understand interest costs and plan long-term finances. By calculating EMI before applying for a loan, borrowers can select suitable repayment tenures and avoid financial stress.
+</p>
+
+<p>
+Using an EMI calculator also improves budgeting by showing total repayment obligations and helping users evaluate loan affordability based on income and expenses.
+</p>
+
+</div>
+
   <div class="card faq-section">
 
 <h2>Popular Financial Tools</h2>
@@ -854,16 +900,12 @@ and
 </ul>
     
 </div>
-<div class="card faq-section">
+  <div class="card faq-section">
 
-<h2>Why Use a Home Loan EMI Calculator?</h2>
-
-<p>
-A Home Loan EMI Calculator helps borrowers estimate monthly repayments, compare loan offers, understand interest costs and plan long-term finances. By calculating EMI before applying for a loan, borrowers can select suitable repayment tenures and avoid financial stress.
-</p>
+<h2>About the Author</h2>
 
 <p>
-Using an EMI calculator also improves budgeting by showing total repayment obligations and helping users evaluate loan affordability based on income and expenses.
+Smart EMI Calculator is maintained by a team focused on creating simple financial planning tools for borrowers. Our goal is to help users understand loan costs, repayment schedules and affordability before applying for credit.
 </p>
 
 </div>
@@ -890,7 +932,15 @@ We may earn commissions through affiliate partnerships at no extra cost to users
 </div>
   
 </footer>
-  
+  <div class="card faq-section">
+
+<h2>Disclaimer</h2>
+
+<p>
+The information provided by Smart EMI Calculator is for educational and informational purposes only. EMI calculations are estimates based on the data entered and may differ from actual lender calculations. Users should verify all loan terms, interest rates and repayment details directly with their bank or financial institution.
+</p>
+
+</div>
 <script>
     
 let currencySymbol="₹";
