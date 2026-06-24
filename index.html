@@ -557,10 +557,46 @@ body{
     background:var(--bg);
     color:var(--text);
 }
+/* Back To Top Button */
+
+#backToTop{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#0D9488;
+    color:#fff;
+    border:none;
+    font-size:24px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+    display:none;
+    z-index:9999;
+    transition:all .3s ease;
+}
+
+#backToTop:hover{
+    transform:translateY(-3px);
+}
+
+@media(max-width:768px){
+    #backToTop{
+        width:50px;
+        height:50px;
+        right:15px;
+        bottom:15px;
+    }
+}
+  
 </style>
   
 </head>
-
+<button id="backToTop" aria-label="Back To Top">
+↑
+</button>
 <body>
 
 <header>
@@ -1328,12 +1364,33 @@ if(tenureField){
 if(currencyField){
     currencyField.addEventListener("change", changeCurrency);
 }
-  
+
+  const backToTopBtn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 400){
+        backToTopBtn.style.display = "block";
+    }else{
+        backToTopBtn.style.display = "none";
+    }
+
+});
+
+backToTopBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
 
 detectCurrency();
 loadFromURL();
 calculateEMI();
 
+  
   </script>
 
 </body>
