@@ -1339,8 +1339,6 @@ years,
 emi,
 interest
 );
-    
-updateURL();
 
 }
 
@@ -1401,14 +1399,15 @@ document.getElementById(
 
 }
 
-function generateSummary(
-amount,
-rate,
-tenure,
+generateSummary(
+P,
+annualRate,
+years,
 emi,
 interest
-){
+);
 
+}
 const totalPayment = emi * tenure * 12;
 
 document.getElementById("loanSummary").innerHTML=
