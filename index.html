@@ -48,9 +48,11 @@ content="https://smart-emi-calculator.hello-linkupd.workers.dev/og-image.png">
 <meta property="og:image:height" content="630">
 
 <meta name="author" content="Smart EMI Calculator">
+<meta name="publisher" content="Smart EMI Calculator">
   
 <meta name="twitter:image"
 content="https://smart-emi-calculator.hello-linkupd.workers.dev/og-image.png">
+  
 
 <title>
 Home Loan EMI Calculator India (2026) - EMI, Interest & Amortization Schedule
@@ -227,7 +229,9 @@ href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
  "@context":"https://schema.org",
  "@type":"WebPage",
  "name":"Home Loan EMI Calculator India",
- "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/",
+ "dateModified":"2026-01-01",
+"datePublished":"2026-01-01",
+"url":"https://smart-emi-calculator.hello-linkupd.workers.dev/",
  "description":"Calculate home loan EMI, interest payable, total repayment amount and amortization schedule instantly.",
  "inLanguage":"en-IN",
  "isPartOf":{
@@ -419,7 +423,16 @@ text-align:center;
 th{
 background:#F3F4F6;
 }
+  
+ul{
+padding-left:22px;
+margin:15px 0;
+}
 
+ul li{
+margin-bottom:10px;
+line-height:1.7;
+}
 footer{
     background:var(--navy);
     color:white;
@@ -580,6 +593,16 @@ line-height:1.8;
     color: #4B5563;
     margin-bottom: 16px;
 }
+  @media(max-width:768px){
+
+#calculateBtn{
+position:sticky;
+bottom:15px;
+z-index:100;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+}
  
 /* Back To Top Button */
 
@@ -621,7 +644,7 @@ line-height:1.8;
 <button id="backToTop" aria-label="Back To Top">
 ↑
 </button>
-<body>
+<body id="top">
 
 <header>
   <div class="container">
@@ -707,26 +730,13 @@ Whether you are buying your first home, refinancing an existing loan or planning
 <div class="trust-banner">
 🔒 100% Free · No Sign-up Required · Instant Results
 </div>
-
-  <p style="margin-top:15px;">
-
-Quick Links:
-
-<a href="#summary">Loan Summary</a> |
-
-<a href="#schedule">Repayment Schedule</a> |
-
-<a href="#faq">FAQs</a>
-
-</p>
   
   <p style="margin-top:15px;">
 Quick Links:
 <a href="#summary">Loan Summary</a> |
 <a href="#schedule">Repayment Schedule</a> |
 <a href="#faq">FAQs</a> |
-<a href="#related">Related Calculators</a>
-</p>
+<a href="#top">Top</a>
 <div class="container">
 </p>
   
@@ -861,6 +871,12 @@ Advertisement
 <li>Estimate total interest payable.</li>
 <li>Plan your monthly budget better.</li>
 <li>Understand repayment obligations before applying.</li>
+<li>Total interest estimation</li>
+<li>Loan affordability analysis</li>
+<li>Amortization schedule</li>
+<li>Multi-currency support</li>
+<li>Mobile-friendly calculator</li>
+</ul>
 </ul>
 
 </div>
@@ -1082,8 +1098,6 @@ Smart EMI Calculator is maintained by a team focused on creating simple financia
 </ul>
 
 </div>
-
-<footer>
   
 <footer>
   <p>
@@ -1104,6 +1118,7 @@ We may earn commissions through affiliate partnerships at no extra cost to users
 © 2026 Smart EMI Calculator. All Rights Reserved.
 </p>
   
+  <h3>Financial Tools</h3>
   <div class="footer-links">
 <a href="/">Home</a>
 <a href="/about.html">About</a>
