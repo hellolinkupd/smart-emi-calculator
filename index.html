@@ -858,7 +858,32 @@ interest payable and total repayment amount for your home loan.
     <option value="CAD">C$ CAD</option>
 </select>
 </div>
+<div id="affordabilityResult" style="margin-top:20px;"></div>
+  <h2>Compare EMI Across Major Banks</h2>
 
+<p>
+Compare estimated EMIs using interest rates from major Indian banks.
+</p>
+
+<div class="form-group">
+<label for="bankSelect">Select Bank</label>
+
+<select id="bankSelect" onchange="compareBankEMI()">
+
+<option value="SBI">SBI</option>
+
+<option value="HDFC">HDFC Bank</option>
+
+<option value="ICICI">ICICI Bank</option>
+
+<option value="AXIS">Axis Bank</option>
+
+</select>
+
+</div>
+
+<div id="bankComparisonTable"></div>
+  
 <div class="form-group">
 <label for="income">Monthly Income</label>
 <input id="income" type="number" placeholder="Enter monthly income">
@@ -1639,6 +1664,65 @@ if(currencyField){
     currencyField.addEventListener("change", changeCurrency);
 }
 
+  function compareBankEMI(){
+
+const bankRates = {
+    SBI:8.0,
+    HDFC:8.5,
+    ICICI:8.75,
+    AXIS:8.9
+};
+
+const bank =
+document.getElementById("bankSelect").value;
+
+const rate =
+bankRates[bank];
+
+const P =
+parseFloat(document.getElementById("amount").value);
+
+const years =
+parseFloat(document.getElementById("tenure").value);
+
+const r = (rate/100)/12;
+
+const n = years*12;
+
+const emi =
+(P*r*Math.pow(1+r,n))/
+(Math.pow(1+r,n)-1);
+
+document.getElementById(
+"bankComparison"
+).innerHTML = `
+
+<div style="
+background:#F3F4F6;
+padding:15px;
+border-radius:10px;
+margin-top:15px;
+">
+
+<h3>${bank} Home Loan Estimate</h3>
+
+<p>
+Interest Rate:
+<strong>${rate}%</strong>
+</p>
+
+<p>
+Estimated EMI:
+<strong>
+${currencySymbol}${formatMoney(emi)}
+</strong>
+</p>
+
+</div>
+
+`;
+
+}
   const backToTopBtn = document.getElementById("backToTop");
 
 window.addEventListener("scroll", () => {
@@ -1663,6 +1747,7 @@ backToTopBtn.addEventListener("click", () => {
 detectCurrency();
 loadFromURL();
 calculateEMI();
+compareBankEMI();
   
 
   const loanType =
