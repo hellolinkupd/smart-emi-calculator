@@ -16,8 +16,11 @@ content="_uyqOTXIlJcJF-TyBwPM1ChnKBIMi1FEjcxOTI-kI8Q">
 <meta property="og:url" content="https://smart-emi-calculator.hello-linkupd.workers.dev/">
 
 <meta name="twitter:card" content="summary">
-<meta name="description"
-content="Free Home Loan EMI Calculator India. Calculate monthly EMI, total interest payable, amortization schedule, total repayment amount and home loan affordability instantly.">
+<meta
+    id="metaDescription"
+    name="description"
+    content="Calculate your Home Loan EMI instantly using Smart EMI Calculator."
+>
 <meta name="twitter:description"
 content="Free Home Loan EMI Calculator India. Calculate EMI, interest and repayment schedule instantly.">
 <meta name="twitter:title"
@@ -54,7 +57,7 @@ content="Calculate EMI, total interest, repayment amount and loan affordability 
 content="https://smart-emi-calculator.hello-linkupd.workers.dev/og-image.png">
   
 
-<title>
+<title id="pageTitle">
 Home Loan EMI Calculator India (2026) - EMI, Interest & Amortization Schedule
 </title>
   
@@ -2103,6 +2106,103 @@ month:"long"
 if(footerDate){
 footerDate.textContent=
 new Date().getFullYear();
+}
+
+  function updateSEO() {
+
+    const amount = Number(document.getElementById("loanAmount").value) || 0;
+    const rate = Number(document.getElementById("interestRate").value) || 0;
+    const tenure = Number(document.getElementById("loanTenure").value) || 0;
+
+    const emi =
+        Number(
+            document
+                .getElementById("monthlyEMI")
+                .textContent
+                .replace(/[^\d.]/g, "")
+        ) || 0;
+
+    const interest =
+        Number(
+            document
+                .getElementById("totalInterest")
+                .textContent
+                .replace(/[^\d.]/g, "")
+        ) || 0;
+
+    let currency = "₹";
+    let loanType = "Home Loan";
+
+    const lang = navigator.language || "";
+
+    if (lang.includes("en-US")) {
+
+        currency = "$";
+        loanType = "Mortgage";
+
+    }
+
+    else if (lang.includes("en-GB")) {
+
+        currency = "£";
+        loanType = "Mortgage";
+
+    }
+
+    else if (
+        lang.includes("de") ||
+        lang.includes("fr") ||
+        lang.includes("es") ||
+        lang.includes("it")
+    ) {
+
+        currency = "€";
+        loanType = "Mortgage";
+
+    }
+
+    const amountText =
+        currency +
+        amount.toLocaleString();
+
+    document.title =
+        amountText +
+        " " +
+        loanType +
+        " EMI Calculator @ " +
+        rate +
+        "% for " +
+        tenure +
+        " Years | Smart EMI Calculator";
+
+    const meta =
+        document.querySelector('meta[name="description"]');
+
+    if (meta) {
+
+        meta.setAttribute(
+            "content",
+
+            "Calculate EMI for a " +
+            amountText +
+            " " +
+            loanType.toLowerCase() +
+            " at " +
+            rate +
+            "% interest for " +
+            tenure +
+            " years. Estimated monthly EMI: " +
+            currency +
+            emi.toLocaleString() +
+            ". Total interest payable: " +
+            currency +
+            interest.toLocaleString() +
+            ". Free amortization schedule, affordability analysis and loan planning tools."
+
+        );
+
+    }
+
 }
   </script>
 
