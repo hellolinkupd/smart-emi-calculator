@@ -896,7 +896,7 @@ aria-label="Analyze Loan Affordability">
 Analyze Affordability
 </button>
 
-<div id="affordabilityResult" style="margin-top:20px;"></div>
+<div id="affordabilityResultSecondary" style="margin-top:20px;"></div>
 
 </div>
 
@@ -1850,9 +1850,7 @@ const emi =
 (P*r*Math.pow(1+r,n))/
 (Math.pow(1+r,n)-1);
 
-document.getElementById(
-"bankComparison"
-).innerHTML = `
+document.getElementById("bankComparisonTable").innerHTML = `
 
 <div style="
 background:#F3F4F6;
