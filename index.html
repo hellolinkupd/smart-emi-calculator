@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <link rel="icon" href="./favicon.ico">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -631,6 +632,23 @@ box-shadow:0 4px 12px rgba(0,0,0,.15);
         right:15px;
         bottom:15px;
     }
+  /* Accessibility: Skip Link */
+.skip-link {
+    position: absolute;
+    top: -50px;
+    left: 16px;
+    background: #0056b3;
+    color: #fff;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 6px;
+    z-index: 10000;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 16px;
+}
 }
   
 </style>
