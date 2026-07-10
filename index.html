@@ -1582,7 +1582,7 @@ function formatMoney(num){
 return new Intl.NumberFormat(locale).format(Math.round(num));
 }
 
-function calculateEMI(){
+  function calculateEMI(){
 
 let P=parseFloat(document.getElementById("amount").value);
 
@@ -1633,6 +1633,8 @@ annualRate,
 years,
 emi,
 interest
+
+  updateURL();
 );
 }
 
