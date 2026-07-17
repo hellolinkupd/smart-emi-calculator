@@ -1,2210 +1,372 @@
-<!DOCTYPE html>
-<html lang="en">
+// =====================================================
+// SMART EMI CALCULATOR
+// Version: 2.0
+// =====================================================
 
-<head>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  <link rel="icon" href="./favicon.ico">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="google-site-verification"
-content="_uyqOTXIlJcJF-TyBwPM1ChnKBIMi1FEjcxOTI-kI8Q">
-  
-<meta name="robots" content="index, follow, max-image-preview:large">
+// =====================================================
+// 1. LOAN CONFIGURATION
+// =====================================================
+const loanConfigs = {
 
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://smart-emi-calculator.hello-linkupd.workers.dev/">
-
-<meta name="twitter:card" content="summary">
-<meta
-    id="metaDescription"
-    name="description"
-    content="Calculate your Home Loan EMI instantly using Smart EMI Calculator."
->
-<meta name="twitter:description"
-content="Free Home Loan EMI Calculator India. Calculate EMI, interest and repayment schedule instantly.">
-<meta name="twitter:title"
-content="Home Loan EMI Calculator India">
-
-<meta name="theme-color" content="#2563eb">
-
-<meta property="og:image"
-content="https://smart-emi-calculator.hello-linkupd.workers.dev/og-image.png">
-  <meta name="twitter:image:alt"
-content="Home Loan EMI Calculator India">
-
-<meta property="og:site_name"
-content="Smart EMI Calculator">
-  
-  <meta property="og:title"
-content="Home Loan EMI Calculator India">
-
-  <meta property="og:image:alt"
-content="Smart EMI Calculator Home Loan EMI Calculator">
-  
-  <meta property="og:description"
-content="Calculate EMI, total interest, repayment amount and loan affordability instantly.">
-  
-<meta property="og:locale" content="en_IN">
-  
-  <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<meta name="author" content="Smart EMI Calculator">
-<meta name="publisher" content="Smart EMI Calculator">
-  
-<meta name="twitter:image"
-content="https://smart-emi-calculator.hello-linkupd.workers.dev/og-image.png">
-  
-
-<title id="pageTitle">
-Home Loan EMI Calculator India (2026) - EMI, Interest & Amortization Schedule
-</title>
-  
-<link rel="canonical"
-href="https://smart-emi-calculator.hello-linkupd.workers.dev/">
-
-  
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"BreadcrumbList",
- "itemListElement":[
-   {
-     "@type":"ListItem",
-     "position":1,
-     "name":"Home",
-     "item":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
-   },
-   {
-     "@type":"ListItem",
-     "position":2,
-     "name":"Home Loan EMI Calculator",
-     "item":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
-   }
- ]
-}
-</script>
-  
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebSite",
- "name":"Smart EMI Calculator",
- "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
-}
-</script>
-
-    <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {
-      "@type":"Question",
-      "name":"What is EMI?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"EMI (Equated Monthly Installment) is the fixed monthly payment made towards a loan."
-      }
+    home: {
+        id: "home",
+        name: "Home Loan",
+        title: "Home Loan EMI Calculator",
+        defaultAmount: 5000000,
+        defaultRate: 8.5,
+        defaultTenure: 20,
+        minTenure: 5,
+        maxTenure: 30,
+        description: "Calculate your home loan EMI, total interest and monthly repayment."
     },
-    {
-      "@type":"Question",
-      "name":"How is home loan EMI calculated?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"EMI is calculated using the loan amount, interest rate and repayment tenure."
-      }
+
+    car: {
+        id: "car",
+        name: "Car Loan",
+        title: "Car Loan EMI Calculator",
+        defaultAmount: 800000,
+        defaultRate: 9,
+        defaultTenure: 5,
+        minTenure: 3,
+        maxTenure: 7,
+        description: "Estimate your car loan EMI with flexible repayment options."
     },
-    {
-      "@type":"Question",
-      "name":"Can I reduce my EMI?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"Yes, by choosing a longer tenure, making a larger down payment, or securing a lower interest rate."
-      }
+
+    bike: {
+        id: "bike",
+        name: "Bike Loan",
+        title: "Bike Loan EMI Calculator",
+        defaultAmount: 150000,
+        defaultRate: 10,
+        defaultTenure: 3,
+        minTenure: 2,
+        maxTenure: 5,
+        description: "Calculate bike loan EMI for new and used two-wheelers."
     },
-    {
-      "@type":"Question",
-      "name":"Does prepayment reduce interest?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"Yes. Making prepayments reduces the outstanding principal and lowers total interest costs."
-      }
+
+    personal: {
+        id: "personal",
+        name: "Personal Loan",
+        title: "Personal Loan EMI Calculator",
+        defaultAmount: 500000,
+        defaultRate: 12,
+        defaultTenure: 3,
+        minTenure: 1,
+        maxTenure: 5,
+        description: "Calculate your personal loan EMI and repayment schedule."
     },
-    {
-      "@type":"Question",
-      "name":"What Is a Home Loan EMI?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"A Home Loan EMI is the fixed amount you pay every month to repay your home loan. Each EMI contains principal and interest."
-      }
+
+    education: {
+        id: "education",
+        name: "Education Loan",
+        title: "Education Loan EMI Calculator",
+        defaultAmount: 1500000,
+        defaultRate: 9,
+        defaultTenure: 10,
+        minTenure: 5,
+        maxTenure: 15,
+        description: "Estimate education loan EMIs for higher studies."
     },
-    {
-      "@type":"Question",
-      "name":"Benefits of Using an EMI Calculator",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"An EMI calculator helps estimate monthly payments, compare loan options, plan budgets and understand total interest costs."
-      }
+
+    business: {
+        id: "business",
+        name: "Business Loan",
+        title: "Business Loan EMI Calculator",
+        defaultAmount: 2000000,
+        defaultRate: 11,
+        defaultTenure: 7,
+        minTenure: 3,
+        maxTenure: 10,
+        description: "Estimate business loan repayments and interest costs."
     },
-   {
-  "@type":"Question",
-  "name":"Tips to Reduce Home Loan Interest",
-  "acceptedAnswer":{
-    "@type":"Answer",
-    "text":"Make a larger down payment, choose a lower interest rate, make prepayments and select a shorter tenure whenever affordable."
-  }
-},
-{
-  "@type":"Question",
-  "name":"What is a good EMI to income ratio?",
-  "acceptedAnswer":{
-    "@type":"Answer",
-    "text":"Most financial experts recommend keeping total EMI obligations below 30% to 40% of monthly income."
-  }
-},
-{
-  "@type":"Question",
-  "name":"Can EMI change during loan tenure?",
-  "acceptedAnswer":{
-    "@type":"Answer",
-    "text":"EMI can change for floating-rate loans when interest rates are revised by the lender."
-  }
-},
-{
-  "@type":"Question",
-  "name":"Which bank offers the lowest home loan interest rate?",
-  "acceptedAnswer":{
-    "@type":"Answer",
-    "text":"Home loan interest rates vary by lender, borrower profile and market conditions. Compare multiple lenders before applying."
-  }
-},
-    
-{
-  "@type":"Question",
-  "name":"Does credit score affect home loan approval?",
-  "acceptedAnswer":{
-    "@type":"Answer",
-    "text":"Yes. A higher credit score improves the chances of approval and may help secure lower interest rates."
-  }
-}
-  ]
-}
-</script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"HowTo",
-  "name":"How to Use the Home Loan EMI Calculator",
-  "description":"Calculate your monthly home loan EMI, total interest and repayment amount.",
-  "step":[
-    {
-      "@type":"HowToStep",
-      "name":"Enter Loan Amount",
-      "text":"Enter the total home loan amount you want to borrow."
-    },
-    {
-      "@type":"HowToStep",
-      "name":"Enter Interest Rate",
-      "text":"Enter the annual interest rate offered by your lender."
-    },
-    {
-      "@type":"HowToStep",
-      "name":"Enter Loan Tenure",
-      "text":"Enter the repayment period in years."
-    },
-    {
-      "@type":"HowToStep",
-      "name":"Calculate EMI",
-      "text":"Click the Calculate EMI button to view monthly EMI, total interest and repayment schedule."
-    }
-  ]
-}
-</script>
-
-  <script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebPage",
- "name":"Home Loan EMI Calculator India",
- "dateModified":"2026-01-01",
-"datePublished":"2026-01-01",
-"url":"https://smart-emi-calculator.hello-linkupd.workers.dev/",
- "description":"Calculate home loan EMI, interest payable, total repayment amount and amortization schedule instantly.",
- "inLanguage":"en-IN",
- "isPartOf":{
-   "@type":"WebSite",
-   "name":"Smart EMI Calculator",
-   "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/"
- }
-}
-</script>
-
-  <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Organization",
-  "name":"Smart EMI Calculator",
-  "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/",
-  "logo":"https://smart-emi-calculator.hello-linkupd.workers.dev/og-image.png"
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"SoftwareApplication",
-  "name":"Home Loan EMI Calculator India",
-  "url":"https://smart-emi-calculator.hello-linkupd.workers.dev/",
-  "applicationCategory":"FinanceApplication",
-  "operatingSystem":"Any",
-  "description":"Calculate home loan EMI, monthly installments, total interest payable and repayment schedule instantly.",
-  "offers":{
-    "@type":"Offer",
-    "price":"0",
-    "priceCurrency":"INR"
-  }
-}
-</script>
-
-<style>
-:root{
---navy:#0A1628;
---teal:#0D9488;
---bg:#FFFFFF;
---text:#1F2937;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-background:var(--bg);
-color:var(--text);
-}
-
-header{
-background:var(--navy);
-color:white;
-padding:20px;
-}
-
-.nav{
-max-width:1100px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.logo{
-font-size:24px;
-font-weight:800;
-}
-
-.nav-links{
-display:flex;
-gap:18px;
-flex-wrap:wrap;
-}
-
-.nav-links a{
-color:white;
-text-decoration:none;
-font-weight:600;
-}
-
-.container{
-max-width:1300px;
-margin:auto;
-padding:20px;
-width:100%;
-}
-
-.card{
-width:100%;
-background:white;
-padding:30px;
-border-radius:16px;
-box-shadow:0 4px 15px rgba(0,0,0,.08);
-margin-bottom:25px;
-}
-
-.hero h1{
-font-size:42px;
-margin-bottom:15px;
-}
-
-.trust-banner{
-background:#ECFDF5;
-padding:12px;
-border-radius:10px;
-font-weight:600;
-color:#065F46;
-}
-
-.form-group{
-margin-bottom:20px;
-}
-
-label{
-display:block;
-margin-bottom:8px;
-font-weight:600;
-}
-
-input,
-select{
-width:100%;
-padding:12px;
-border:1px solid #d1d5db;
-border-radius:8px;
-}
-
-button{
-width:100%;
-background:var(--teal);
-color:white;
-border:none;
-padding:14px;
-border-radius:10px;
-font-size:16px;
-font-weight:700;
-cursor:pointer;
-}
-
-.results{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-margin-top:20px;
-}
-
-.result-card{
-background:white;
-padding:20px;
-border-radius:12px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
-text-align:center;
-}
-
-.result-value{
-font-size:28px;
-font-weight:800;
-margin-top:10px;
-}
-
-.emi{
-color:var(--teal);
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-}
-
-th,td{
-border:1px solid #E5E7EB;
-padding:10px;
-text-align:center;
-}
-
-th{
-background:#F3F4F6;
-}
-  
-ul{
-padding-left:22px;
-margin:15px 0;
-}
-
-ul li{
-margin-bottom:10px;
-line-height:1.7;
-}
-footer{
-    background:var(--navy);
-    color:white;
-    text-align:center;
-    padding:25px;
-    margin-top:40px;
-}
-
-/* FAQ Styling */
-
-  .faq-item{
-    margin-bottom:28px;
-    padding-bottom:20px;
-    border-bottom:1px solid #E5E7EB;
-}
-
-.faq-item:last-child{
-    border-bottom:none;
-}
-
-.faq-section{
-    padding:40px;
-}
-
-@media (max-width:768px){
-
-    .faq-section > h2:first-child{
-        font-size:30px;
+    gold: {
+        id: "gold",
+        name: "Gold Loan",
+        title: "Gold Loan EMI Calculator",
+        defaultAmount: 300000,
+        defaultRate: 8,
+        defaultTenure: 2,
+        minTenure: 1,
+        maxTenure: 3,
+        description: "Calculate EMI for loans against gold jewellery."
     }
 
-    .faq-section h2{
-        font-size:24px;
-    }
-
-    .faq-section h3{
-        font-size:20px;
-    }
-
-    .faq-section p{
-        font-size:16px;
-    }
-  
-  .nav{
-flex-direction:column;
-gap:15px;
-}
-
-.nav-links{
-justify-content:center;
-}
-
-}
-
-table{
-    min-width:700px;
-}
-
-.faq-question{
-    font-size:20px;
-    font-weight:700;
-    margin-top:20px;
-    margin-bottom:8px;
-    color:var(--navy);
-}
-
-.card p{
-    line-height:1.7;
-    color:#4B5563;
-}
-
-
-.faq-section h2 {
-    font-size: 30px;
-    font-weight: 700;
-    margin-top: 40px;
-    margin-bottom: 16px;
-}
-
-.faq-section h3 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 28px;
-    margin-bottom: 10px;
-}
-
-.faq-section p {
-    font-size: 17px;
-    line-height: 1.8;
-    margin-bottom: 20px;
-}
-.card p:last-child{
-    margin-bottom:0;
-}
-  
-.ad-placeholder{
-min-height:120px;
-margin:40px 0;
-display:flex;
-align-items:center;
-justify-content:center;
-border:1px dashed #ccc;
-}
-
-  .footer-links{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.footer-links a{
-color:white;
-text-decoration:none;
-}
-#calculator{
-max-width:900px;
-margin:auto;
-}
-
-#calculator h2{
-font-size:28px;
-margin-top:25px;
-margin-bottom:10px;
-}
-
-#calculator h3{
-font-size:22px;
-margin-top:20px;
-margin-bottom:8px;
-}
-
-#calculator p{
-font-size:17px;
-line-height:1.8;
-}
-  #faq{
-    max-width: 100%;
-}
-
-#faq h2{
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-#faq h3{
-    font-size: 24px;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    color: var(--navy);
-}
-
-#faq p{
-    font-size: 17px;
-    line-height: 1.8;
-    color: #4B5563;
-    margin-bottom: 16px;
-}
-  @media(max-width:768px){
-
-#calculateBtn{
-position:sticky;
-bottom:15px;
-z-index:100;
-box-shadow:0 4px 12px rgba(0,0,0,.15);
-}
-
-}
- 
-/* Back To Top Button */
-
-#backToTop{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:#0D9488;
-    color:#fff;
-    border:none;
-    font-size:24px;
-    font-weight:700;
-    cursor:pointer;
-    box-shadow:0 4px 12px rgba(0,0,0,.25);
-    display:none;
-    z-index:9999;
-    transition:all .3s ease;
-}
-
-#backToTop:hover{
-    transform:translateY(-3px);
-}
-
-@media(max-width:768px){
-    #backToTop{
-        width:50px;
-        height:50px;
-        right:15px;
-        bottom:15px;
-    }
-  /* Accessibility: Skip Link */
-.skip-link {
-    position: absolute;
-    top: -50px;
-    left: 16px;
-    background: #0056b3;
-    color: #fff;
-    padding: 10px 16px;
-    text-decoration: none;
-    border-radius: 6px;
-    z-index: 10000;
-    transition: top 0.2s ease;
-}
-
-.skip-link:focus {
-    top: 16px;
-}
-}
-  
-</style>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5BZQMT1WM"></script>
-
-<script>
-window.dataLayer = window.dataLayer || [];
-
-function gtag(){
-dataLayer.push(arguments);
-}
-
-gtag('js', new Date());
-
-gtag('config', 'G-Z5BZQMT1WM');
-</script>
-  
-</head>
-
-<body id="top">
-<button id="backToTop"
-  aria-label="Back To Top">
-↑
-</button>
-<header>
-  
- <main class="container" id="main-content">
-
-<p style="font-size:14px;color:#666;">
-
-<a href="/">Home</a>
->
-
-Home Loan EMI Calculator
-
-</p>
-
-</div>
-  <div class="nav">
-
-<div class="logo">
-<a href="/" style="color:white;text-decoration:none;">
-Smart EMI Calculator
-</a>
-</div>
-
-<div class="nav-links">
-
-<a href="/">Home</a>
-
-<a href="/car-loan-emi-calculator/">
-Car Loan
-</a>
-
-<a href="/personal-loan-emi-calculator/">
-Personal Loan
-</a>
-
-<a href="/education-loan-emi-calculator/">
-Education Loan
-</a>
-
-<a href="/mortgage-calculator/">
-Mortgage
-</a>
-
-</div>
-
-</div>
-
-  </div>
-</header>
-  
-<main>
-
-
-<div class="card hero">
-  <img
-src="home-loan-banner.webp"
-width="1200"
-height="630"
-alt="Home Loan EMI Calculator India EMI Calculation Tool"
-loading="lazy">
-  
-<p><strong>Last Updated:</strong> <span id="lastUpdated"></span></p>
-
-  <p><strong>Author:</strong> Smart EMI Calculator Team</p>
-<p><strong>Reviewed By:</strong> Finance Research Team</p>
-
-<h1 id="dynamicTitle">
-Home Loan EMI Calculator India
-</h1>
-
-<h2>
-Calculate Your Home Loan EMI Online
-</h2>
-
-  <p>
-Use this free Home Loan EMI Calculator to estimate monthly EMI, total interest payable, repayment amount and loan affordability. Enter your loan amount, interest rate and tenure to get instant results.
-</p>
-
-<p>
-A Home Loan EMI Calculator helps borrowers estimate their monthly loan repayments before applying for a mortgage. By entering the loan amount, annual interest rate and repayment tenure, you can instantly calculate your monthly EMI, total interest payable and total repayment amount.
-
-This calculator is useful for comparing loan offers from different banks and housing finance companies. It also provides an amortization schedule showing how principal and interest payments are distributed throughout the loan tenure.
-
-Whether you are buying your first home, refinancing an existing loan or planning future finances, using an EMI calculator can help you make informed borrowing decisions.
-</p>
-
-<div class="trust-banner">
-🔒 100% Free · No Sign-up Required · Instant Results
-</div>
-  
-  <div style="margin-top:15px;">
-Quick Links:
-<a href="#summary">Loan Summary</a> |
-<a href="#schedule">Repayment Schedule</a> |
-<a href="#faq">FAQs</a> |
-<a href="#top">Top</a>
-</div>
-  
-</div>
-  
-<section class="card" aria-labelledby="how-emi-works">
-
-  <div class="form-group">
-    <label for="amount">Loan Amount</label>
-    <input
-id="amount"
-type="number"
-inputmode="numeric"
-min="1"
-required
-value="1000000">
-  </div>
-
-  <div class="form-group">
-    <label for="rate">Interest Rate (%)</label>
-    <input
-id="rate"
-type="number"
-inputmode="numeric"
-step="0.01"
-min="0"
-required
-value="8.5">
-  </div>
-
-  <div class="form-group">
-    <label for="tenure">Loan Tenure (Years)</label>
-    <input
-id="tenure"
-type="number"
-inputmode="numeric"
-min="1"
-required
-value="20">
-  
-</div>
-<button
-type="button"
-id="calculateBtn"
-onclick="calculateEMI()">
-Calculate EMI
-</button>
-</div>
-  
-<div class="ad-placeholder">
-Advertisement
-</div>
-
-<div class="results">
-
-<div class="result-card">
-<div>Monthly EMI</div>
-<div class="result-value emi" id="emi">₹0</div>
-</div>
-
-<div class="result-card">
-<div>Total Interest</div>
-<div class="result-value" id="interest">₹0</div>
-</div>
-
-<div class="result-card">
-<div>Total Payment</div>
-<div class="result-value" id="total">₹0</div>
-</div>
-
-</div>
-
-<div class="card faq-section">
-
-<h2 id="summary">Loan Summary</h2>
-
-<div id="loanSummary" style="
-line-height:1.8;
-margin-top:15px;
-font-size:16px;
-"></div>
-    
-
-<h2>Can You Afford This Loan?</h2>
-
-<p>
-Enter your monthly income to see whether the estimated EMI fits comfortably within your budget.
-</p>
-<h3>How to Use This Home Loan EMI Calculator</h3>
-
-<p>
-Use our free EMI calculator to estimate monthly installments,
-interest payable and total repayment amount for your home loan.
-</p>
-
-<div class="form-group">
-<label for="currency">Currency</label>
-
-<select id="currency" onchange="changeCurrency()">
-    <option value="INR">₹ INR</option>
-    <option value="USD">$ USD</option>
-    <option value="GBP">£ GBP</option>
-    <option value="EUR">€ EUR</option>
-    <option value="AUD">A$ AUD</option>
-    <option value="CAD">C$ CAD</option>
-</select>
-</div>
-<section class="card faq-section" aria-labelledby="schedule">
-
-    <h2 id="schedule">Loan Repayment Schedule</h2>
-
-    <p>
-        Your repayment schedule (also called an amortization schedule) shows how each monthly EMI is divided between principal repayment and interest throughout the loan tenure. During the initial years, a larger portion of each EMI goes toward interest, while over time more of the payment is applied toward reducing the principal balance.
-    </p>
-
-    <div style="overflow-x:auto;">
-
-        <table id="amortizationTable">
-
-            <thead>
-
-                <tr>
-                    <th>Payment #</th>
-                    <th>Monthly EMI</th>
-                    <th>Principal Paid</th>
-                    <th>Interest Paid</th>
-                    <th>Remaining Balance</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="scheduleBody"></tbody>
-
-        </table>
-
-    </div>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="benefits">
-
-    <h2 id="benefits">Benefits of Using a Home Loan EMI Calculator</h2>
-
-    <p>
-        A Home Loan EMI Calculator helps borrowers understand their monthly repayment obligations before applying for a loan. It provides instant calculations, improves financial planning and allows easy comparison between different loan options.
-    </p>
-
-    <ul>
-
-        <li>Instant EMI calculation.</li>
-
-        <li>Estimate total interest payable.</li>
-
-        <li>View total repayment amount.</li>
-
-        <li>Compare multiple loan scenarios.</li>
-
-        <li>Analyze loan affordability.</li>
-
-        <li>Generate an amortization schedule.</li>
-
-        <li>Plan monthly household budgets.</li>
-
-        <li>Supports multiple currencies.</li>
-
-        <li>Works smoothly on desktop and mobile devices.</li>
-
-    </ul>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="why-smart">
-
-    <h2 id="why-smart">Why Choose Smart EMI Calculator?</h2>
-
-    <p>
-        Smart EMI Calculator is designed to provide accurate loan estimates while making complex financial calculations easy to understand. Whether you are planning your first home purchase or comparing refinancing options, the calculator helps you make informed borrowing decisions within seconds.
-    </p>
-
-    <ul>
-
-        <li>100% Free to Use</li>
-
-        <li>No Registration Required</li>
-
-        <li>Instant EMI Calculation</li>
-
-        <li>Detailed Amortization Schedule</li>
-
-        <li>Loan Affordability Analysis</li>
-
-        <li>Dynamic Loan Summary</li>
-
-        <li>Bank Comparison Tools</li>
-
-        <li>Mobile Friendly Design</li>
-
-        <li>Fast Loading Performance</li>
-
-        <li>SEO & AI Optimized Financial Content</li>
-
-    </ul>
-
-</section>
-
-  <section class="card faq-section" id="faq" aria-labelledby="faq-title">
-
-<h2 id="faq-title">Frequently Asked Questions</h2>
-
-<p>
-Find answers to the most common questions about home loans, EMI calculations, loan affordability, repayment schedules and interest rates.
-</p>
-
-<div class="faq-item">
-
-<h3>How do I use the Home Loan EMI Calculator?</h3>
-
-<p>
-Enter the loan amount, annual interest rate and loan tenure. The calculator instantly displays your estimated monthly EMI, total interest payable, total repayment amount and repayment schedule.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>What is a Home Loan EMI?</h3>
-
-<p>
-A Home Loan EMI (Equated Monthly Installment) is the fixed monthly amount paid to repay a home loan. Every EMI consists of two parts: principal repayment and interest payment.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>How is Home Loan EMI calculated?</h3>
-
-<p>
-EMI is calculated using the loan amount, annual interest rate and loan tenure through a standard mathematical formula used by banks and financial institutions.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Which factors affect my EMI?</h3>
-
-<p>
-Several factors influence your monthly EMI including:
-</p>
-
-<ul>
-
-<li>Loan Amount</li>
-
-<li>Interest Rate</li>
-
-<li>Loan Tenure</li>
-
-<li>Credit Score</li>
-
-<li>Down Payment</li>
-
-<li>Type of Interest Rate (Fixed or Floating)</li>
-
-</ul>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Can I reduce my Home Loan EMI?</h3>
-
-<p>
-Yes. You can reduce your EMI by making a larger down payment, selecting a longer tenure, improving your credit score, refinancing at a lower interest rate or making part-prepayments whenever possible.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Does prepayment reduce total interest?</h3>
-
-<p>
-Yes. Prepaying part of your outstanding loan reduces the principal balance, which lowers future interest costs and may shorten the loan tenure.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Can my EMI change during the loan tenure?</h3>
-
-<p>
-If you have a floating-rate home loan, your EMI or loan tenure may change whenever your lender revises interest rates.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>What is a good EMI-to-income ratio?</h3>
-
-<p>
-Most financial experts recommend keeping total EMI obligations below 30% to 40% of monthly income to maintain healthy finances.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Does my credit score affect home loan approval?</h3>
-
-<p>
-Yes. A higher credit score generally improves approval chances and may help you qualify for lower interest rates and better loan terms.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Which bank offers the lowest home loan interest rate?</h3>
-
-<p>
-Interest rates vary between banks and depend on your credit profile, loan amount, tenure and market conditions. Comparing multiple lenders before applying is recommended.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Why should I calculate EMI before applying for a home loan?</h3>
-
-<p>
-Calculating EMI in advance helps you understand repayment obligations, compare lenders, estimate affordability and avoid financial stress after taking the loan.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Are the calculator results accurate?</h3>
-
-<p>
-The calculator provides reliable estimates based on the values you enter. Actual EMI may vary depending on lender policies, processing fees, insurance charges and changes in interest rates.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Is Smart EMI Calculator free to use?</h3>
-
-<p>
-Yes. Smart EMI Calculator is completely free and requires no registration. It is designed to help borrowers estimate EMIs, compare repayment options and make informed financial decisions.
-</p>
-
-</div>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="related-tools">
-
-<h2 id="related-tools">Related EMI Calculators</h2>
-
-<p>
-Explore our other free financial calculators to compare different loan types and make better borrowing decisions.
-</p>
-
-<ul>
-
-<li><a href="/car-loan-emi-calculator/">Car Loan EMI Calculator</a></li>
-
-<li><a href="/personal-loan-emi-calculator/">Personal Loan EMI Calculator</a></li>
-
-<li><a href="/education-loan-emi-calculator/">Education Loan EMI Calculator</a></li>
-
-<li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
-
-</ul>
-
-</section>
-
-  <section class="card faq-section" aria-labelledby="interest-trends">
-
-    <h2 id="interest-trends">Home Loan Interest Rate Trends in India</h2>
-
-    <p>
-        Home loan interest rates in India are influenced by several economic factors, including the Reserve Bank of India (RBI) monetary policy, inflation, banking liquidity, government regulations and overall market conditions. Whenever the RBI changes the repo rate, banks and housing finance companies may revise their lending rates.
-    </p>
-
-    <p>
-        Home loan rates move through both rising and falling cycles. Borrowers should regularly compare loan offers from multiple lenders before applying for a home loan or refinancing an existing one.
-    </p>
-
-    <p>
-        Even a small difference of 0.50% in interest rate can save or cost several lakhs of rupees over a 20 to 30-year loan tenure. Using a Home Loan EMI Calculator helps borrowers understand how interest rate changes affect monthly EMI, total interest payable and overall repayment cost.
-    </p>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="how-emi-works">
-
-    <h2 id="how-emi-works">How Home Loan EMI Works</h2>
-
-    <p>
-        A Home Loan EMI (Equated Monthly Installment) is the fixed monthly payment made by a borrower to repay a housing loan. Every EMI consists of two components: principal repayment and interest payment.
-    </p>
-
-    <p>
-        During the early years of the loan, a larger portion of each EMI goes toward interest because the outstanding principal is higher. As the loan balance decreases over time, a greater portion of each EMI is applied toward principal repayment.
-    </p>
-
-    <p>
-        Your EMI depends primarily on three factors:
-    </p>
-
-    <ul>
-        <li><strong>Loan Amount</strong> – Higher loan amounts increase EMI.</li>
-        <li><strong>Interest Rate</strong> – Higher interest rates increase monthly repayments.</li>
-        <li><strong>Loan Tenure</strong> – Longer tenure reduces monthly EMI but increases total interest paid.</li>
-    </ul>
-
-    <p>
-        Understanding how EMI works helps borrowers compare lenders, evaluate repayment capacity and make informed financial decisions before taking a home loan.
-    </p>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="emi-factors">
-
-    <h2 id="emi-factors">Factors Affecting Home Loan EMI</h2>
-
-    <p>
-        Several financial and personal factors influence the amount of your monthly home loan EMI. Understanding these factors helps borrowers choose a loan that fits their budget and long-term financial goals.
-    </p>
-
-    <ul>
-
-        <li><strong>Loan Amount</strong> – Larger loans result in higher monthly EMIs.</li>
-
-        <li><strong>Interest Rate</strong> – Even a small change in interest rate can significantly affect the total repayment amount.</li>
-
-        <li><strong>Loan Tenure</strong> – A longer repayment period reduces monthly EMI but increases the total interest paid.</li>
-
-        <li><strong>Credit Score</strong> – Applicants with higher credit scores often qualify for lower interest rates.</li>
-
-        <li><strong>Down Payment</strong> – A larger down payment reduces the loan amount and monthly EMI.</li>
-
-        <li><strong>Income & Existing EMIs</strong> – Lenders evaluate your income and existing financial obligations before approving a loan.</li>
-
-        <li><strong>Type of Interest Rate</strong> – Fixed and floating interest rates affect future EMI payments differently.</li>
-
-    </ul>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="interest-types">
-
-    <h2 id="interest-types">Fixed vs Floating Home Loan Interest Rates</h2>
-
-    <p>
-        Home loans are generally available with either fixed or floating interest rates. Choosing the right option depends on your financial goals, market conditions and risk tolerance.
-    </p>
-
-    <h3>Fixed Interest Rate</h3>
-
-    <p>
-        A fixed-rate home loan keeps the interest rate unchanged for the agreed period, providing predictable monthly EMIs and making budgeting easier. Fixed-rate loans are often preferred by borrowers who value payment stability.
-    </p>
-
-    <h3>Floating Interest Rate</h3>
-
-    <p>
-        A floating-rate home loan is linked to benchmark lending rates and may increase or decrease as market conditions change. This means your EMI or loan tenure may change whenever your lender revises interest rates.
-    </p>
-
-    <h3>Which Option Should You Choose?</h3>
-
-    <p>
-        Fixed-rate loans are suitable for borrowers seeking predictable monthly payments, while floating-rate loans may benefit borrowers who expect interest rates to decline over time. Comparing both options before applying can help you choose the most suitable repayment strategy.
-    </p>
-
-</section>
-
-  <section class="card faq-section" aria-labelledby="reduce-emi">
-
-    <h2 id="reduce-emi">How to Reduce Your Home Loan EMI</h2>
-
-    <p>
-        Reducing your Home Loan EMI can make monthly repayments more affordable and lower the overall financial burden. Whether you are applying for a new loan or repaying an existing one, several strategies can help reduce your EMI or the total interest paid over the life of the loan.
-    </p>
-
-    <ul>
-
-        <li>
-            <strong>Make a Larger Down Payment</strong><br>
-            Borrowing a smaller loan amount reduces both your monthly EMI and the total interest payable.
-        </li>
-
-        <li>
-            <strong>Choose a Longer Loan Tenure</strong><br>
-            Extending the repayment period lowers your monthly EMI, although the total interest paid will generally increase.
-        </li>
-
-        <li>
-            <strong>Improve Your Credit Score</strong><br>
-            Maintaining a strong credit score can help you qualify for lower interest rates offered by banks and housing finance companies.
-        </li>
-
-        <li>
-            <strong>Compare Multiple Lenders</strong><br>
-            Different lenders offer different interest rates, processing fees and repayment options. Comparing offers can help reduce your borrowing costs.
-        </li>
-
-        <li>
-            <strong>Make Part-Prepayments</strong><br>
-            Paying extra toward the principal whenever possible reduces the outstanding balance and lowers future interest costs.
-        </li>
-
-        <li>
-            <strong>Refinance Your Loan</strong><br>
-            If market interest rates decline, refinancing your existing home loan may reduce both your EMI and total repayment amount.
-        </li>
-
-    </ul>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="mistakes">
-
-    <h2 id="mistakes">Common Home Loan Mistakes to Avoid</h2>
-
-    <p>
-        Avoiding common borrowing mistakes can save you significant money over the life of your loan and improve your financial health.
-    </p>
-
-    <ul>
-
-        <li>Borrowing more than your actual requirement.</li>
-
-        <li>Selecting the lowest EMI without considering the total interest payable.</li>
-
-        <li>Ignoring processing fees, legal charges and other lender costs.</li>
-
-        <li>Not comparing loan offers from multiple banks.</li>
-
-        <li>Missing EMI payments, which can negatively impact your credit score.</li>
-
-        <li>Not understanding fixed versus floating interest rates.</li>
-
-        <li>Ignoring loan prepayment and foreclosure conditions.</li>
-
-        <li>Applying with a poor credit score or unstable income.</li>
-
-    </ul>
-
-    <p>
-        Careful planning before taking a home loan can reduce long-term borrowing costs and improve your overall financial security.
-    </p>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="eligibility">
-
-    <h2 id="eligibility">Home Loan Eligibility in India</h2>
-
-    <p>
-        Every bank and housing finance company has its own eligibility criteria, but most lenders evaluate an applicant's repayment capacity, financial history and property details before approving a home loan.
-    </p>
-
-    <h3>Major Eligibility Factors</h3>
-
-    <ul>
-
-        <li>Monthly income and employment stability</li>
-
-        <li>Credit score and repayment history</li>
-
-        <li>Existing loan obligations</li>
-
-        <li>Age of the applicant</li>
-
-        <li>Occupation (Salaried or Self-Employed)</li>
-
-        <li>Loan amount requested</li>
-
-        <li>Loan tenure</li>
-
-        <li>Property value and location</li>
-
-        <li>Down payment amount</li>
-
-    </ul>
-
-    <p>
-        Maintaining a healthy credit profile, stable employment and manageable debt obligations can improve both loan approval chances and interest rate offers.
-    </p>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="documents">
-
-    <h2 id="documents">Documents Required for a Home Loan</h2>
-
-    <p>
-        Documentation requirements vary by lender, but most banks and housing finance companies typically require the following documents during the loan application process.
-    </p>
-
-    <h3>Identity Documents</h3>
-
-    <ul>
-
-        <li>Aadhaar Card</li>
-
-        <li>PAN Card</li>
-
-        <li>Passport</li>
-
-        <li>Driving Licence</li>
-
-        <li>Voter ID</li>
-
-    </ul>
-
-    <h3>Address Proof</h3>
-
-    <ul>
-
-        <li>Utility Bills</li>
-
-        <li>Passport</li>
-
-        <li>Rental Agreement (where accepted)</li>
-
-        <li>Aadhaar Card</li>
-
-    </ul>
-
-    <h3>Income Proof</h3>
-
-    <ul>
-
-        <li>Salary Slips (Last 3–6 Months)</li>
-
-        <li>Income Tax Returns</li>
-
-        <li>Form 16</li>
-
-        <li>Bank Statements (Last 6–12 Months)</li>
-
-    </ul>
-
-    <h3>Property Documents</h3>
-
-    <ul>
-
-        <li>Sale Agreement</li>
-
-        <li>Title Documents</li>
-
-        <li>Approved Building Plan</li>
-
-        <li>NOC (if applicable)</li>
-
-    </ul>
-
-    <p>
-        Some lenders may request additional documents depending on the applicant's employment type, property details or loan amount.
-    </p>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="related-calculators">
-
-    <h2 id="related-calculators">Related EMI & Financial Calculators</h2>
-
-    <p>
-        Explore our free financial calculators to compare different types of loans and make better borrowing decisions.
-    </p>
-
-    <ul>
-
-        <li><a href="/car-loan-emi-calculator/">Car Loan EMI Calculator</a></li>
-
-        <li><a href="/personal-loan-emi-calculator/">Personal Loan EMI Calculator</a></li>
-
-        <li><a href="/education-loan-emi-calculator/">Education Loan EMI Calculator</a></li>
-
-        <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
-
-    </ul>
-
-</section>
-<section class="card faq-section" aria-labelledby="financial-tools">
-
-    <h2 id="financial-tools">Popular Financial Tools</h2>
-
-    <p>
-        Explore our collection of free financial calculators designed to help you estimate loan repayments, compare borrowing options and make informed financial decisions.
-    </p>
-
-    <ul>
-
-        <li><a href="/">Home Loan EMI Calculator</a></li>
-
-        <li><a href="/car-loan-emi-calculator/">Car Loan EMI Calculator</a></li>
-
-        <li><a href="/personal-loan-emi-calculator/">Personal Loan EMI Calculator</a></li>
-
-        <li><a href="/education-loan-emi-calculator/">Education Loan EMI Calculator</a></li>
-
-        <li><a href="/business-loan-emi-calculator/">Business Loan EMI Calculator</a></li>
-
-        <li><a href="/gold-loan-emi-calculator/">Gold Loan EMI Calculator</a></li>
-
-        <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
-
-        <li><a href="/sip-calculator/">SIP Calculator</a></li>
-
-        <li><a href="/fd-calculator/">Fixed Deposit Calculator</a></li>
-
-        <li><a href="/ppf-calculator/">PPF Calculator</a></li>
-
-    </ul>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="why-trust">
-
-    <h2 id="why-trust">Why Trust Smart EMI Calculator?</h2>
-
-    <p>
-        Smart EMI Calculator is built to simplify financial planning by providing accurate loan calculations, affordability analysis and repayment insights. Our goal is to help borrowers understand their financial commitments before applying for a loan.
-    </p>
-
-    <p>
-        Every calculation is performed instantly using standard EMI formulas widely used by banks and financial institutions. Educational content is regularly reviewed and updated to improve accuracy, readability and usefulness.
-    </p>
-
-    <ul>
-
-        <li>✔ Accurate EMI calculations</li>
-
-        <li>✔ Instant affordability analysis</li>
-
-        <li>✔ Detailed amortization schedules</li>
-
-        <li>✔ Mobile-friendly experience</li>
-
-        <li>✔ No registration required</li>
-
-        <li>✔ Free to use</li>
-
-        <li>✔ Regularly updated educational content</li>
-
-    </ul>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="author">
-
-    <h2 id="author">About Smart EMI Calculator</h2>
-
-    <p>
-        Smart EMI Calculator is an independent financial education platform created to help borrowers understand loans before making financial commitments. Our calculators and educational resources are designed to simplify complex financial concepts into practical information that anyone can understand.
-    </p>
-
-    <p>
-        In addition to EMI calculations, the platform provides affordability analysis, repayment schedules, loan comparisons and educational guides that support informed borrowing decisions.
-    </p>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="disclaimer">
-
-    <h2 id="disclaimer">Disclaimer</h2>
-
-    <p>
-        The information and calculations provided on Smart EMI Calculator are for educational and informational purposes only. Results are estimates based on the values entered and should not be considered financial, investment or legal advice.
-    </p>
-
-    <p>
-        Actual loan terms, interest rates, processing fees and repayment amounts may vary depending on the lender, applicant profile and prevailing market conditions. Always verify loan details directly with your bank or financial institution before making financial decisions.
-    </p>
-
-</section>
-
-<section class="card faq-section" aria-labelledby="quick-links">
-
-    <h2 id="quick-links">Quick Links</h2>
-
-    <ul>
-
-        <li><a href="/">Home</a></li>
-
-        <li><a href="/about.html">About Us</a></li>
-
-        <li><a href="/contact.html">Contact Us</a></li>
-
-        <li><a href="/privacy.html">Privacy Policy</a></li>
-
-        <li><a href="/terms.html">Terms &amp; Conditions</a></li>
-
-        <li><a href="/disclaimer.html">Disclaimer</a></li>
-
-    </ul>
-
-</section>
-  
-  
-</footer>
-<script>
-    
-let currencySymbol="₹";
-let locale="en-IN";
-let currencyCode="INR";
-
-
-function setCurrency(code){
-
-    currencyCode = code;
-
-    switch(code){
-
-        case "INR":
-            currencySymbol="₹";
-            locale="en-IN";
-            break;
-
-        case "USD":
-            currencySymbol="$";
-            locale="en-US";
-            break;
-
-        case "GBP":
-            currencySymbol="£";
-            locale="en-GB";
-            break;
-
-        case "EUR":
-            currencySymbol="€";
-            locale="de-DE";
-            break;
-
-        case "AUD":
-            currencySymbol="A$";
-            locale="en-AU";
-            break;
-
-        case "CAD":
-            currencySymbol="C$";
-            locale="en-CA";
-            break;
-
-        default:
-            currencySymbol="$";
-            locale="en-US";
-    }
-}
-
-function changeCurrency(){
-
-    const selected =
-    document.getElementById("currency").value;
-
-    localStorage.setItem(
-        "currency",
-        selected
-    );
-
-    setCurrency(selected);
-
-    calculateEMI();
-}
-
-function detectCurrency(){
-
-    const savedCurrency =
-    localStorage.getItem("currency");
-
-    if(savedCurrency){
-
-        setCurrency(savedCurrency);
-
-        document.getElementById("currency").value =
-        savedCurrency;
-
-        return;
-    }
-
-    const region =
-    (navigator.language || "en-US")
-    .split("-")[1];
-
-    switch(region){
-
-        case "IN":
-            setCurrency("INR");
-            break;
-
-        case "GB":
-            setCurrency("GBP");
-            break;
-
-        case "AU":
-            setCurrency("AUD");
-            break;
-
-        case "CA":
-            setCurrency("CAD");
-            break;
-
-        case "DE":
-        case "FR":
-        case "ES":
-        case "IT":
-            setCurrency("EUR");
-            break;
-
-        default:
-            setCurrency("USD");
-    }
-
-    document.getElementById("currency").value =
-    currencyCode;
-
-}
-    
-    function loadFromURL(){
-
-const params =
-new URLSearchParams(window.location.search);
-
-const amount=params.get("amount");
-const rate=params.get("rate");
-const tenure=params.get("tenure");
-
-if(amount)
-document.getElementById("amount").value=amount;
-
-if(rate)
-document.getElementById("rate").value=rate;
-
-if(tenure)
-document.getElementById("tenure").value=tenure;
-
-}
-
-function formatMoney(num){
-return new Intl.NumberFormat(locale).format(Math.round(num));
-}
-
-  function calculateEMI(){
-
-let P=parseFloat(document.getElementById("amount").value);
-
-let annualRate=parseFloat(document.getElementById("rate").value);
-
-let years=parseFloat(document.getElementById("tenure").value);
-
-if (isNaN(P) || isNaN(annualRate) || isNaN(years)) {
-    return;
-}
-
-let r=(annualRate/100)/12;
-
-let n=years*12;
-
-let emi;
-
-if(r===0){
-    emi=P/n;
-}else{
-    emi=(P*r*Math.pow(1+r,n))/
-    (Math.pow(1+r,n)-1);
-}
-
-let total=emi*n;
-
-let interest=total-P;
-
-document.getElementById("emi").innerText=
-currencySymbol+formatMoney(emi);
-
-document.getElementById("interest").innerText=
-currencySymbol+formatMoney(interest);
-
-document.getElementById("total").innerText=
-currencySymbol+formatMoney(total);
-
-generateAmortization(
-P,
-annualRate,
-years,
-emi
-);
-  
-generateSummary(
-P,
-annualRate,
-years,
-emi,
-interest
-
-  updateURL();
-);
-}
-
-function checkAffordability(){
-
-const income=
-parseFloat(document.getElementById("income").value);
-
-const emi=
-parseFloat(
-document.getElementById("emi")
-.innerText
-.replace(/[^\d.]/g,"")
-);
-
-if(!income){
-return;
-}
-
-const ratio=(emi/income)*100;
-
-let result="";
-
-if(ratio<=30){
-
-result=`
-<div style="background:#ECFDF5;padding:15px;border-radius:10px;">
-<h3 style="color:green">✓ Affordable</h3>
-<p>Your EMI is ${ratio.toFixed(1)}% of your income.</p>
-</div>
-`;
-
-}
-else if(ratio<=45){
-
-result=`
-<div style="background:#FFFBEB;padding:15px;border-radius:10px;">
-<h3 style="color:orange">⚠ Moderate Risk</h3>
-<p>Your EMI is ${ratio.toFixed(1)}% of your income.</p>
-</div>
-`;
-
-}
-else{
-
-result=`
-<div style="background:#FEF2F2;padding:15px;border-radius:10px;">
-<h3 style="color:red">✗ High Risk</h3>
-<p>Your EMI is ${ratio.toFixed(1)}% of your income.</p>
-</div>
-`;
-
-}
-
-document.getElementById(
-"affordabilityResult"
-).innerHTML=result;
-
-}
-
-function generateSummary(
-    amount,
-    rate,
-    tenure,
-    emi,
-    interest
-){
-
-    const totalPayment = emi * tenure * 12;
-
-    document.getElementById("loanSummary").innerHTML =
-    `
-    <p>
-    For a loan amount of
-    <strong>${currencySymbol}${formatMoney(amount)}</strong>
-    at an annual interest rate of
-    <strong>${rate}%</strong>
-    for
-    <strong>${tenure} years</strong>,
-
-    your estimated monthly EMI is
-    <strong>${currencySymbol}${formatMoney(emi)}</strong>.
-
-    The total interest payable will be
-    <strong>${currencySymbol}${formatMoney(interest)}</strong>.
-
-    Your total repayment amount will be
-    <strong>${currencySymbol}${formatMoney(totalPayment)}</strong>.
-    </p>
-    `;
-}
-
-function generateAmortization(
-principal,
-annualRate,
-years,
-emi
-){
-    
-let balance=principal;
-
-let monthlyRate=(annualRate/100)/12;
-
-let html="";
-
-for(let month=1;month<=24;month++){
-
-let interest=balance*monthlyRate;
-
-let principalPaid=emi-interest;
-
-balance-=principalPaid;
-
-if(balance<0){
-balance=0;
-}
-
-html+=`
-<tr>
-<td>${month}</td>
-<td>${currencySymbol}${formatMoney(emi)}</td>
-<td>${currencySymbol}${formatMoney(principalPaid)}</td>
-<td>${currencySymbol}${formatMoney(interest)}</td>
-<td>${currencySymbol}${formatMoney(balance)}</td>
-</tr>
-`;
-
-}
-
-document.querySelector(
-"#amortizationTable tbody"
-).innerHTML = html;
-}
-
-function updateURL(){
-
-const amount=
-document.getElementById("amount").value;
-
-const rate=
-document.getElementById("rate").value;
-
-const tenure=
-document.getElementById("tenure").value;
-
-const params = new URLSearchParams(window.location.search);
-
-params.set("amount", amount);
-params.set("rate", rate);
-params.set("tenure", tenure);
-
-window.history.replaceState(
-{},
-"",
-`?${params.toString()}`
-);
-
-const formattedAmount =
-currencySymbol + formatMoney(amount);
-
-document.getElementById("dynamicTitle").innerText =
-"Home Loan EMI Calculator India";
-
-document.title =
-`Home Loan EMI Calculator India - EMI, Interest & Repayment Schedule`;
-}
-
-const amountField = document.getElementById("amount");
-const rateField = document.getElementById("rate");
-const tenureField = document.getElementById("tenure");
-const currencyField = document.getElementById("currency");
-
-if(amountField){
-    amountField.addEventListener("input", calculateEMI);
-}
-
-if(rateField){
-    rateField.addEventListener("input", calculateEMI);
-}
-
-if(tenureField){
-    tenureField.addEventListener("input", calculateEMI);
-}
-
-if(currencyField){
-    currencyField.addEventListener("change", changeCurrency);
-}
-
-  function compareBankEMI(){
-
-const bankRates = {
-    SBI:8.0,
-    HDFC:8.5,
-    ICICI:8.75,
-    AXIS:8.9
 };
 
-const bank =
-document.getElementById("bankSelect").value;
 
-const rate =
-bankRates[bank];
+// =====================================================
+// 2. GLOBAL VARIABLES
+// =====================================================
+let currentLoanType = "home";
 
-const P =
-parseFloat(document.getElementById("amount").value);
+let currencySymbol = "₹";
 
-const years =
-parseFloat(document.getElementById("tenure").value);
+let currencyCode = "INR";
 
-const r = (rate/100)/12;
 
-const n = years*12;
-
-const emi =
-(P*r*Math.pow(1+r,n))/
-(Math.pow(1+r,n)-1);
-
-document.getElementById("bankComparisonTable").innerHTML = `
-
-<div style="
-background:#F3F4F6;
-padding:15px;
-border-radius:10px;
-margin-top:15px;
-">
-
-<h3>${bank} Home Loan Estimate</h3>
-
-<p>
-Interest Rate:
-<strong>${rate}%</strong>
-</p>
-
-<p>
-Estimated EMI:
-<strong>
-${currencySymbol}${formatMoney(emi)}
-</strong>
-</p>
-
-</div>
-
-`;
-
-}
-  const backToTopBtn = document.getElementById("backToTop");
-
-window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 400){
-        backToTopBtn.style.display = "block";
-    }else{
-        backToTopBtn.style.display = "none";
-    }
-
-});
-
-backToTopBtn.addEventListener("click", () => {
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-});
-
+// =====================================================
+// 3. INITIALIZATION
 detectCurrency();
+
 loadFromURL();
-calculateEMI();
-compareBankEMI();
-  
 
-  const loanType =
-new URLSearchParams(window.location.search)
-.get("loan");
+    detectCurrency();
 
-if(loanType==="car"){
-document.getElementById("amount").value=500000;
-document.getElementById("rate").value=9;
-document.getElementById("tenure").value=7;
-  calculateEMI();
-document.getElementById("dynamicTitle").innerText=
-"Car Loan EMI Calculator India";
-}
+    const amount = document.getElementById("amount");
+    const rate = document.getElementById("rate");
+    const tenure = document.getElementById("tenure");
 
-if(loanType==="personal"){
-document.getElementById("amount").value=300000;
-document.getElementById("rate").value=12;
-document.getElementById("tenure").value=5;
-document.getElementById("dynamicTitle").innerText=
-"Personal Loan EMI Calculator India";
-}
+    if (amount)
+        amount.addEventListener("input", calculateEMI);
 
-if(loanType==="education"){
-document.getElementById("amount").value=800000;
-document.getElementById("rate").value=10;
-document.getElementById("tenure").value=8;
-document.getElementById("dynamicTitle").innerText=
-"Education Loan EMI Calculator India";
-}
+    if (rate)
+        rate.addEventListener("input", calculateEMI);
 
-if(loanType==="business"){
-document.getElementById("amount").value=1000000;
-document.getElementById("rate").value=11;
-document.getElementById("tenure").value=10;
-document.getElementById("dynamicTitle").innerText=
-"Business Loan EMI Calculator India";
-}
+    if (tenure)
+        tenure.addEventListener("change", calculateEMI);
 
-if(loanType==="mortgage"){
-document.getElementById("amount").value=2000000;
-document.getElementById("rate").value=8;
-document.getElementById("tenure").value=25;
-document.getElementById("dynamicTitle").innerText=
-"Mortgage Calculator India";
-}
-  
-document.getElementById("lastUpdated").textContent =
-new Date().toLocaleDateString("en-IN",{
-year:"numeric",
-month:"long"
+    calculateEMI();
+
 });
+// =====================================================
+function loadLoanConfig(loanType = "home") {
 
-  const footerDate=document.getElementById("footerDate");
-
-if(footerDate){
-footerDate.textContent=
-new Date().getFullYear();
-}
-
-  function updateSEO() {
-
-    const amount = Number(document.getElementById("loanAmount").value) || 0;
-    const rate = Number(document.getElementById("interestRate").value) || 0;
-    const tenure = Number(document.getElementById("loanTenure").value) || 0;
-
-    const emi =
-        Number(
-            document
-                .getElementById("monthlyEMI")
-                .textContent
-                .replace(/[^\d.]/g, "")
-        ) || 0;
-
-    const interest =
-        Number(
-            document
-                .getElementById("totalInterest")
-                .textContent
-                .replace(/[^\d.]/g, "")
-        ) || 0;
-
-    let currency = "₹";
-    let loanType = "Home Loan";
-
-    const lang = navigator.language || "";
-
-    if (lang.includes("en-US")) {
-
-        currency = "$";
-        loanType = "Mortgage";
-
+    // Fallback to home if loan type doesn't exist
+    if (!loanConfigs[loanType]) {
+        loanType = "home";
     }
 
-    else if (lang.includes("en-GB")) {
+    currentLoanType = loanType;
 
-        currency = "£";
-        loanType = "Mortgage";
+    const config = loanConfigs[loanType];
 
+    // ---------- Default Calculator Values ----------
+
+    const amountInput = document.getElementById("amount");
+    const rateInput = document.getElementById("rate");
+    const tenureInput = document.getElementById("tenure");
+
+    if (amountInput && !amountInput.value) {
+        amountInput.value = config.defaultAmount;
+    }
+
+    if (rateInput && !rateInput.value) {
+        rateInput.value = config.defaultRate;
+    }
+
+    if (tenureInput && !tenureInput.value) {
+        tenureInput.value = config.defaultTenure;
+    }
+
+    // ---------- Page Title ----------
+
+    document.title = config.title;
+
+    // ---------- H1 ----------
+
+    const pageTitle = document.getElementById("pageTitle");
+
+    if (pageTitle) {
+        pageTitle.textContent = config.title;
+    }
+
+    // ---------- Meta Description ----------
+
+    let meta = document.querySelector('meta[name="description"]');
+
+    if (meta) {
+        meta.setAttribute("content", config.description);
+    }
+
+}
+
+
+// =====================================================
+// 4. CURRENCY
+// =====================================================
+function detectCurrency() {
+
+    const locale = navigator.language.toLowerCase();
+
+    if (locale.includes("en-us")) {
+        currencySymbol = "$";
+        currencyCode = "USD";
+    }
+
+    else if (locale.includes("en-gb")) {
+        currencySymbol = "£";
+        currencyCode = "GBP";
     }
 
     else if (
-        lang.includes("de") ||
-        lang.includes("fr") ||
-        lang.includes("es") ||
-        lang.includes("it")
+        locale.includes("fr") ||
+        locale.includes("de") ||
+        locale.includes("it") ||
+        locale.includes("es")
     ) {
-
-        currency = "€";
-        loanType = "Mortgage";
-
+        currencySymbol = "€";
+        currencyCode = "EUR";
     }
 
-    const amountText =
-        currency +
-        amount.toLocaleString();
-
-    document.title =
-        amountText +
-        " " +
-        loanType +
-        " EMI Calculator @ " +
-        rate +
-        "% for " +
-        tenure +
-        " Years | Smart EMI Calculator";
-
-    const meta =
-        document.querySelector('meta[name="description"]');
-
-    if (meta) {
-
-        meta.setAttribute(
-            "content",
-
-            "Calculate EMI for a " +
-            amountText +
-            " " +
-            loanType.toLowerCase() +
-            " at " +
-            rate +
-            "% interest for " +
-            tenure +
-            " years. Estimated monthly EMI: " +
-            currency +
-            emi.toLocaleString() +
-            ". Total interest payable: " +
-            currency +
-            interest.toLocaleString() +
-            ". Free amortization schedule, affordability analysis and loan planning tools."
-
-        );
-
+    else {
+        currencySymbol = "₹";
+        currencyCode = "INR";
     }
 
 }
-  </script>
 
-</body>
-</html>
+
+// =====================================================
+// 5. EMI CALCULATIONS
+// =====================================================
+
+function calculateEMI() {
+
+    const amount = parseFloat(document.getElementById("amount").value) || 0;
+    const annualRate = parseFloat(document.getElementById("rate").value) || 0;
+    const years = parseFloat(document.getElementById("tenure").value) || 0;
+
+    if (amount <= 0 || annualRate <= 0 || years <= 0) {
+        return;
+    }
+
+    const monthlyRate = annualRate / 12 / 100;
+    const months = years * 12;
+
+    const emi =
+        amount *
+        monthlyRate *
+        Math.pow(1 + monthlyRate, months) /
+        (Math.pow(1 + monthlyRate, months) - 1);
+
+    const totalPayment = emi * months;
+    const totalInterest = totalPayment - amount;
+
+    updateResultCards(
+    emi,
+    totalInterest,
+    totalPayment
+);
+
+updateURL();
+
+}
+      function updateResultCards(
+    emi,
+    interest,
+    total
+) {
+
+    const emiElement = document.getElementById("emi");
+    const interestElement = document.getElementById("interest");
+    const totalElement = document.getElementById("total");
+
+    if (emiElement) {
+        emiElement.textContent = formatMoney(emi);
+    }
+
+    if (interestElement) {
+        interestElement.textContent = formatMoney(interest);
+    }
+
+    if (totalElement) {
+        totalElement.textContent = formatMoney(total);
+    }
+
+}
+
+// =====================================================
+// 6. AFFORDABILITY
+// =====================================================
+
+
+
+// =====================================================
+// 7. AMORTIZATION
+// =====================================================
+
+
+
+// =====================================================
+// 8. URL PARAMETERS
+// =====================================================
+
+function loadFromURL() {
+
+    const params = new URLSearchParams(window.location.search);
+
+    const loan = params.get("loan");
+    const amount = params.get("amount");
+    const rate = params.get("rate");
+    const tenure = params.get("tenure");
+
+    if (loan && loanConfigs[loan]) {
+        currentLoanType = loan;
+    }
+
+    if (amount) {
+        document.getElementById("amount").value = amount;
+    }
+
+    if (rate) {
+        document.getElementById("rate").value = rate;
+    }
+
+    if (tenure) {
+        document.getElementById("tenure").value = tenure;
+    }
+
+}
+      function updateURL() {
+
+    const params = new URLSearchParams();
+
+    params.set("loan", currentLoanType);
+    params.set("amount", document.getElementById("amount").value);
+    params.set("rate", document.getElementById("rate").value);
+    params.set("tenure", document.getElementById("tenure").value);
+
+    history.replaceState(
+        {},
+        "",
+        "?" + params.toString()
+    );
+
+}
+
+// =====================================================
+// 9. SEO
+// =====================================================
+
+
+
+// =====================================================
+// 10. FAQ
+// =====================================================
+
+
+
+// =====================================================
+// 11. JSON-LD
+// =====================================================
+
+
+
+// =====================================================
+// 12. UTILITIES
+// =====================================================
+function formatMoney(value) {
+
+    return new Intl.NumberFormat(undefined, {
+
+        style: "currency",
+
+        currency: currencyCode,
+
+        maximumFractionDigits: 0
+
+    }).format(value);
+
+}
