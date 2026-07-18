@@ -12,85 +12,88 @@ const loanConfigs = {
     home: {
         id: "home",
         name: "Home Loan",
-        title: "Home Loan EMI Calculator",
+        slug: "home-loan-emi-calculator",
+
+        seoTitle: "Home Loan EMI Calculator",
+        metaDescription: "Calculate your home loan EMI, total interest, repayment schedule and affordability for buying or constructing a house.",
+
+        h1: "Home Loan EMI Calculator",
+
         defaultAmount: 5000000,
         defaultRate: 8.5,
         defaultTenure: 20,
+
         minTenure: 5,
         maxTenure: 30,
-        description: "Calculate your home loan EMI, total interest and monthly repayment."
+
+        amountLabel: "Loan Amount",
+
+        intro: "A home loan helps you finance the purchase or construction of residential property. Use this calculator to estimate your monthly EMI, total repayment amount and overall interest cost.",
+
+        benefits: [
+            "Estimate monthly EMI",
+            "Plan long-term repayments",
+            "Compare loan scenarios",
+            "Understand total interest cost"
+        ]
     },
 
     car: {
         id: "car",
         name: "Car Loan",
-        title: "Car Loan EMI Calculator",
+        slug: "car-loan-emi-calculator",
+
+        seoTitle: "Car Loan EMI Calculator",
+        metaDescription: "Calculate EMI for new and used car loans. Compare repayment plans for different loan amounts and interest rates.",
+
+        h1: "Car Loan EMI Calculator",
+
         defaultAmount: 800000,
         defaultRate: 9,
         defaultTenure: 5,
+
         minTenure: 3,
         maxTenure: 7,
-        description: "Estimate your car loan EMI with flexible repayment options."
-    },
 
-    bike: {
-        id: "bike",
-        name: "Bike Loan",
-        title: "Bike Loan EMI Calculator",
-        defaultAmount: 150000,
-        defaultRate: 10,
-        defaultTenure: 3,
-        minTenure: 2,
-        maxTenure: 5,
-        description: "Calculate bike loan EMI for new and used two-wheelers."
+        amountLabel: "Car Price / Loan Amount",
+
+        intro: "A car loan allows you to finance the purchase of a new or used vehicle. Typical repayment periods range from 3 to 7 years.",
+
+        benefits: [
+            "Estimate monthly car EMI",
+            "Compare repayment periods",
+            "Understand total borrowing cost",
+            "Plan your vehicle purchase"
+        ]
     },
 
     personal: {
         id: "personal",
         name: "Personal Loan",
-        title: "Personal Loan EMI Calculator",
+        slug: "personal-loan-emi-calculator",
+
+        seoTitle: "Personal Loan EMI Calculator",
+        metaDescription: "Calculate personal loan EMI, repayment schedule and interest cost for short-term unsecured loans.",
+
+        h1: "Personal Loan EMI Calculator",
+
         defaultAmount: 500000,
         defaultRate: 12,
         defaultTenure: 3,
+
         minTenure: 1,
         maxTenure: 5,
-        description: "Calculate your personal loan EMI and repayment schedule."
-    },
 
-    education: {
-        id: "education",
-        name: "Education Loan",
-        title: "Education Loan EMI Calculator",
-        defaultAmount: 1500000,
-        defaultRate: 9,
-        defaultTenure: 10,
-        minTenure: 5,
-        maxTenure: 15,
-        description: "Estimate education loan EMIs for higher studies."
-    },
+        amountLabel: "Loan Amount",
 
-    business: {
-        id: "business",
-        name: "Business Loan",
-        title: "Business Loan EMI Calculator",
-        defaultAmount: 2000000,
-        defaultRate: 11,
-        defaultTenure: 7,
-        minTenure: 3,
-        maxTenure: 10,
-        description: "Estimate business loan repayments and interest costs."
-    },
+        intro: "Personal loans are unsecured loans commonly used for emergencies, travel, weddings, medical expenses or debt consolidation.",
 
-    gold: {
-        id: "gold",
-        name: "Gold Loan",
-        title: "Gold Loan EMI Calculator",
-        defaultAmount: 300000,
-        defaultRate: 8,
-        defaultTenure: 2,
-        minTenure: 1,
-        maxTenure: 3,
-        description: "Calculate EMI for loans against gold jewellery."
+        benefits: [
+            "Calculate monthly EMI",
+            "Estimate total repayment",
+            "Compare interest rates",
+            "Plan your finances"
+        ]
     }
 
 };
