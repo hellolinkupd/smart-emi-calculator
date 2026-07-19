@@ -1,32 +1,52 @@
 // ==========================================================
 // SMART EMI CALCULATOR
-// Main Application
-// Version: 4.0.0
+// MAIN APPLICATION
+// Version: 4.1.0
 // ==========================================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Smart EMI Calculator Started");
 
-    // Detect visitor currency
+    // -----------------------------
+    // Detect Currency
+    // -----------------------------
     detectCurrency();
 
-    // Calculator inputs
-    const amount = $("amount");
-    const rate = $("rate");
-    const tenure = $("tenure");
+    // -----------------------------
+    // Read URL Parameters
+    // -----------------------------
+    loadFromURL();
 
-    // Calculate on every change
-    if (amount)
-        amount.addEventListener("input", calculateEMI);
+    // -----------------------------
+    // Load Loan Configuration
+    // -----------------------------
+    loadLoanConfig(currentLoanType);
 
-    if (rate)
-        rate.addEventListener("input", calculateEMI);
+    // -----------------------------
+    // Load FAQ
+    // -----------------------------
+    loadFAQ();
 
-    if (tenure)
-        tenure.addEventListener("input", calculateEMI);
-
-    // First calculation
+    // -----------------------------
+    // Calculate EMI
+    // -----------------------------
     calculateEMI();
+
+    // -----------------------------
+    // Event Listeners
+    // -----------------------------
+
+    if ($("amount")) {
+        $("amount").addEventListener("input", calculateEMI);
+    }
+
+    if ($("rate")) {
+        $("rate").addEventListener("input", calculateEMI);
+    }
+
+    if ($("tenure")) {
+        $("tenure").addEventListener("change", calculateEMI);
+    }
 
 });
