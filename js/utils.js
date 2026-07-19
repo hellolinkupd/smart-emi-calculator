@@ -4,11 +4,18 @@
 // Version: 4.0.0
 // ==========================================================
 
-// Currency
+// Shortcut for document.getElementById()
+function $(id) {
+    return document.getElementById(id);
+}
+
+// ----------------------------------------------------------
+// Detect visitor currency
+// ----------------------------------------------------------
+
 let currentCurrency = "INR";
 let currentSymbol = "₹";
 
-// Detect visitor currency
 function detectCurrency() {
 
     const locale = navigator.language.toLowerCase();
@@ -26,8 +33,8 @@ function detectCurrency() {
     else if (
         locale.includes("fr") ||
         locale.includes("de") ||
-        locale.includes("it") ||
-        locale.includes("es")
+        locale.includes("es") ||
+        locale.includes("it")
     ) {
         currentCurrency = "EUR";
         currentSymbol = "€";
@@ -37,9 +44,13 @@ function detectCurrency() {
         currentCurrency = "INR";
         currentSymbol = "₹";
     }
+
 }
 
-// Format Currency
+// ----------------------------------------------------------
+// Format Money
+// ----------------------------------------------------------
+
 function formatMoney(value) {
 
     return new Intl.NumberFormat(undefined, {
@@ -50,23 +61,22 @@ function formatMoney(value) {
 
 }
 
-// Format Number
-function formatNumber(value) {
+// ----------------------------------------------------------
+// Format Percentage
+// ----------------------------------------------------------
 
-    return new Intl.NumberFormat().format(value);
+function formatPercent(value) {
 
-}
-
-// Get Element
-function $(id) {
-
-    return document.getElementById(id);
+    return Number(value).toFixed(2) + "%";
 
 }
 
-// Round Value
-function round(value, decimals = 2) {
+// ----------------------------------------------------------
+// Round Number
+// ----------------------------------------------------------
 
-    return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+function round(value, digits = 2) {
+
+    return Number(value.toFixed(digits));
 
 }
