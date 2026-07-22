@@ -1,60 +1,85 @@
 // ==========================================================
 // SMART EMI CALCULATOR
 // Amortization Schedule
-// Version: 4.0.0
+// Version: 5.0.0
 // ==========================================================
 
-function generateAmortizationSchedule(principal, annualRate, years) {
+// ----------------------------------------------------------
+// Generate Amortization Schedule
+// ----------------------------------------------------------
 
-    principal = parseFloat(principal);
-    annualRate = parseFloat(annualRate);
-    years = parseFloat(years);
+function generateAmortizationSchedule() {
 
-    if (
-        principal <= 0 ||
-        annualRate <= 0 ||
-        years <= 0
-    ) {
-        return [];
+    if (!hasValidEMI()) {
+        return;
     }
 
-    const monthlyRate = annualRate / 12 / 100;
-    const months = years * 12;
+    const data = getEMIData();
 
-    const emi =
-        principal *
-        monthlyRate *
-        Math.pow(1 + monthlyRate, months) /
-        (Math.pow(1 + monthlyRate, months) - 1);
+    const tableBody = $("amortizationBody");
 
-    let balance = principal;
+    if (!tableBody) {
+        return;
+    }
 
-    const schedule = [];
+    tableBody.innerHTML = "";
 
-    for (let month = 1; month <= months; month++) {
+    let balance = data.principal;
 
-        const interest = balance * monthlyRate;
+    for (let month = 1; month <= data.months; month++) {
 
-        const principalPaid = emi - interest;
+        const interest = balance * data.monthlyRate;
 
-        balance -= principalPaid;
+        const principal = data.emi - interest;
 
-        schedule.push({
+        balance -= principal;
 
+        if (balance < 0) {
+            balance = 0;
+        }
+
+        addAmortizationRow(
+            tableBody,
             month,
-
-            emi: Math.round(emi),
-
-            principal: Math.round(principalPaid),
-
-            interest: Math.round(interest),
-
-            balance: Math.max(0, Math.round(balance))
-
-        });
+            data.emi,
+            principal,
+            interest,
+            balance
+        );
 
     }
 
-    return schedule;
+}
+
+// ----------------------------------------------------------
+// Add Amortization Table Row
+// ----------------------------------------------------------
+
+function addAmortizationRow(
+    tableBody,
+    month,
+    emi,
+    principal,
+    interest,
+    balance
+) {
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+
+        <td>${month}</td>
+
+        <td>${formatMoney(emi)}</td>
+
+        <td>${formatMoney(principal)}</td>
+
+        <td>${formatMoney(interest)}</td>
+
+        <td>${formatMoney(balance)}</td>
+
+    `;
+
+    tableBody.appendChild(row);
 
 }

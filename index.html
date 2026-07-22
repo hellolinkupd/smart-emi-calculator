@@ -1,530 +1,749 @@
-// =====================================================
-// SMART EMI CALCULATOR
-// Version: 2.0
-// =====================================================
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-// =====================================================
-// 1. LOAN CONFIGURATION
-// =====================================================
-const loanConfigs = {
+    <!-- ==========================================
+         BASIC META
+    =========================================== -->
 
-    home: {
-        id: "home",
-        name: "Home Loan",
-        slug: "home-loan-emi-calculator",
+    <meta charset="UTF-8">
 
-        seoTitle: "Home Loan EMI Calculator",
-        metaDescription: "Calculate your home loan EMI, total interest, repayment schedule and affordability for buying or constructing a house.",
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-        h1: "Home Loan EMI Calculator",
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
 
-        defaultAmount: 5000000,
-        defaultRate: 8.5,
-        defaultTenure: 20,
+    <!-- ==========================================
+         SEO
+    =========================================== -->
 
-        minTenure: 5,
-        maxTenure: 30,
+    <title>Smart EMI Calculator</title>
 
-        amountLabel: "Loan Amount",
+    <meta name="description"
+          content="Calculate EMI, monthly payments, interest, affordability and amortization schedule for Home, Car, Personal, Education and Business loans.">
 
-        intro: "A home loan helps you finance the purchase or construction of residential property. Use this calculator to estimate your monthly EMI, total repayment amount and overall interest cost.",
+    <meta name="keywords"
+          content="EMI Calculator, Home Loan EMI, Car Loan EMI, Personal Loan EMI, Loan Calculator">
 
-        benefits: [
-            "Estimate monthly EMI",
-            "Plan long-term repayments",
-            "Compare loan scenarios",
-            "Understand total interest cost"
-        ]
-    },
+    <meta name="robots"
+          content="index,follow">
 
-    car: {
-        id: "car",
-        name: "Car Loan",
-        slug: "car-loan-emi-calculator",
+    <meta name="author"
+          content="Smart EMI Calculator">
 
-        seoTitle: "Car Loan EMI Calculator",
-        metaDescription: "Calculate EMI for new and used car loans. Compare repayment plans for different loan amounts and interest rates.",
+    <link rel="canonical"
+          href="">
 
-        h1: "Car Loan EMI Calculator",
+    <!-- ==========================================
+         OPEN GRAPH
+    =========================================== -->
 
-        defaultAmount: 800000,
-        defaultRate: 9,
-        defaultTenure: 5,
+    <meta property="og:type"
+          content="website">
 
-        minTenure: 3,
-        maxTenure: 7,
+    <meta property="og:title"
+          content="Smart EMI Calculator">
 
-        amountLabel: "Car Price / Loan Amount",
+    <meta property="og:description"
+          content="Free EMI Calculator with Amortization Schedule">
 
-        intro: "A car loan allows you to finance the purchase of a new or used vehicle. Typical repayment periods range from 3 to 7 years.",
+    <meta property="og:image"
+          content="images/og-image.jpg">
 
-        benefits: [
-            "Estimate monthly car EMI",
-            "Compare repayment periods",
-            "Understand total borrowing cost",
-            "Plan your vehicle purchase"
-        ]
-    },
+    <meta property="og:url"
+          content="">
 
-    personal: {
-        id: "personal",
-        name: "Personal Loan",
-        slug: "personal-loan-emi-calculator",
+    <!-- ==========================================
+         TWITTER
+    =========================================== -->
 
-        seoTitle: "Personal Loan EMI Calculator",
-        metaDescription: "Calculate personal loan EMI, repayment schedule and interest cost for short-term unsecured loans.",
+    <meta name="twitter:card"
+          content="summary_large_image">
 
-        h1: "Personal Loan EMI Calculator",
+    <meta name="twitter:title"
+          content="Smart EMI Calculator">
 
-        defaultAmount: 500000,
-        defaultRate: 12,
-        defaultTenure: 3,
+    <meta name="twitter:description"
+          content="Calculate EMI instantly.">
 
-        minTenure: 1,
-        maxTenure: 5,
+    <!-- ==========================================
+         FAVICON
+    =========================================== -->
 
-        amountLabel: "Loan Amount",
+    <link rel="icon"
+          href="favicon.ico">
 
-        intro: "Personal loans are unsecured loans commonly used for emergencies, travel, weddings, medical expenses or debt consolidation.",
+    <!-- ==========================================
+         CSS
+    =========================================== -->
 
-        benefits: [
-            "Calculate monthly EMI",
-            "Estimate total repayment",
-            "Compare interest rates",
-            "Plan your finances"
-        ]
-       },
+    <link rel="stylesheet"
+          href="css/style.css">
 
-    education: {
-        id: "education",
-        name: "Education Loan",
-        slug: "education-loan-emi-calculator",
+</head>
 
-        seoTitle: "Education Loan EMI Calculator",
+<body>
 
-        metaDescription: "Calculate education loan EMI for studying in India or abroad.",
+<a href="#main-content"
+   class="skip-link">
+    Skip to main content
+</a>
 
-        h1: "Education Loan EMI Calculator",
+<!-- ==========================================
+     HEADER
+========================================== -->
 
-        defaultAmount: 1500000,
-        defaultRate: 9,
-        defaultTenure: 10,
+<header class="site-header">
 
-        minTenure: 5,
-        maxTenure: 15,
+    <div class="container">
 
-        amountLabel: "Education Loan Amount",
+        <h1 id="pageTitle">
+            Home Loan EMI Calculator
+        </h1>
 
-        intro: "Education loans help students finance tuition fees, accommodation, books and other educational expenses.",
+        <p id="pageIntro">
+            Calculate your monthly EMI, total repayment, interest payable and complete amortization schedule instantly.
+        </p>
 
-        benefits: [
-            "Estimate monthly EMI",
-            "Compare repayment plans",
-            "Understand total interest",
-            "Plan study expenses"
-        ]
-    },
+    </div>
 
-    business: {
-        id: "business",
-        name: "Business Loan",
-        slug: "business-loan-emi-calculator",
+</header>
 
-        seoTitle: "Business Loan EMI Calculator",
+<!-- ==========================================
+     MAIN
+========================================== -->
 
-        metaDescription: "Calculate business loan EMI for working capital, expansion and equipment purchases.",
+<main id="main-content">
 
-        h1: "Business Loan EMI Calculator",
+<section class="calculator-section">
 
-        defaultAmount: 2000000,
-        defaultRate: 11,
-        defaultTenure: 7,
+<div class="container">
 
-        minTenure: 3,
-        maxTenure: 10,
+    <!-- ==========================================
+     CALCULATOR CARD
+========================================== -->
 
-        amountLabel: "Business Loan Amount",
+<div class="calculator-card">
 
-        intro: "Business loans help entrepreneurs finance expansion, machinery, inventory and day-to-day operations.",
+    <div class="form-group">
 
-        benefits: [
-            "Estimate EMI",
-            "Business planning",
-            "Compare loan offers",
-            "Manage cash flow"
-        ]
-    },
+        <label for="amount" id="amountLabel">
+            Loan Amount
+        </label>
 
-    bike: {
-        id: "bike",
-        name: "Bike Loan",
-        slug: "bike-loan-emi-calculator",
+        <input
+            type="number"
+            id="amount"
+            class="form-control"
+            placeholder="Enter Loan Amount">
 
-        seoTitle: "Bike Loan EMI Calculator",
+    </div>
 
-        metaDescription: "Calculate bike loan EMI for new and used motorcycles and scooters.",
+    <div class="form-group">
 
-        h1: "Bike Loan EMI Calculator",
+        <label for="rate">
+            Annual Interest Rate (%)
+        </label>
 
-        defaultAmount: 150000,
-        defaultRate: 10,
-        defaultTenure: 3,
+        <input
+            type="number"
+            id="rate"
+            class="form-control"
+            step="0.01"
+            placeholder="Enter Interest Rate">
 
-        minTenure: 2,
-        maxTenure: 5,
+    </div>
 
-        amountLabel: "Bike Loan Amount",
+    <div class="form-group">
 
-        intro: "Bike loans make it easier to purchase a motorcycle or scooter with affordable monthly payments.",
+        <label for="tenure">
+            Loan Tenure (Years)
+        </label>
 
-        benefits: [
-            "Estimate EMI",
-            "Compare tenures",
-            "Understand repayment",
-            "Plan your purchase"
-        ]
-    },
+        <select
+            id="tenure"
+            class="form-control">
 
-    gold: {
-        id: "gold",
-        name: "Gold Loan",
-        slug: "gold-loan-emi-calculator",
+            <option value="1">1 Year</option>
+            <option value="2">2 Years</option>
+            <option value="3">3 Years</option>
+            <option value="4">4 Years</option>
+            <option value="5">5 Years</option>
+            <option value="7">7 Years</option>
+            <option value="10">10 Years</option>
+            <option value="15">15 Years</option>
+            <option value="20">20 Years</option>
+            <option value="25">25 Years</option>
+            <option value="30">30 Years</option>
 
-        seoTitle: "Gold Loan EMI Calculator",
+        </select>
 
-        metaDescription: "Estimate EMI for loans secured against gold jewellery.",
+    </div>
 
-        h1: "Gold Loan EMI Calculator",
+</div>
 
-        defaultAmount: 300000,
-        defaultRate: 8,
+<!-- ==========================================
+     RESULTS
+========================================== -->
 
-        defaultTenure: 2,
+<section class="results-section">
 
-        minTenure: 1,
-        maxTenure: 3,
+    <div class="results-grid">
 
-        amountLabel: "Gold Loan Amount",
+        <div class="result-card">
 
-        intro: "Gold loans are secured loans where gold jewellery is pledged as collateral for quick financing.",
+            <h3>Monthly EMI</h3>
 
-        benefits: [
-            "Lower interest rates",
-            "Quick approval",
-            "Short repayment period",
-            "Flexible loan amount"
-        ]
-    },
+            <div
+                id="emi"
+                class="result-value">
 
-    lap: {
-        id: "lap",
+                ₹0
 
-        name: "Loan Against Property",
+            </div>
 
-        slug: "loan-against-property-emi-calculator",
+        </div>
 
-        seoTitle: "Loan Against Property EMI Calculator",
+        <div class="result-card">
 
-        metaDescription: "Calculate EMI for loans secured against residential or commercial property.",
+            <h3>Total Interest</h3>
 
-        h1: "Loan Against Property EMI Calculator",
+            <div
+                id="interest"
+                class="result-value">
 
-        defaultAmount: 4000000,
+                ₹0
 
-        defaultRate: 9,
+            </div>
 
-        defaultTenure: 15,
+        </div>
 
-        minTenure: 5,
+        <div class="result-card">
 
-        maxTenure: 20,
+            <h3>Total Payment</h3>
 
-        amountLabel: "Loan Amount",
+            <div
+                id="total"
+                class="result-value">
 
-        intro: "Loan Against Property (LAP) lets you borrow funds by pledging your residential or commercial property as security.",
+                ₹0
 
-        benefits: [
-            "Higher loan amounts",
-            "Long repayment tenure",
-            "Competitive interest rates",
-            "Business or personal use"
-        ]
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     LOAN SUMMARY
+========================================== -->
+
+<section class="loan-summary">
+
+    <h2>
+        Loan Summary
+    </h2>
+
+    <p id="loanIntro">
+
+        This calculator estimates your monthly EMI, total interest payable and complete repayment amount based on the selected loan amount, interest rate and tenure.
+
+    </p>
+
+</section>
+
+<!-- ==========================================
+     AFFORDABILITY CALCULATOR
+========================================== -->
+
+<section id="affordabilitySection" class="affordability-section">
+
+    <h2>
+        Loan Affordability
+    </h2>
+
+    <p>
+        Estimate how much loan you can comfortably afford based on your income and monthly obligations.
+    </p>
+
+    <div id="affordabilityResult" class="affordability-result">
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     LOAN VISUALIZATION
+========================================== -->
+
+<section class="chart-section">
+
+    <h2>
+        Loan Breakdown
+    </h2>
+
+    <p>
+        Visual representation of the principal amount and total interest payable.
+    </p>
+
+    <div class="chart-container">
+
+        <canvas id="emiChart"></canvas>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     PAYMENT TIMELINE
+========================================== -->
+
+<section class="chart-section">
+
+    <h2>
+        Loan Balance Over Time
+    </h2>
+
+    <p>
+        See how your outstanding loan balance reduces throughout the repayment period.
+    </p>
+
+    <div class="chart-container">
+
+        <canvas id="balanceChart"></canvas>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     EXPORT OPTIONS
+========================================== -->
+
+<section class="export-section">
+
+    <h2>
+        Export Results
+    </h2>
+
+    <div class="button-group">
+
+        <button
+            id="downloadPdf"
+            type="button"
+            class="btn">
+
+            Download PDF
+
+        </button>
+
+        <button
+            id="downloadCsv"
+            type="button"
+            class="btn">
+
+            Export CSV
+
+        </button>
+
+        <button
+            id="printReport"
+            type="button"
+            class="btn">
+
+            Print Report
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     AMORTIZATION SCHEDULE
+========================================== -->
+
+<section class="amortization-section">
+
+    <h2>
+        Amortization Schedule
+    </h2>
+
+    <p>
+        View a detailed month-by-month breakdown of your EMI payments, including principal repayment, interest paid and remaining balance.
+    </p>
+
+    <div class="table-responsive">
+
+        <table class="amortization-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Month</th>
+                    <th>EMI</th>
+                    <th>Principal</th>
+                    <th>Interest</th>
+                    <th>Balance</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="amortizationBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     LOAN DETAILS
+========================================== -->
+
+<section class="loan-details">
+
+    <h2>
+        Loan Details
+    </h2>
+
+    <div class="details-grid">
+
+        <div class="detail-card">
+
+            <h3>
+                Loan Type
+            </h3>
+
+            <p id="loanTypeText">
+                Home Loan
+            </p>
+
+        </div>
+
+        <div class="detail-card">
+
+            <h3>
+                Interest Rate
+            </h3>
+
+            <p id="interestRateText">
+                --
+            </p>
+
+        </div>
+
+        <div class="detail-card">
+
+            <h3>
+                Loan Tenure
+            </h3>
+
+            <p id="loanTenureText">
+                --
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     BENEFITS
+========================================== -->
+
+<section class="benefits-section">
+
+    <h2>
+        Why Use This Calculator?
+    </h2>
+
+    <ul id="benefitsList">
+
+    </ul>
+
+</section>
+
+<!-- ==========================================
+     ABOUT THIS LOAN
+========================================== -->
+
+<section class="about-loan">
+
+    <h2>
+        About This Loan
+    </h2>
+
+    <p id="loanDescription">
+
+        Home loans help individuals finance the purchase, construction or renovation of residential properties. This calculator estimates your monthly EMI, total repayment amount and total interest payable based on your selected loan amount, interest rate and tenure.
+
+    </p>
+
+</section>
+
+<!-- ==========================================
+     HOW TO USE
+========================================== -->
+
+<section class="how-to-use">
+
+    <h2>
+        How to Use This EMI Calculator
+    </h2>
+
+    <ol>
+
+        <li>
+            Enter the loan amount.
+        </li>
+
+        <li>
+            Enter the annual interest rate.
+        </li>
+
+        <li>
+            Select the loan tenure in years.
+        </li>
+
+        <li>
+            The calculator automatically updates your EMI, total interest and repayment amount.
+        </li>
+
+        <li>
+            Scroll down to view the amortization schedule and repayment details.
+        </li>
+
+    </ol>
+
+</section>
+
+<!-- ==========================================
+     FREQUENTLY ASKED QUESTIONS
+========================================== -->
+
+<section class="faq-section">
+
+    <h2>
+        Frequently Asked Questions
+    </h2>
+
+    <div id="faq">
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     RELATED CALCULATORS
+========================================== -->
+
+<section class="related-tools">
+
+    <h2>
+        Related EMI Calculators
+    </h2>
+
+    <div class="related-grid">
+
+        <a href="?loan=home">
+            Home Loan EMI Calculator
+        </a>
+
+        <a href="?loan=car">
+            Car Loan EMI Calculator
+        </a>
+
+        <a href="?loan=personal">
+            Personal Loan EMI Calculator
+        </a>
+
+        <a href="?loan=education">
+            Education Loan EMI Calculator
+        </a>
+
+        <a href="?loan=business">
+            Business Loan EMI Calculator
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     DISCLAIMER
+========================================== -->
+
+<section class="disclaimer">
+
+    <h2>
+        Disclaimer
+    </h2>
+
+    <p>
+
+        The calculations provided by this EMI calculator are estimates for informational purposes only. Actual EMI, interest charges, processing fees, taxes and other lender-specific costs may vary. Please verify all loan details with your financial institution before making borrowing decisions.
+
+    </p>
+
+</section>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-column">
+
+                <h3>
+                    Smart EMI Calculator
+                </h3>
+
+                <p>
+
+                    Free EMI Calculator for Home, Car, Personal, Education,
+                    Business, Gold, Bike and Loan Against Property loans.
+
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>
+                    Loan Calculators
+                </h3>
+
+                <ul>
+
+                    <li><a href="?loan=home">Home Loan</a></li>
+
+                    <li><a href="?loan=car">Car Loan</a></li>
+
+                    <li><a href="?loan=personal">Personal Loan</a></li>
+
+                    <li><a href="?loan=education">Education Loan</a></li>
+
+                    <li><a href="?loan=business">Business Loan</a></li>
+
+                    <li><a href="?loan=bike">Bike Loan</a></li>
+
+                    <li><a href="?loan=gold">Gold Loan</a></li>
+
+                    <li><a href="?loan=lap">Loan Against Property</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>
+                    Tools
+                </h3>
+
+                <ul>
+
+                    <li>EMI Calculator</li>
+
+                    <li>Amortization Schedule</li>
+
+                    <li>Loan Affordability</li>
+
+                    <li>Interest Calculator</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <p class="copyright">
+
+            © <span id="currentYear"></span>
+            Smart EMI Calculator.
+            All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+     DYNAMIC JSON-LD
+========================================== -->
+
+<script
+id="dynamicSchema"
+type="application/ld+json">
+{}
+</script>
+
+<!-- ==========================================
+     JAVASCRIPT FILES
+========================================== -->
+
+<script src="js/utils.js"></script>
+
+<script src="js/loan-config.js"></script>
+
+<script src="js/emi.js"></script>
+
+<script src="js/affordability.js"></script>
+
+<script src="js/amortization.js"></script>
+
+<script src="js/seo.js"></script>
+
+<script src="js/faq.js"></script>
+
+<script src="js/schema.js"></script>
+
+<script src="js/app.js"></script>
+
+<!-- ==========================================
+     FOOTER SCRIPT
+========================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const year = document.getElementById("currentYear");
+
+    if (year) {
+
+        year.textContent = new Date().getFullYear();
+
     }
-
-};
-
-// =====================================================
-// 2. GLOBAL VARIABLES
-// =====================================================
-let currentLoanType = "home";
-
-let currencySymbol = "₹";
-
-let currencyCode = "INR";
-
-
-// =====================================================
-// 3. INITIALIZATION
-detectCurrency();
-
-loadFromURL();
-
-    detectCurrency();
-
-    const amount = document.getElementById("amount");
-    const rate = document.getElementById("rate");
-    const tenure = document.getElementById("tenure");
-
-    if (amount)
-        amount.addEventListener("input", calculateEMI);
-
-    if (rate)
-        rate.addEventListener("input", calculateEMI);
-
-    if (tenure)
-        tenure.addEventListener("change", calculateEMI);
-
-    calculateEMI();
 
 });
-// =====================================================
-function loadLoanConfig(loanType = "home") {
 
-    // Fallback to home if loan type doesn't exist
-    if (!loanConfigs[loanType]) {
-        loanType = "home";
-    }
+</script>
 
-    currentLoanType = loanType;
+</body>
 
-    const config = loanConfigs[loanType];
-
-    // ---------- Default Calculator Values ----------
-
-    const amountInput = document.getElementById("amount");
-    const rateInput = document.getElementById("rate");
-    const tenureInput = document.getElementById("tenure");
-
-    if (amountInput && !amountInput.value) {
-        amountInput.value = config.defaultAmount;
-    }
-
-    if (rateInput && !rateInput.value) {
-        rateInput.value = config.defaultRate;
-    }
-
-    if (tenureInput && !tenureInput.value) {
-        tenureInput.value = config.defaultTenure;
-    }
-
-    // ---------- Page Title ----------
-
-    document.title = config.title;
-
-    // ---------- H1 ----------
-
-    const pageTitle = document.getElementById("pageTitle");
-
-    if (pageTitle) {
-        pageTitle.textContent = config.title;
-    }
-
-    // ---------- Meta Description ----------
-
-    let meta = document.querySelector('meta[name="description"]');
-
-    if (meta) {
-        meta.setAttribute("content", config.description);
-    }
-
-}
-
-
-// =====================================================
-// 4. CURRENCY
-// =====================================================
-function detectCurrency() {
-
-    const locale = navigator.language.toLowerCase();
-
-    if (locale.includes("en-us")) {
-        currencySymbol = "$";
-        currencyCode = "USD";
-    }
-
-    else if (locale.includes("en-gb")) {
-        currencySymbol = "£";
-        currencyCode = "GBP";
-    }
-
-    else if (
-        locale.includes("fr") ||
-        locale.includes("de") ||
-        locale.includes("it") ||
-        locale.includes("es")
-    ) {
-        currencySymbol = "€";
-        currencyCode = "EUR";
-    }
-
-    else {
-        currencySymbol = "₹";
-        currencyCode = "INR";
-    }
-
-}
-
-
-// =====================================================
-// 5. EMI CALCULATIONS
-// =====================================================
-
-function calculateEMI() {
-
-    const amount = parseFloat(document.getElementById("amount").value) || 0;
-    const annualRate = parseFloat(document.getElementById("rate").value) || 0;
-    const years = parseFloat(document.getElementById("tenure").value) || 0;
-
-    if (amount <= 0 || annualRate <= 0 || years <= 0) {
-        return;
-    }
-
-    const monthlyRate = annualRate / 12 / 100;
-    const months = years * 12;
-
-    const emi =
-        amount *
-        monthlyRate *
-        Math.pow(1 + monthlyRate, months) /
-        (Math.pow(1 + monthlyRate, months) - 1);
-
-    const totalPayment = emi * months;
-    const totalInterest = totalPayment - amount;
-
-    updateResultCards(
-    emi,
-    totalInterest,
-    totalPayment
-);
-
-updateURL();
-
-}
-      function updateResultCards(
-    emi,
-    interest,
-    total
-) {
-
-    const emiElement = document.getElementById("emi");
-    const interestElement = document.getElementById("interest");
-    const totalElement = document.getElementById("total");
-
-    if (emiElement) {
-        emiElement.textContent = formatMoney(emi);
-    }
-
-    if (interestElement) {
-        interestElement.textContent = formatMoney(interest);
-    }
-
-    if (totalElement) {
-        totalElement.textContent = formatMoney(total);
-    }
-
-}
-
-// =====================================================
-// 6. AFFORDABILITY
-// =====================================================
-
-
-
-// =====================================================
-// 7. AMORTIZATION
-// =====================================================
-
-
-
-// =====================================================
-// 8. URL PARAMETERS
-// =====================================================
-
-function loadFromURL() {
-
-    const params = new URLSearchParams(window.location.search);
-
-    const loan = params.get("loan");
-    const amount = params.get("amount");
-    const rate = params.get("rate");
-    const tenure = params.get("tenure");
-
-    if (loan && loanConfigs[loan]) {
-        currentLoanType = loan;
-    }
-
-    if (amount) {
-        document.getElementById("amount").value = amount;
-    }
-
-    if (rate) {
-        document.getElementById("rate").value = rate;
-    }
-
-    if (tenure) {
-        document.getElementById("tenure").value = tenure;
-    }
-
-}
-      function updateURL() {
-
-    const params = new URLSearchParams();
-
-    params.set("loan", currentLoanType);
-    params.set("amount", document.getElementById("amount").value);
-    params.set("rate", document.getElementById("rate").value);
-    params.set("tenure", document.getElementById("tenure").value);
-
-    history.replaceState(
-        {},
-        "",
-        "?" + params.toString()
-    );
-
-}
-
-// =====================================================
-// 9. SEO
-// =====================================================
-
-
-
-// =====================================================
-// 10. FAQ
-// =====================================================
-
-
-
-// =====================================================
-// 11. JSON-LD
-// =====================================================
-
-
-
-// =====================================================
-// 12. UTILITIES
-// =====================================================
-function formatMoney(value) {
-
-    return new Intl.NumberFormat(undefined, {
-
-        style: "currency",
-
-        currency: currencyCode,
-
-        maximumFractionDigits: 0
-
-    }).format(value);
-
-}
+</html>

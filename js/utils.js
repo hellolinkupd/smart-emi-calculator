@@ -1,33 +1,44 @@
 // ==========================================================
 // SMART EMI CALCULATOR
 // Utility Functions
-// Version: 4.0.0
+// Version: 5.0.0
 // ==========================================================
 
-// Shortcut for document.getElementById()
+// ----------------------------------------------------------
+// DOM Shortcut
+// ----------------------------------------------------------
+
 function $(id) {
     return document.getElementById(id);
 }
 
 // ----------------------------------------------------------
-// Detect visitor currency
+// Currency
 // ----------------------------------------------------------
 
 let currentCurrency = "INR";
 let currentSymbol = "₹";
+
+// ----------------------------------------------------------
+// Detect Currency
+// ----------------------------------------------------------
 
 function detectCurrency() {
 
     const locale = navigator.language.toLowerCase();
 
     if (locale.includes("en-us")) {
+
         currentCurrency = "USD";
         currentSymbol = "$";
+
     }
 
     else if (locale.includes("en-gb")) {
+
         currentCurrency = "GBP";
         currentSymbol = "£";
+
     }
 
     else if (
@@ -36,13 +47,17 @@ function detectCurrency() {
         locale.includes("es") ||
         locale.includes("it")
     ) {
+
         currentCurrency = "EUR";
         currentSymbol = "€";
+
     }
 
     else {
+
         currentCurrency = "INR";
         currentSymbol = "₹";
+
     }
 
 }
@@ -54,15 +69,19 @@ function detectCurrency() {
 function formatMoney(value) {
 
     return new Intl.NumberFormat(undefined, {
+
         style: "currency",
+
         currency: currentCurrency,
+
         maximumFractionDigits: 0
+
     }).format(value);
 
 }
 
 // ----------------------------------------------------------
-// Format Percentage
+// Format Percent
 // ----------------------------------------------------------
 
 function formatPercent(value) {
@@ -78,5 +97,27 @@ function formatPercent(value) {
 function round(value, digits = 2) {
 
     return Number(value.toFixed(digits));
+
+}
+
+// ----------------------------------------------------------
+// Safe Number
+// ----------------------------------------------------------
+
+function toNumber(value) {
+
+    const number = parseFloat(value);
+
+    return isNaN(number) ? 0 : number;
+
+}
+
+// ----------------------------------------------------------
+// Format Number
+// ----------------------------------------------------------
+
+function formatNumber(value) {
+
+    return new Intl.NumberFormat().format(value);
 
 }

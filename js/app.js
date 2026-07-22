@@ -1,52 +1,109 @@
 // ==========================================================
 // SMART EMI CALCULATOR
-// MAIN APPLICATION
-// Version: 4.1.0
+// Main Application
+// Version: 5.0.0
 // ==========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Smart EMI Calculator Started");
 
-    // -----------------------------
+    // ------------------------------------------------------
     // Detect Currency
-    // -----------------------------
+    // ------------------------------------------------------
+
     detectCurrency();
 
-    // -----------------------------
+    // ------------------------------------------------------
     // Read URL Parameters
-    // -----------------------------
+    // ------------------------------------------------------
+
     loadFromURL();
 
-    // -----------------------------
-    // Load Loan Configuration
-    // -----------------------------
-    loadLoanConfig(currentLoanType);
+    // ------------------------------------------------------
+    // Validate Loan Type
+    // ------------------------------------------------------
 
-    // -----------------------------
-    // Load FAQ
-    // -----------------------------
+    if (!loanConfigs[currentLoanType]) {
+
+        currentLoanType = "home";
+
+    }
+
+    // ------------------------------------------------------
+    // Load Current Loan Configuration
+    // ------------------------------------------------------
+
+    loadSEO();
+
     loadFAQ();
 
-    // -----------------------------
-    // Calculate EMI
-    // -----------------------------
+    loadSchema();
+
+    // ------------------------------------------------------
+    // Set Default Values
+    // ------------------------------------------------------
+
+    const config = loanConfigs[currentLoanType];
+
+    if ($("amount") && !$("amount").value) {
+        $("amount").value = config.defaultAmount;
+    }
+
+    if ($("rate") && !$("rate").value) {
+        $("rate").value = config.defaultRate;
+    }
+
+    if ($("tenure") && !$("tenure").value) {
+        $("tenure").value = config.defaultTenure;
+    }
+
+    // ------------------------------------------------------
+    // Initial Calculation
+    // ------------------------------------------------------
+
     calculateEMI();
 
-    // -----------------------------
+    // ------------------------------------------------------
     // Event Listeners
-    // -----------------------------
+    // ------------------------------------------------------
 
     if ($("amount")) {
-        $("amount").addEventListener("input", calculateEMI);
+
+        $("amount").addEventListener("input", () => {
+
+            calculateEMI();
+
+            loadSEO();
+
+        });
+
     }
 
     if ($("rate")) {
-        $("rate").addEventListener("input", calculateEMI);
+
+        $("rate").addEventListener("input", () => {
+
+            calculateEMI();
+
+            loadSEO();
+
+        });
+
     }
 
     if ($("tenure")) {
-        $("tenure").addEventListener("change", calculateEMI);
+
+        $("tenure").addEventListener("change", () => {
+
+            calculateEMI();
+
+            loadSEO();
+
+        });
+
     }
+
+    console.log("Application Ready");
 
 });
