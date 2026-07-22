@@ -121,3 +121,62 @@ function formatNumber(value) {
     return new Intl.NumberFormat().format(value);
 
 }
+
+// ----------------------------------------------------------
+// Load Values From URL
+// ----------------------------------------------------------
+
+function loadFromURL() {
+
+    const params = new URLSearchParams(window.location.search);
+
+    const loan = params.get("loan");
+    const amount = params.get("amount");
+    const rate = params.get("rate");
+    const tenure = params.get("tenure");
+
+    if (typeof loanConfigs !== "undefined" && loan && loanConfigs[loan]) {
+        currentLoanType = loan;
+    }
+
+    if (amount && $("amount")) {
+        $("amount").value = amount;
+    }
+
+    if (rate && $("rate")) {
+        $("rate").value = rate;
+    }
+
+    if (tenure && $("tenure")) {
+        $("tenure").value = tenure;
+    }
+
+}
+
+// ----------------------------------------------------------
+// Update URL
+// ----------------------------------------------------------
+
+function updateURL() {
+
+    if (
+        !$("amount") ||
+        !$("rate") ||
+        !$("tenure")
+    ) {
+        return;
+    }
+
+    const params = new URLSearchParams();
+
+    params.set("loan", currentLoanType);
+
+    params.set("amount", $("amount").value);
+
+    params.set("rate", $("rate").value);
+
+    params.set("tenure", $("tenure").value);
+
+    history.replaceState({}, "", "?" + params.toString());
+
+}
