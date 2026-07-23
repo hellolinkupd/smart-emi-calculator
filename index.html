@@ -97,25 +97,155 @@
 
 <header class="site-header">
 
-    <div class="container">
 
-        <h1 id="pageTitle">
-            Home Loan EMI Calculator
-        </h1>
+    <div id="google_translate_element"></div>
+    <div class="header-tools">
 
-        <p id="pageIntro">
-            Calculate your monthly EMI, total repayment, interest payable and complete amortization schedule instantly.
-        </p>
+    <select id="currencySelector">
+        ...
+    </select>
+
+    <select id="languageSelector">
+        ...
+    </select>
+
+    <div id="google_translate_element"></div>
+
+</div>
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+            💰 Smart EMI Calculator
+        </a>
+
+        <button id="menuToggle" class="menu-toggle">
+    ☰
+</button>
+
+        <nav class="main-nav">
+
+            <a href="/">Home</a>
+
+            <a href="#calculator">Calculator</a>
+
+            <a href="#faq">FAQ</a>
+
+            <a href="about.html">About</a>
+
+            <a href="contact.html">Contact</a>
+
+        </nav>
+
+        <div class="header-tools">
+
+            <select id="currencySelector">
+
+                <option value="INR">🇮🇳 INR</option>
+                <option value="USD">🇺🇸 USD</option>
+                <option value="EUR">🇪🇺 EUR</option>
+                <option value="GBP">🇬🇧 GBP</option>
+                <option value="AUD">🇦🇺 AUD</option>
+                <option value="CAD">🇨🇦 CAD</option>
+                <option value="JPY">🇯🇵 JPY</option>
+                <option value="SGD">🇸🇬 SGD</option>
+                <option value="AED">🇦🇪 AED</option>
+
+            </select>
+
+            <select id="languageSelector">
+
+                <option value="en">English</option>
+                <option value="hi">हिन्दी</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="zh-CN">中文</option>
+                <option value="ar">العربية</option>
+
+            </select>
+
+        </div>
 
     </div>
 
 </header>
 
+
+
 <!-- ==========================================
      MAIN
 ========================================== -->
 
-<main id="main-content">
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+
+            <span class="badge">
+                ⭐ Trusted Financial Calculator
+            </span>
+
+            <h1>
+                Smart EMI Calculator
+            </h1>
+
+            <p>
+                Calculate Home, Car, Personal, Education and Business Loan EMI instantly.
+                Compare loans, download reports, and make better financial decisions.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#calculator" class="btn btn-primary">
+                    Calculate EMI
+                </a>
+
+                <a href="#loanCards" class="btn btn-outline">
+                    Explore Calculators
+                </a>
+
+            </div>
+
+            <div class="hero-stats">
+
+                <div>
+                    <h2>20+</h2>
+                    <span>Calculators</span>
+                </div>
+
+                <div>
+                    <h2>100+</h2>
+                    <span>Countries</span>
+                </div>
+
+                <div>
+                    <h2>24/7</h2>
+                    <span>Free Access</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img
+                src="images/hero-finance.svg"
+                alt="Financial Planning"
+                loading="lazy"
+            >
+
+        </div>
+
+    </div>
+
+</section>
 
 <section class="calculator-section">
 
@@ -124,7 +254,75 @@
     <!-- ==========================================
      CALCULATOR CARD
 ========================================== -->
+<section id="loanCards" class="loan-categories">
 
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Choose Your Financial Calculator</h2>
+
+            <p>
+                Calculate EMI, compare loans, and plan your finances with our professional calculators.
+            </p>
+
+        </div>
+
+        <div class="loan-grid">
+
+            <a href="?loan=home" class="loan-card">
+                <div class="loan-icon">🏠</div>
+                <h3>Home Loan</h3>
+                <p>Calculate Home Loan EMI instantly.</p>
+            </a>
+
+            <a href="?loan=car" class="loan-card">
+                <div class="loan-icon">🚗</div>
+                <h3>Car Loan</h3>
+                <p>Know your monthly car loan payment.</p>
+            </a>
+
+            <a href="?loan=personal" class="loan-card">
+                <div class="loan-icon">👤</div>
+                <h3>Personal Loan</h3>
+                <p>Fast EMI calculation for personal loans.</p>
+            </a>
+
+            <a href="?loan=education" class="loan-card">
+                <div class="loan-icon">🎓</div>
+                <h3>Education Loan</h3>
+                <p>Plan education financing smartly.</p>
+            </a>
+
+            <a href="?loan=business" class="loan-card">
+                <div class="loan-icon">💼</div>
+                <h3>Business Loan</h3>
+                <p>Estimate business loan repayments.</p>
+            </a>
+
+            <a href="?loan=bike" class="loan-card">
+                <div class="loan-icon">🏍</div>
+                <h3>Bike Loan</h3>
+                <p>Affordable EMI for two-wheelers.</p>
+            </a>
+
+            <a href="?loan=gold" class="loan-card">
+                <div class="loan-icon">🏆</div>
+                <h3>Gold Loan</h3>
+                <p>Calculate secured gold loan EMI.</p>
+            </a>
+
+            <a href="?loan=mortgage" class="loan-card">
+                <div class="loan-icon">🏢</div>
+                <h3>Mortgage</h3>
+                <p>Mortgage payment calculator.</p>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 <div class="calculator-card">
 
     <div class="form-group">
@@ -255,6 +453,314 @@
     </p>
 
 </section>
+
+<section class="features">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Why Choose Smart EMI Calculator?</h2>
+
+            <p>
+                Everything you need to make smarter financial decisions.
+            </p>
+
+        </div>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">⚡</div>
+
+                <h3>Instant Calculation</h3>
+
+                <p>
+                    Get accurate EMI calculations in less than a second.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📊</div>
+
+                <h3>Interactive Charts</h3>
+
+                <p>
+                    Visualize principal and interest with beautiful charts.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📄</div>
+
+                <h3>Download PDF</h3>
+
+                <p>
+                    Export complete amortization schedules as PDF reports.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">💱</div>
+
+                <h3>Multi Currency</h3>
+
+                <p>
+                    Calculate EMI in INR, USD, EUR, GBP and more.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">🌍</div>
+
+                <h3>Multi Language</h3>
+
+                <p>
+                    Use the calculator in multiple languages with one click.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">📱</div>
+
+                <h3>Mobile Friendly</h3>
+
+                <p>
+                    Works perfectly on desktop, tablet and smartphones.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats">
+
+    <div class="container">
+
+        <div class="stat-grid">
+
+            <div class="stat-box">
+                <h2>1M+</h2>
+                <p>EMI Calculations</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>30+</h2>
+                <p>Financial Calculators</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>100+</h2>
+                <p>Countries Supported</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>24/7</h2>
+                <p>Free Access</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="testimonials">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>What Our Users Say</h2>
+
+            <p>
+                Trusted by students, professionals and business owners.
+            </p>
+
+        </div>
+
+        <div class="testimonial-grid">
+
+            <div class="testimonial-card">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    This calculator made comparing home loan options incredibly easy.
+                </p>
+
+                <h4>Rahul Sharma</h4>
+
+            </div>
+
+            <div class="testimonial-card">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    The amortization schedule and charts are extremely helpful.
+                </p>
+
+                <h4>Emily Johnson</h4>
+
+            </div>
+
+            <div class="testimonial-card">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    Fast, clean and easy to use. One of the best EMI calculators.
+                </p>
+
+                <h4>David Wilson</h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+     NEWSLETTER
+============================ -->
+
+<section class="newsletter">
+
+    <div class="container">
+
+        <h2>Stay Updated</h2>
+
+        <p>
+            Get the latest financial calculators, loan tips and investment guides.
+        </p>
+
+        <form class="newsletter-form">
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+            >
+
+            <button type="submit">
+
+                Subscribe
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+     FOOTER
+============================ -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>Smart EMI Calculator</h3>
+
+                <p>
+
+                    Free financial calculators to help you make smarter money decisions.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4>Calculators</h4>
+
+                <ul>
+
+                    <li><a href="?loan=home">Home Loan</a></li>
+
+                    <li><a href="?loan=car">Car Loan</a></li>
+
+                    <li><a href="?loan=personal">Personal Loan</a></li>
+
+                    <li><a href="?loan=education">Education Loan</a></li>
+
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Company</h4>
+
+                <ul>
+
+                    <li><a href="about.html">About</a></li>
+
+                    <li><a href="contact.html">Contact</a></li>
+
+                    <li><a href="privacy.html">Privacy</a></li>
+
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Follow Us</h4>
+
+                <p>
+
+                    Facebook<br>
+
+                    LinkedIn<br>
+
+                    X (Twitter)<br>
+
+                    YouTube
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <p class="copyright">
+
+            © <span id="currentYear"></span> Smart EMI Calculator.
+            All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
 
 <!-- ==========================================
      AFFORDABILITY CALCULATOR

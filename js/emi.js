@@ -67,7 +67,8 @@ emiData.totalPayment = totalPayment;
         totalInterest,
         totalPayment
     );
-
+    
+updateURL();
 }
 
 // ----------------------------------------------------------
