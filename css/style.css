@@ -1775,3 +1775,285 @@ body{
     text-align:center;
 
 }
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+    background:#ffffff;
+
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+
+}
+
+.nav-container{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    min-height:72px;
+
+}
+
+.logo{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+}
+
+.navbar{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+.navbar a{
+
+    text-decoration:none;
+
+    color:#334155;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.navbar a:hover,
+
+.navbar a.active{
+
+    color:#2563eb;
+
+}
+
+.menu-toggle{
+
+    display:none;
+
+    border:none;
+
+    background:none;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+    .navbar{
+
+        display:none;
+
+        position:absolute;
+
+        top:72px;
+
+        left:0;
+
+        width:100%;
+
+        background:white;
+
+        flex-direction:column;
+
+        padding:20px;
+
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    }
+
+    .navbar.show{
+
+        display:flex;
+
+    }
+
+    .menu-toggle{
+
+        display:block;
+
+    }
+
+}
+
+/* ==============================
+   NAV TOOLS
+============================== */
+
+.nav-tools{
+
+display:flex;
+
+gap:12px;
+
+align-items:center;
+
+margin-left:20px;
+
+}
+
+.nav-tools select{
+
+padding:8px 12px;
+
+border:1px solid #ddd;
+
+border-radius:8px;
+
+background:#fff;
+
+cursor:pointer;
+
+font-size:14px;
+
+}
+
+@media(max-width:768px){
+
+.nav-tools{
+
+flex-direction:column;
+
+width:100%;
+
+margin-top:15px;
+
+}
+
+.nav-tools select{
+
+width:100%;
+
+}
+
+}
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+.theme-toggle{
+
+    border:none;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.theme-toggle:hover{
+
+    transform:rotate(20deg);
+
+}
+
+body.dark{
+
+    background:#0f172a;
+
+    color:#e2e8f0;
+
+}
+
+body.dark .header{
+
+    background:#1e293b;
+
+}
+
+body.dark .loan-card,
+body.dark .feature-card,
+body.dark .testimonial-card{
+
+    background:#1e293b;
+
+    color:#fff;
+
+}
+
+body.dark .footer{
+
+    background:#020617;
+
+}
+
+/* ==========================================================
+   BACK TO TOP
+========================================================== */
+
+.back-to-top{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    display:none;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+
+    z-index:999;
+
+}
+
+.back-to-top.show{
+
+    display:block;
+
+}
