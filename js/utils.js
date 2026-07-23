@@ -180,3 +180,51 @@ function updateURL() {
     history.replaceState({}, "", "?" + params.toString());
 
 }
+
+// ==============================
+// Currency Selector
+// ==============================
+
+const currencyMap = {
+
+INR:"₹",
+
+USD:"$",
+
+EUR:"€",
+
+GBP:"£",
+
+AED:"AED ",
+
+CAD:"C$",
+
+AUD:"A$",
+
+SGD:"S$",
+
+JPY:"¥"
+
+};
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const currency=document.getElementById("currencySelector");
+
+if(currency){
+
+currency.value=currentCurrency;
+
+currency.addEventListener("change",(e)=>{
+
+currentCurrency=e.target.value;
+
+currentSymbol=currencyMap[currentCurrency]||currentCurrency;
+
+calculateEMI();
+
+});
+
+}
+
+});
