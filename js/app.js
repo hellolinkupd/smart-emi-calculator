@@ -144,6 +144,84 @@ if(menuButton && menu){
 
 }
 
+// ==========================
+// Mobile Menu
+// ==========================
+
+const menuToggle = document.getElementById("menuToggle");
+
+const navbar = document.getElementById("navbar");
+
+if (menuToggle && navbar) {
+
+    menuToggle.addEventListener("click", () => {
+
+        navbar.classList.toggle("show");
+
+    });
+
+}
+
+// ==========================
+// Dark Mode
+// ==========================
+
+const themeToggle = document.getElementById("themeToggle");
+
+if (themeToggle) {
+
+    if (localStorage.getItem("theme") === "dark") {
+
+        document.body.classList.add("dark");
+
+        themeToggle.textContent = "☀️";
+
+    }
+
+    themeToggle.addEventListener("click", () => {
+
+        document.body.classList.toggle("dark");
+
+        const dark = document.body.classList.contains("dark");
+
+        themeToggle.textContent = dark ? "☀️" : "🌙";
+
+        localStorage.setItem("theme", dark ? "dark" : "light");
+
+    });
+
+}
+
+// ==========================
+// Back To Top
+// ==========================
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+
+    if (!backToTop) return;
+
+    backToTop.classList.toggle("show", window.scrollY > 300);
+
+});
+
+if (backToTop) {
+
+    backToTop.addEventListener("click", () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
+
     console.log("Application Ready");
 
 });
