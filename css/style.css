@@ -111,9 +111,7 @@ margin:auto;
 /* ===================================== */
 
 section{
-
-padding:60px 0;
-
+    padding:60px 0;
 }
 
 /* ===================================== */
@@ -302,37 +300,20 @@ font-weight:700;
 }
 
 input,
-select,
-textarea{
-
-    width:100%;
-
-    padding:14px 16px;
-
-    border:1px solid var(--border);
-
+select{
+    height:52px;
+    border:1px solid #dbe4f0;
     border-radius:12px;
-
-    background:#fff;
-
-    color:var(--text);
-
+    padding:0 16px;
     font-size:16px;
-
-    transition:all .25s ease;
-
-    outline:none;
-
+    transition:.25s;
 }
 
 input:focus,
-select:focus,
-textarea:focus{
-
-    border-color:var(--primary);
-
+select:focus{
+    outline:none;
+    border-color:#2563eb;
     box-shadow:0 0 0 4px rgba(37,99,235,.15);
-
 }
 
 input::placeholder{
@@ -951,14 +932,23 @@ th:last-child{
    ANIMATIONS
 ========================================================== */
 
-.card,
-.summary-card,
-.result-box,
-.chart-card,
-.detail-box{
+.result-card{
+    background:#fff;
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    border:1px solid #eef2f7;
+}
 
-    animation:fadeUp .45s ease;
+.btn{
+    border-radius:12px;
+    padding:14px 28px;
+    font-weight:600;
+    transition:.25s;
+}
 
+.btn:hover{
+    transform:translateY(-2px);
 }
 
 @keyframes fadeUp{
@@ -1586,44 +1576,53 @@ body{
 
 .loan-grid{
     display:grid;
-    grid-template-columns:repeat(8,1fr);
+    grid-template-columns:repeat(8, minmax(120px,1fr));
     gap:18px;
+    margin-top:35px;
+    justify-content:center;
 }
 
 .loan-card{
     background:#fff;
-    border-radius:16px;
-    padding:24px 18px;
-    text-align:center;
     border:1px solid #e5e7eb;
-    transition:.3s;
-    box-shadow:0 5px 15px rgba(0,0,0,.05);
+    border-radius:16px;
+    width:130px;
+    height:130px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    transition:.25s;
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
 }
 
 .loan-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 35px rgba(37,99,235,.15);
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(37,99,235,.15);
 }
 
 .loan-card i,
-.loan-card img,
-.loan-card .icon{
-    font-size:42px;
-    width:42px;
-    height:42px;
-    margin-bottom:16px;
+.loan-card img{
+    font-size:30px;
+    width:32px;
+height:32px;
+margin-bottom:8px;
 }
 
 .loan-card h3{
-    font-size:22px;
-    margin-bottom:10px;
+    font-size:20px;
+    margin:10px 0 6px;
+    line-height:1.2;
 }
 
 .loan-card p{
-    font-size:15px;
-    line-height:1.6;
+    font-size:13px;
+    line-height:1.4;
+    color:#64748b;
+    margin:0;
 }
-
 /* ==========================================================
    FEATURES
 ========================================================== */
